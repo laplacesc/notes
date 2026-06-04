@@ -17,8 +17,18 @@ export default defineConfig({
   lang: "zh-CN",
   base: "/notes/",
   head: [
-    ["link", { rel: "icon", type: "image/svg+xml", href: "/notes/site/blogging-mini.svg" }],
-    ["link", { rel: "icon", type: "image/png", href: "/notes/site/blogging-mini.png" }],
+    [
+      "link",
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/notes/site/blogging-mini.svg",
+      },
+    ],
+    [
+      "link",
+      { rel: "icon", type: "image/png", href: "/notes/site/blogging-mini.png" },
+    ],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
     ["meta", { property: "og:title", content: "不理之山の笔记" }],
@@ -87,13 +97,6 @@ export default defineConfig({
     nav: [
       { text: "首页", link: "/" },
       {
-        text: "指南",
-        link: "/guide/intro",
-        activeMatch: "/01.指南/",
-      },
-      { text: "配置", link: "/reference/config", activeMatch: "/10.配置/" },
-      { text: "开发", link: "/develop/intro", activeMatch: "/15.主题开发/" },
-      {
         text: "功能页",
         items: [
           { text: "归档页", link: "/archives" },
@@ -115,8 +118,7 @@ export default defineConfig({
     },
     editLink: {
       text: "在 GitHub 上编辑此页",
-      pattern:
-        "https://github.com/laplacesc/notes/edit/main/docs/:path",
+      pattern: "https://github.com/laplacesc/notes/edit/main/docs/:path",
     },
   },
   vite: {
