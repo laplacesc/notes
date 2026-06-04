@@ -3,7 +3,8 @@ title: Git 备忘清单
 date: 2026-06-04 18:31:34
 permalink: /guide/git
 titleTag: 命令
-categories: Linux Command
+categories: 
+  - Linux Command
 tags:
   - github
   - gitlab
