@@ -4,7 +4,7 @@
   "theme": "moonstone",
   "baseFontSize": 18,
   "textFontFamily": "霞鹜文楷等宽",
-  "monospaceFontFamily": "Maple Mono NF CN",
+  "monospaceFontFamily": "Maple Mono NF CN,Maple Mono Normal NF CN",
   "enabledCssSnippets": [
     "pdf-table",
     "mermaid"
