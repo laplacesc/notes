@@ -36,3 +36,4 @@ pnpm-workspace.yaml
 .obsidian/workspace-mobile.json
 .claudian/
 /.obsidian/plugins/realclaudian/data.json
+.claude/worktrees/
