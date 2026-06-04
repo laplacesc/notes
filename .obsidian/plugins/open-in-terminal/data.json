@@ -1,0 +1,14 @@
+{
+  "terminalApp": {
+    "macos": "iTerm"
+  },
+  "enableClaude": true,
+  "enableCodex": true,
+  "enableCursor": true,
+  "enableGemini": true,
+  "enableOpencode": true,
+  "enableWslOnWindows": false,
+  "enableGitCommitPush": false,
+  "enableGitPull": false,
+  "defaultCommitMessage": "update"
+}

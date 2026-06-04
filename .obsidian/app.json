@@ -1,0 +1,21 @@
+{
+  "showLineNumber": true,
+  "pdfExportSettings": {
+    "includeName": true,
+    "pageSize": "A4",
+    "landscape": true,
+    "margin": "0",
+    "downscalePercent": 100
+  },
+  "attachmentFolderPath": "/",
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "relative",
+  "showUnsupportedFiles": true,
+  "readableLineLength": false,
+  "showIndentGuide": false,
+  "useMarkdownLinks": true,
+  "newFileLocation": "root",
+  "newFileFolderPath": "Attachments",
+  "focusNewTab": true,
+  "tabSize": 4
+}

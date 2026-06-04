@@ -1,0 +1,10 @@
+{
+	"id": "reading-progress-desktop",
+	"name": "Reading progress desktop",
+	"version": "1.0.1",
+	"minAppVersion": "1.6.7",
+	"description": "A progress bar for some views in the status bar(desktopAPP).",
+	"author": "qian-shen",
+	"authorUrl": "https://github.com/qian-shen",
+	"isDesktopOnly": true
+}

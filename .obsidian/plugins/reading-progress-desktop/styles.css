@@ -1,0 +1,231 @@
+/*
+
+This CSS file will be included with your plugin, and
+available in the app when your plugin is enabled.
+
+If your plugin does not need CSS, delete this file.
+
+*/
+
+body {
+	--reading-progress: var(--scrollbar-active-thumb-bg);
+	--reading-progress-background: hsla(var(--interactive-accent-hsl), 0.15);
+	--reading-progress-box-shadow: inset 0 0 0 1px
+    var(--background-modifier-border);
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar {
+	--reading-progress-width: 172px;
+	--reading-progress-value: 100%;
+}
+
+/* 进度条样式 */
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress {
+	border-radius: 5px;
+	align-items: center;
+	display: flex;
+	height: 6px;
+	width: var(--reading-progress-width);
+	position: relative;
+	justify-content: flex-start;
+	overflow: hidden;
+	background: var(--reading-progress-background);
+	box-shadow: var(--reading-progress-box-shadow);
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .progress-border {
+	width: var(--reading-progress-width);
+	height: 10px;
+	position: absolute;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-width: 2px;
+	border-style: solid;
+	border-color: var(--progress-value-color1);
+	opacity: 0;
+	transition: opacity 0.18s ease;
+	z-index: 99;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .progress-border.active {
+	opacity: 1;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .progress-border.active + .reading-progress .progress-value {
+	opacity: 0;
+}
+
+body .modal-container .vertical-tab-content.reading-progress-desktop-setting {
+	container-type: normal !important;
+}
+
+body .modal-container .vertical-tab-content.reading-progress-desktop-setting .setting-item input[type='range'] {
+	width: 150px;
+	z-index: 100;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .progress-border {
+	transition: width 0.1s ease;
+}
+
+/* 注册进度条颜色 */
+
+@property --progress-value-color1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #4facfe;
+}
+
+@property --progress-value-color2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #00f2fe;
+}
+
+/* 流光动画 */
+
+@keyframes shineFlow {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+/* 进度条样式 */
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value {
+	border-radius: 5px;
+	height: 6px;
+	width: var(--reading-progress-value);
+	background-image: linear-gradient(to right, var(--progress-value-color1), var(--progress-value-color2));
+	opacity: 0.3;
+	position: relative;
+	transition: width 0.1s ease, opacity 0.18s ease, --progress-value-color1 0.18s ease, --progress-value-color2 0.18s ease;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.empty {
+	width: 100% !important;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.shineFlow {
+	background-image: linear-gradient(
+        to right,
+        var(--progress-value-color1),
+        var(--progress-value-color2),
+        var(--progress-value-color1)
+    );
+	background-size: 200% 100%;
+    animation: shineFlow 5s linear infinite;
+}
+
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.shineFlow {
+	--progress-value-color1:#005bea;
+	--progress-value-color2: #00c6fb;
+}
+
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.markdown,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.search,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.release-notes,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.markdown.shineFlow,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.search.shineFlow,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.release-notes.shineFlow {
+	--progress-value-color1:#4facfe;
+	--progress-value-color2: #00f2fe;
+}
+
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.markdown,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.search,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.release-notes,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.markdown.shineFlow,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.search.shineFlow,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.release-notes.shineFlow {
+	--progress-value-color1:#005bea;
+	--progress-value-color2: #00c6fb;
+}
+
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.pdf,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.pdf.shineFlow {
+	--progress-value-color1:#fa709a;
+	--progress-value-color2: #fee140;
+}
+
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.pdf,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.pdf.shineFlow {
+	--progress-value-color1:#fe5196;
+	--progress-value-color2: #f77062;
+}
+
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.bases,
+body.theme-light .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.bases.shineFlow {
+	--progress-value-color1: #6f86d6;
+	--progress-value-color2: #48c6ef;
+}
+
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.bases,
+body.theme-dark .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.bases.shineFlow {
+	--progress-value-color1:#6a11cb;
+	--progress-value-color2: #2575fc;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.thino_view,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.thino_view.shineFlow {
+	--progress-value-color1:#43d3ff;
+	--progress-value-color2: #baaaff;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.markdown,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.pdf,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.search,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.bases,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.thino_view,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar .reading-progress .progress-value.release-notes {
+	opacity: 1;
+}
+
+/* 全屏按钮样式 */
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.maximize-minimize:hover,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar:hover,
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.view-type:hover {
+	color: var(--status-bar-text-color);
+	background-color: var(--background-modifier-hover);
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.maximize-minimize.ban {
+	color: rgb(232, 17, 35);
+	user-select: none !important;
+	pointer-events: none !important;
+}
+
+/* 其他样式 */
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.maximize-minimize {
+	order: 1;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.reading-progress-bar {
+	order: 2;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.view-type {
+	order: 3;
+}
+
+body .app-container .status-bar .status-bar-item.plugin-reading-progress-desktop.hidden {
+	display: none;
+}
+
+body .modal-container .vertical-tab-content.reading-progress-desktop-setting .setting-item.progress-bar-setting.setting-item-heading .setting-item-info .setting-item-name::before {
+	content: "🎮 ";
+}
+
+body .modal-container .vertical-tab-content.reading-progress-desktop-setting .setting-item.component-setting.setting-item-heading .setting-item-info .setting-item-name::before {
+	content: "🧩 ";
+}

@@ -1,0 +1,23 @@
+/* 預設情況下，調整 Mermaid 圖表嘅大小，令佢哋啱晒喺頁面度 */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 如果你想改返，咁就唔好調整大小 */
+.no-resize-mermaid .mermaid svg {
+    max-width: inherit;
+    height: inherit;
+}
+
+/* 令 mindmap 嘅顏色睇得清楚啲 */
+.theme-light .mermaid {
+    --color-red: #ff7777;
+    --color-orange: #ffbb99;
+    --color-yellow: #ffeeaa;
+    --color-green: #bbffbb;
+    --color-cyan: #bbffee;
+    --color-blue: #aaccff;
+    --color-purple: #ddbbff;
+    --color-pink: #ffcccc;
+}

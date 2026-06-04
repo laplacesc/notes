@@ -1,0 +1,12 @@
+@media print {
+  table {
+    font-size: 12px !important; /* 缩小字体 */
+    width: 100% !important; /* 强制宽度为 100% */
+    table-layout: fixed !important; /* 固定表格布局 */
+    word-wrap: break-word !important; /* 强制单词换行 */
+  }
+  th, td {
+    white-space: normal !important; /* 允许单元格换行 */
+    word-wrap: break-word !important;
+  }
+}
