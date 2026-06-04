@@ -97,6 +97,10 @@ export default defineConfig({
     nav: [
       { text: "首页", link: "/" },
       {
+        text: "指南",
+        items: [{ text: "Git 备忘清单", link: "/guide/git" }],
+      },
+      {
         text: "功能页",
         items: [
           { text: "归档页", link: "/archives" },
