@@ -4,10 +4,17 @@ date: 2026-06-04 23:52:41
 permalink:
 titleTag:
 categories:
+  - WSL
+  - 开发环境
 tags:
+  - wsl
+  - claude-code
+  - codex
+  - nodejs
+  - ubuntu
 top: false
 sticky:
-description:
+description: 在 Windows 11 上安装配置 WSL 及 Ubuntu，并搭建 Claude Code、Codex 等 AI 编程工具的完整指南。
 coverImg: https://github.com/laplacesc/picx-images-hosting/raw/master/20260604/demo.1ow2wv7ubl.gif
 frontmatter: https://vp.teek.top/reference/frontmatter.html
 ---
