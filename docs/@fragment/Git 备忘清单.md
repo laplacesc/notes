@@ -1,7 +1,7 @@
 ---
-title: Git
+title: Git 备忘清单
 date: 2026-06-04 18:31:34
-permalink:
+permalink: /guide/git
 titleTag: 命令
 categories: Linux Command
 tags:
@@ -14,7 +14,6 @@ description: 本备忘单总结了常用的 [Git](https://git-scm.com/) 命令�
 coverImg: https://laplacesc.github.io/picx-images-hosting/20260604/image.mpzd3biw.png
 ---
 
-Git 备忘清单
 ===
 
 本备忘单总结了常用的 [Git](https://git-scm.com/) 命令行指令，以供快速参考。
