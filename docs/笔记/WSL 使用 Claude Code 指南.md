@@ -12,11 +12,10 @@ tags:
   - codex
   - nodejs
   - ubuntu
-top: false
-sticky:
+top: true
+sticky: 2
 description: 在 Windows 11 上安装配置 WSL 及 Ubuntu，并搭建 Claude Code、Codex 等 AI 编程工具的完整指南。
 coverImg: https://github.com/laplacesc/picx-images-hosting/raw/master/20260604/demo.1ow2wv7ubl.gif
-frontmatter: https://vp.teek.top/reference/frontmatter.html
 ---
 
 > 本文档介绍如何在 Windows 11 上安装和配置 WSL (Windows Subsystem for Linux)，以及安装开发工具。
