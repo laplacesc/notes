@@ -1,17 +1,18 @@
 ---
 title: Git 备忘清单
 date: 2026-06-04 18:31:34
-permalink: /guide/git
-titleTag: 命令
-categories: 
-  - Linux Command
+permalink: /git-cheatsheet
+titleTag: 原创
+categories:
+  - Git
+  - 工具
 tags:
-  - github
-  - gitlab
-  - version
+  - git
+  - 备忘清单
+  - cheatsheet
 top: true
-sticky: "1"
-description: 本备忘单总结了常用的 [Git](https://git-scm.com/) 命令行指令，以供快速参考。
+sticky: 1
+description: 本备忘单总结了常用的 Git 命令行指令，以供快速参考。
 coverImg: https://laplacesc.github.io/picx-images-hosting/20260604/image.mpzd3biw.png
 ---
 

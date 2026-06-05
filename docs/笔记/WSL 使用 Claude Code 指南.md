@@ -1,8 +1,8 @@
 ---
 title: WSL 使用 Claude Code 指南
 date: 2026-06-04 23:52:41
-permalink:
-titleTag:
+permalink: /wsl-claude-code
+titleTag: 原创
 categories:
   - WSL
   - 开发环境

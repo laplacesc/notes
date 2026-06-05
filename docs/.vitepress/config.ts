@@ -98,7 +98,7 @@ export default defineConfig({
       { text: "首页", link: "/" },
       {
         text: "指南",
-        items: [{ text: "Git 备忘清单", link: "/guide/git" }],
+        items: [{ text: "Git 备忘清单", link: "/git-cheatsheet" }],
       },
       {
         text: "功能页",
