@@ -138,6 +138,31 @@
   "pinNewInstance": true,
   "preferredRenderer": "webgl",
   "profiles": {
+    "3dd87b9b-df53-43e1-86bc-588a0271fed3": {
+      "args": [],
+      "environment": [],
+      "executable": "C:\\Windows\\System32\\wsl.exe",
+      "followTheme": true,
+      "name": "",
+      "platforms": {
+        "darwin": false,
+        "linux": false,
+        "win32": true
+      },
+      "pythonExecutable": "",
+      "restoreHistory": false,
+      "rightClickAction": "copyPaste",
+      "successExitCodes": [
+        "0",
+        "SIGINT",
+        "SIGTERM"
+      ],
+      "terminalOptions": {
+        "documentOverride": null
+      },
+      "type": "integrated",
+      "useWin32Conhost": true
+    },
     "darwinExternalDefault": {
       "args": [
         "\"$PWD\""
@@ -292,7 +317,7 @@
   },
   "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
-    "documentOverride": null,
-    "fontFamily": "Maple Mono NF CN,Maple Mono Normal NF CN"
+    "fontFamily": "Maple Mono NF CN,Maple Mono Normal NF CN",
+    "documentOverride": null
   }
 }
