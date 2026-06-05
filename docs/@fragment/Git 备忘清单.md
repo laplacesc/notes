@@ -18,10 +18,9 @@ coverImg: https://laplacesc.github.io/picx-images-hosting/20260604/image.mpzd3bi
 
 本备忘单总结了常用的 [Git](https://git-scm.com/) 命令行指令，以供快速参考。
 
-入门
-----
+## 入门
 
-## 创建存储库
+### 创建存储库
 
 ```shell
 # 创建一个新的本地存储库
@@ -34,9 +33,7 @@ $ git clone <git_url> 指定目录
 $ git clone <git_url> -b <分支名称> 指定目录
 ```
 
-## 做出改变
-
-<!--rehype:wrap-class=row-span-3-->
+### 做出改变
 
 ```shell
 # 在工作目录中`显示`修改后的文件，
@@ -62,9 +59,7 @@ $ git diff --staged
 $ git rebase [branch]
 ```
 
-## 配置
-
-<!--rehype:wrap-class=row-span-2-->
+### 配置
 
 ```shell
 # 设置将附加到您的提交和标签的名称
@@ -81,9 +76,7 @@ $ git config --list
 $ git config --global --unset <entry-name>
 ```
 
-## 使用分支
-
-<!--rehype:wrap-class=row-span-4-->
+### 使用分支
 
 ```shell
 # 列出所有本地分支
@@ -111,9 +104,7 @@ $ git tag my_tag
 $ git checkout -b <branch-name> origin/<branch-name>
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 临时提交
+### 临时提交
 
 ```shell
 # 保存已修改和分阶段的更改
@@ -130,9 +121,7 @@ $ git stash apply <stash@{n}>
 $ git stash clear
 ```
 
-## 观察你的存储库
-
-<!--rehype:wrap-class=row-span-2-->
+### 观察你的存储库
 
 ```shell
 # 显示当前活动分支的提交历史
@@ -147,28 +136,24 @@ $ git diff branchB...branchA
 $ git show [SHA]
 ```
 
-## 忽略文件 .gitignore
-
-<!--rehype:wrap-class=row-span-5-->
+### 忽略文件 .gitignore
 
 文件 `.gitignore` 指定了 `Git` 应该忽略的 **未跟踪的** 文件
 
-:- | :-
-:- | :-
-行首 `#` | 全行注释，不支持行尾类注释 _(转义 `\#`)_
-行首 **`!`** | 否定模式 _(转义 `\!`)_
-`**` | 匹配任意路径
-`*` | 匹配任意多个字符
-`?` | 匹配任意一个字符
-`doc/**` | 匹配 `doc` 文件夹下的全部内容
-`doc/**/a` | 匹配任意深度路径下的 `a` 文件或文件夹
-`/` | 表示路径分隔符，不区分操作系统
-`/` 结尾 | 仅会匹配文件夹，否则会匹配文件和文件夹
-空行 | 不匹配任何文件
-行尾空格 | 默认被忽略，可使用 `\` 进行转义
-行首空格 | 被正常处理，不会被忽略
-
-<!--rehype:className=left-align-->
+| 符号         | 描述                        |
+| :--------- | :------------------------ |
+| 行首 `#`     | 全行注释，不支持行尾类注释 _(转义 `\#`)_ |
+| 行首 **`!`** | 否定模式 _(转义 `\!`)_          |
+| `**`       | 匹配任意路径                    |
+| `*`        | 匹配任意多个字符                  |
+| `?`        | 匹配任意一个字符                  |
+| `doc/**`   | 匹配 `doc` 文件夹下的全部内容        |
+| `doc/**/a` | 匹配任意深度路径下的 `a` 文件或文件夹     |
+| `/`        | 表示路径分隔符，不区分操作系统           |
+| `/` 结尾     | 仅会匹配文件夹，否则会匹配文件和文件夹       |
+| 空行         | 不匹配任何文件                   |
+| 行尾空格       | 默认被忽略，可使用 `\` 进行转义        |
+| 行首空格       | 被正常处理，不会被忽略               |
 
 当前 `.gitignore` 文件定义规则的优先级高于上级路径 `.gitignore` 定义规则的优先级；后定义的规则优先级高于前面定义规则的优先级
 
@@ -198,9 +183,7 @@ target/
 !logs/.gitkeep
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 重构文件名
+### 重构文件名
 
 ```bash
 # 从工作目录中删除文件并暂存删除
@@ -211,9 +194,7 @@ git rm --cached <filename>
 git mv <filename-orig> <filename-renamed>
 ```
 
-## 同步
-
-<!--rehype:wrap-class=row-span-3-->
+### 同步
 
 从该 Git 远程获取所有分支
 
@@ -249,9 +230,7 @@ $ git pull
 $ git cherry-pick [commit_id]
 ```
 
-## 远程
-
-<!--rehype:wrap-class=row-span-2-->
+### 远程
 
 ```shell
 # 添加一个 git URL 作为别名
@@ -266,7 +245,7 @@ $ git remote rm [remote repo name]
 $ git remote set-url origin [git_url]
 ```
 
-## 跟踪路径更改
+### 跟踪路径更改
 
 从项目中删除文件并暂存删除以进行提交
 
@@ -286,9 +265,7 @@ $ git mv [existing-path] [new-path]
 $ git log --stat -M
 ```
 
-## .gitattributes
-
-<!--rehype:wrap-class=col-span-2 row-span-2-->
+### .gitattributes
 
 ```ini
 # 设置默认行为，以防人们没有设置 core.autocrlf
@@ -320,7 +297,7 @@ special-vendored-path/* linguist-vendored
 *.rb linguist-language=Java
 ```
 
-## git 配置 ssh 代理
+### git 配置 ssh 代理
 
 ```bash
 $ cat ~/.ssh/config
@@ -332,14 +309,9 @@ Host github.com
 ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p
 ```
 
-<!--rehype:className=wrap-text-->
+## Commit
 
-Commit
----
-
-## 改写历史
-
-<!--rehype:wrap-class=row-span-2-->
+### 改写历史
 
 ```shell
 # 重写最后的提交消息
@@ -348,15 +320,13 @@ $ git commit --amend -m "new message"
 $ git commit --amend --no-edit
 ```
 
-## 在 commit log 中显示 GPG 签名
+### 在 commit log 中显示 GPG 签名
 
 ```bash
 $ git log --show-signature
 ```
 
-## 修改远程 Commit 记录
-
-<!--rehype:wrap-class=row-span-6-->
+### 修改远程 Commit 记录
 
 ```shell
 $ git rebase -i HEAD~3
@@ -398,9 +368,7 @@ $ git rebase --continue
 $ git push -f origin master
 ```
 
-<!--rehype:className=wrap-text-->
-
-## Commit
+### Commit
 
 ```shell
 $ git commit -v --amend
@@ -408,7 +376,7 @@ $ git commit -v --amend
 
 重写最后的提交信息
 
-## 撤销远程记录
+### 撤销远程记录
 
 ```shell
 # 撤销一条记录
@@ -417,7 +385,7 @@ $ git reset --hard HEAD~1
 $ git push -f origin HEAD:master
 ```
 
-## 放弃本地修改内容
+### 放弃本地修改内容
 
 ```shell
 # 如果有的修改以及加入暂存区的话
@@ -428,7 +396,7 @@ $ git checkout .
 $ git clean -xdf
 ```
 
-## 把 A 分支的某一个 commit，放到 B 分支上
+### 把 A 分支的某一个 commit，放到 B 分支上
 
 ```shell
 # 切换到 B 分支
@@ -437,7 +405,7 @@ $ git checkout <B>
 $ git cherry-pick <hash-id>
 ```
 
-## 重设第一个 commit
+### 重设第一个 commit
 
 ```bash
 $ git update-ref -d HEAD
@@ -445,25 +413,21 @@ $ git update-ref -d HEAD
 
 把所有的改动都重新放回工作区，并**清空所有的 commit**，这样就可以重新提交第一个 `commit` 了
 
-## 回到远程仓库的状态
+### 回到远程仓库的状态
 
 ```bash
 $ git fetch --all && git reset --hard origin/master
 ```
 
-<!--rehype:className=wrap-text-->
-
 抛弃本地所有的修改，回到远程仓库的状态
 
-## commit 历史中显示 Branch1 有的但是 Branch2 没有 commit
+### commit 历史中显示 Branch1 有的但是 Branch2 没有 commit
 
 ```bash
 $ git log Branch1 ^Branch2
 ```
 
-## git 迁移
-
-<!--rehype:wrap-class=col-span-2-->
+### git 迁移
 
 ```bash
 # 从原地址克隆一份裸版本库
@@ -477,47 +441,46 @@ $ git push --mirror https://gitee.com/username/newproject.git
 $ git clone https://gitee.com/username/newproject.git
 ```
 
-Git Submodule 子模块
-------
+## Git Submodule 子模块
 
-## 添加子模块
+### 添加子模块
 
 ```bash
 $ git submodule add <仓库地址> <子模块路径>
 ```
 
-## 克隆包含子模块的仓库
+### 克隆包含子模块的仓库
 
 ```bash
 $ git clone <repository_url> --recursive
 ```
 
-## 更新子模块
+### 更新子模块
 
 ```bash
 $ git submodule update --remote
 ```
 
-## 切换到子模块的特定提交
+### 切换到子模块的特定提交
 
 ```bash
 $ cd <path_to_submodule>
 $ git checkout <commit_hash>
 ```
 
-## 查看当前仓库中的子模块
+### 查看当前仓库中的子模块
 
 ```bash
 $ git submodule status
 ```
 
-## 初始化子模块
+### 初始化子模块
 
 ```bash
 $ git submodule init
 ```
 
-## 切换到父仓库的特定提交，并更新子模块
+### 切换到父仓库的特定提交，并更新子模块
 
 ```bash
 $ cd ..
@@ -525,9 +488,7 @@ $ git checkout <commit_hash>
 $ git submodule update --remote
 ```
 
-## 获取并切换子模块的最新标签
-
-<!--rehype:wrap-class=col-span-2-->
+### 获取并切换子模块的最新标签
 
 ```bash
 $ cd <path_to_submodule>
@@ -535,9 +496,7 @@ $ git fetch --tags
 $ git checkout $(git describe --tags $(git rev-list --tags --max-count=1))
 ```
 
-## 子模块递归
-
-<!--rehype:wrap-class=col-span-2 row-span-3-->
+### 子模块递归
 
 ```bash
 # 添加所有已存在的子模块
@@ -557,45 +516,44 @@ $ git submodule foreach --recursive git fetch --all
 $ git submodule foreach --recursive git reset --hard origin/master
 ```
 
-## 获取子模块的最新提交
+### 获取子模块的最新提交
 
 ```bash
 $ cd <path_to_submodule>
 $ git pull
 ```
 
-## 删除子模块
+### 删除子模块
 
 ```bash
 $ git submodule deinit <path_to_submodule>
 $ git rm <path_to_submodule>
 ```
 
-## 切换子模块的分支
+### 切换子模块的分支
 
 ```bash
 $ cd <path_to_submodule>
 $ git checkout <branch_name>
 ```
 
-## 初始化并更新所有子模块
+### 初始化并更新所有子模块
 
 ```bash
 $ git submodule init
 $ git submodule update
 ```
 
-## 切换子模块的特定标签
+### 切换子模块的特定标签
 
 ```bash
 $ cd <path_to_submodule>
 $ git checkout tags/<tag_name>
 ```
 
-Config 设置
----
+## Config 设置
 
-## 查看配置的信息
+### 查看配置的信息
 
 ```bash
 $ git help config
@@ -603,7 +561,7 @@ $ git help config
 
 获取帮助信息，查看修改个人信息的参数
 
-## 忽略文件的权限变化
+### 忽略文件的权限变化
 
 ```shell
 git config core.fileMode false
@@ -611,7 +569,7 @@ git config core.fileMode false
 
 不再将文件的权限变化视作改动
 
-## 配置自动换行
+### 配置自动换行
 
 ```bash
 $ git config --global core.autocrlf input
@@ -619,27 +577,25 @@ $ git config --global core.autocrlf input
 
 自动转换坑太大，提交到 git 是自动将换行符转换为 `lf`
 
-## 获取帮助信息
+### 获取帮助信息
 
 ```bash
 $ git config --list
 ```
 
-## 中文乱码的解决方案
+### 中文乱码的解决方案
 
 ```shell
 $ git config --global core.quotepath false
 ```
 
-## 删除全局设置
+### 删除全局设置
 
 ```bash
 $ git config --global --unset <entry-name>
 ```
 
-## 配置 http 和 socks 代理
-
-<!--rehype:wrap-class=col-span-2 row-span-2-->
+### 配置 http 和 socks 代理
 
 ```bash
 # 查看代理
@@ -667,7 +623,7 @@ $ git config --global --unset http.https://github.com.proxy
 $ git config --global --unset https.https://github.com.proxy
 ```
 
-## Git 别名
+### Git 别名
 
 ```shell
 $ git config --global alias.co checkout
@@ -684,7 +640,7 @@ $ git st
 
 也可以看看：[更多别名](https://gist.github.com/johnpolacek/69604a1f6861129ef088)
 
-## 设置大小写敏感
+### 设置大小写敏感
 
 ```shell
 # 查看git 的设置
@@ -695,10 +651,9 @@ $ git config core.ignorecase false
 $ git rm -r --cached <目录/文件>
 ```
 
-Git 技巧
-------
+## Git 技巧
 
-## 重命名分支
+### 重命名分支
 
 - **重命名**为 `new`
 
@@ -720,9 +675,7 @@ Git 技巧
   $ git push origin :oldBranchName #方法2
   ```
 
-<!--rehype:className=style-timeline-->
-
-## Log
+### Log
 
 按内容搜索更改
 
@@ -742,11 +695,7 @@ $ git log -p <file_name>
 $ git log --pretty=oneline --graph --decorate --all
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 分支
-
-<!--rehype:wrap-class=row-span-2-->
+### 分支
 
 列出所有分支及其上游
 
@@ -778,7 +727,7 @@ $ git checkout <branch> -- <file>
 $ git remote prune origin
 ```
 
-## 获取最近一次提交的 Hash
+### 获取最近一次提交的 Hash
 
 ```shell
 $ git rev-parse HEAD # e10721cb8859b2c
@@ -786,23 +735,19 @@ $ git rev-parse HEAD # e10721cb8859b2c
 $ git rev-parse --short HEAD # e10721c
 ```
 
-## 删除已经合并到 master 的分支
+### 删除已经合并到 master 的分支
 
 ```shell
 $ git branch --merged master | grep -v '^\*\|  master' | xargs -n 1 git branch -d
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 查看冲突文件列表
+### 查看冲突文件列表
 
 ```bash
 $ git diff --name-only --diff-filter=U
 ```
 
-## 展示工作区的冲突文件列表
-
-<!--rehype:wrap-class=row-span-2-->
+### 展示工作区的冲突文件列表
 
 输出工作区和暂存区的 different (不同)。
 
@@ -816,13 +761,13 @@ $ git diff
 $ git diff <commit-id> <commit-id>
 ```
 
-## 展示暂存区和最近版本的不同
+### 展示暂存区和最近版本的不同
 
 ```bash
 git diff --cached
 ```
 
-## 展示暂存区、工作区和最近版本的不同
+### 展示暂存区、工作区和最近版本的不同
 
 ```bash
 $ git diff HEAD
@@ -830,17 +775,13 @@ $ git diff HEAD
 
 输出工作区、暂存区 和本地最近的版本 (commit) 的 different(不同)。
 
-## 删除已经合并到 master 的分支
+### 删除已经合并到 master 的分支
 
 ```bash
 $ git branch --merged master | grep -v '^\*\|  master' | xargs -n 1 git branch -d
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 关联远程分支
-
-<!--rehype:wrap-class=row-span-2-->
+### 关联远程分支
 
 ```bash
 $ git branch -u origin/mybranch
@@ -854,119 +795,105 @@ git push origin/mybranch -u
 
 关联之后，`git branch -vv` 就可以展示关联的远程分支名了, 同时推送到远程仓库直接：`git push`，不需要指定远程仓库
 
-## 查看远程分支和本地分支的对应关系
+### 查看远程分支和本地分支的对应关系
 
 ```bash
 $ git remote show origin
 ```
 
-## 展示当前分支的最近的 tag
+### 展示当前分支的最近的 tag
 
 ```bash
 $ git describe --tags --abbrev=0
 ```
 
-## 修改作者名
+### 修改作者名
 
 ```bash
 $ git commit --amend --author='Author Name <email@address.com>'
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 增加远程仓库
+### 增加远程仓库
 
 ```bash
 $ git remote add origin <remote-url>
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 列出所有远程仓库
+### 列出所有远程仓库
 
 ```bash
 $ git remote -v
 ```
 
-## 从 stash 中拿出某个文件的修改
+### 从 stash 中拿出某个文件的修改
 
 ```bash
 $ git checkout <stash@{n}> -- <file-path>
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 展示所有 tracked 的文件
+### 展示所有 tracked 的文件
 
 ```bash
 $ git ls-files -t
 ```
 
-## 展示所有 untracked 的文件
+### 展示所有 untracked 的文件
 
 ```bash
 $ git ls-files --others
 ```
 
-## 展示所有忽略的文件
+### 展示所有忽略的文件
 
 ```bash
 $ git ls-files --others -i --exclude-standard
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 把某一个分支导出成一个文件
+### 把某一个分支导出成一个文件
 
 ```bash
 $ git bundle create <file> <branch-name>
 ```
 
-## 从包中导入分支
-
-<!--rehype:wrap-class=row-span-2-->
+### 从包中导入分支
 
 ```bash
 $ git clone repo.bundle <repo-dir> -b <branch-name>
 ```
 
-<!--rehype:className=wrap-text-->
-
 新建一个分支，分支内容就是上面 `git bundle create` 命令导出的内容
 
-## 执行 rebase 之前自动 stash
+### 执行 rebase 之前自动 stash
 
 ```bash
 $ git rebase --autostash
 ```
 
-## 从远程仓库根据 ID，拉下某一状态，到本地分支
+### 从远程仓库根据 ID，拉下某一状态，到本地分支
 
 ```bash
 $ git fetch origin pull/<id>/head:<branch-name>
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 详细展示一行中的修改
+### 详细展示一行中的修改
 
 ```bash
 $ git diff --word-diff
 ```
 
-## 清除 gitignore 文件中记录的文件
+### 清除 gitignore 文件中记录的文件
 
 ```bash
 $ git clean -X -f
 ```
 
-## 展示忽略的文件
+### 展示忽略的文件
 
 ```bash
 $ git status --ignored
 ```
 
-## 新建并切换到新分支上，同时这个分支没有任何 commit
+### 新建并切换到新分支上，同时这个分支没有任何 commit
 
 ```bash
 $ git checkout --orphan <branch-name>
@@ -974,13 +901,13 @@ $ git checkout --orphan <branch-name>
 
 相当于保存修改，但是重写 commit 历史
 
-## 展示任意分支某一文件的内容
+### 展示任意分支某一文件的内容
 
 ```bash
 $ git show <branch-name>:<file-name>
 ```
 
-## clone 最新一次提交
+### clone 最新一次提交
 
 ```bash
 $ git clone --depth=1 https://github.com/user/repo.git
@@ -988,9 +915,7 @@ $ git clone --depth=1 https://github.com/user/repo.git
 
 只会 `clone` 最近一次提交，将减少 `clone` 时间
 
-## 忽略某个文件的改动
-
-<!--rehype:wrap-class=row-span-2-->
+### 忽略某个文件的改动
 
 关闭 track 指定文件的改动，也就是 Git 将不会在记录这个文件的改动
 
@@ -998,17 +923,13 @@ $ git clone --depth=1 https://github.com/user/repo.git
 git update-index --assume-unchanged path/to/file
 ```
 
-<!--rehype:className=wrap-text-->
-
 恢复 track 指定文件的改动
 
 ```bash
 git update-index --no-assume-unchanged path/to/file
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 以最后提交的顺序列出所有 Git 分支
+### 以最后提交的顺序列出所有 Git 分支
 
 ```bash
 git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads
@@ -1016,7 +937,7 @@ git for-each-ref --sort=-committerdate --format='%(refname:short)' refs/heads
 
 最新的放在最上面
 
-## 把暂存区的指定 file 放到工作区中
+### 把暂存区的指定 file 放到工作区中
 
 ```bash
 git reset <file-name>
@@ -1024,7 +945,7 @@ git reset <file-name>
 
 不添加参数，默认是 `-mixed`
 
-## 配置 SSH 协议代理
+### 配置 SSH 协议代理
 
 ```shell
 # 对于使用 git@ 协议的，可以配置 socks5 代理
@@ -1033,11 +954,7 @@ Host github.com
   ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p
 ```
 
-<!--rehype:className=wrap-text-->
-
-## Fork 仓库同步上游仓库
-
-<!--rehype:wrap-class=col-span-2-->
+### Fork 仓库同步上游仓库
 
 - 设置上游仓库
 
@@ -1056,14 +973,9 @@ Host github.com
   $ git stach pop # 恢复暂存的本地修改(如果有)
   ```
 
-<!--rehype:className=style-timeline-->
+## 统计查询
 
-统计查询
----
-
-## 查看 git 上的个人代码量
-
-<!--rehype:wrap-class=row-span-2-->
+### 查看 git 上的个人代码量
 
 - `username` 需要改成自己的
 
@@ -1072,11 +984,7 @@ git log --author="username" --pretty=tformat: --numstat | awk \
 '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 统计每个人增删行数
-
-<!--rehype:wrap-class=row-span-2-->
+### 统计每个人增删行数
 
 ```bash
 git log --format='%aN' | sort -u |\
@@ -1085,9 +993,7 @@ git log --format='%aN' | sort -u |\
   '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -; done
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 查看仓库提交者排名
+### 查看仓库提交者排名
 
 这里是排名前十，也可以更改排名
 
@@ -1095,15 +1001,13 @@ git log --format='%aN' | sort -u |\
 git log --pretty='%aN' | sort | uniq -c | sort -k1 -n -r | head -n 10
 ```
 
-<!--rehype:className=wrap-text-->
-
-## 提交数统计
+### 提交数统计
 
 ```bash
 git log --oneline | wc -l
 ```
 
-## 查看某段代码是谁写的
+### 查看某段代码是谁写的
 
 ```bash
 $ git blame <file-name>
@@ -1111,13 +1015,13 @@ $ git blame <file-name>
 
 `blame` 的意思为 `责怪`，你懂的。
 
-## 查看两个星期内的改动
+### 查看两个星期内的改动
 
 ```bash
 $ git whatchanged --since='2 weeks ago'
 ```
 
-## 在 commit log 中查找相关内容
+### 在 commit log 中查找相关内容
 
 ```bash
 $ git log --all --grep='<given-text>'
@@ -1125,30 +1029,27 @@ $ git log --all --grep='<given-text>'
 
 通过 grep 查找，given-text: 所需要查找的字段
 
-## Git 仓库的大小
+### Git 仓库的大小
 
 ```bash
 $ git ls-files | xargs -r du -hs
 ```
 
-## Git 仓库的总大小
+### Git 仓库的总大小
 
 ```bash
 $ git count-objects -vH
 ```
 
-## 查询历史体积大的 10 个文件
+### 查询历史体积大的 10 个文件
 
 ```bash
 $ git rev-list --objects --all | git cat-file --batch-check='%(objecttype) %(objectname) %(objectsize) %(rest)' | awk '/^blob/ {print substr($0,6)}' | sort --numeric-sort --key=2 --reverse | head -n 10 | cut -c 13-
 ```
 
-Conventional Commmits
-----
+## Conventional Commmits
 
-## 格式
-
-<!--rehype:wrap-class=col-span-3-->
+### 格式
 
 ```text
 <type>(<scope>): <short summary>
@@ -1165,9 +1066,7 @@ Conventional Commmits
                     website|chore|style|type|revert
 ```
 
-## 常用
-
-<!--rehype:wrap-class=row-span-1-->
+### 常用
 
 |   类型   |  描述 |
 | ----------|------------ |
@@ -1176,11 +1075,7 @@ Conventional Commmits
 | `feat!:` / `feat(scope)!:` | breaking change /  重构 API |
 | `chore(deps):` | 更新依赖 |
 
-<!--rehype:className=left-align-->
-
-## Commit 类型
-
-<!--rehype:wrap-class=col-span-2-->
+### Commit 类型
 
 |   类型   |  描述 |
 | ----------|------------ |
@@ -1196,18 +1091,15 @@ Conventional Commmits
 | `style:` | 变更不影响一些有意义的代码 (如: 删除空格、格式化代码、添加分号等) |
 | `test:` | 添加测试代码或修正已有的测试 |
 
-<!--rehype:className=left-align-->
+## patch 补丁的使用
 
-patch 补丁的使用
-----
-
-## 简单创建
+### 简单创建
 
 ```bash
 $ git diff commit_id > my.patch
 ```
 
-## 简单应用
+### 简单应用
 
 - **检查**补丁
 
@@ -1230,9 +1122,7 @@ $ git diff commit_id > my.patch
     $ git apply --reject path/to/my.patch
     ```
 
-<!--rehype:className=style-timeline-->
-
-## Email patch 方式
+### Email patch 方式
 
 ```bash
 # 创建指定 commit sha1 id 之前的 n 次提交补丁
@@ -1246,8 +1136,7 @@ $ git format-patch -3
 $ git am < email.txt
 ```
 
-另见
----
+## 另见
 
 - [最常用的 git 提示和技巧](https://github.com/git-tips/tips)
 - [Conventional Commits 官方网站](https://www.conventionalcommits.org/zh-hans/v1.0.0/) _(conventionalcommits.org)_
