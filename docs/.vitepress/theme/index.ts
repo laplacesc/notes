@@ -38,6 +38,8 @@ import "vitepress-theme-teek/theme-chalk/tk-home-card-hover.css";
 
 import "./styles/code-bg.scss";
 import "./styles/iframe.scss";
+import "lxgw-wenkai-webfont/style.css"
+import "./my-fonts.css"
 
 export default {
   extends: Teek,

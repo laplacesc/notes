@@ -16,6 +16,7 @@
     "vitepress-plugin-llms": "^1.7.3"
   },
   "dependencies": {
+    "lxgw-wenkai-webfont": "^1.7.0",
     "vitepress-theme-teek": "^1.6.0",
     "vue": "^3.5.16"
   }
