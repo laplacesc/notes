@@ -292,6 +292,7 @@
   },
   "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
-    "documentOverride": null
+    "documentOverride": null,
+    "fontFamily": "Maple Mono NF CN,Maple Mono Normal NF CN"
   }
 }
