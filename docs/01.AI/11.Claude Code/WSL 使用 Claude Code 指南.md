@@ -1,7 +1,6 @@
 ---
 title: WSL 使用 Claude Code 指南
-date: 2026-06-04 23:52:41
-permalink: /wsl-claude-code
+date: 2026-06-05 15:52:41
 titleTag: 推荐
 categories:
   - WSL
@@ -15,7 +14,9 @@ tags:
 top: true
 sticky: 1
 description: 在 Windows 11 上安装配置 WSL 及 Ubuntu，并搭建 Claude Code、Codex 等 AI 编程工具的完整指南。
-coverImg: https://github.com/laplacesc/picx-images-hosting/raw/master/20260604/demo.1ow2wv7ubl.gif
+coverImg: >-
+  https://github.com/laplacesc/picx-images-hosting/raw/master/20260604/demo.1ow2wv7ubl.gif
+permalink: /AI/34c7d9
 ---
 
 > 本文档介绍如何在 Windows 11 上安装和配置 WSL (Windows Subsystem for Linux)，以及安装开发工具。

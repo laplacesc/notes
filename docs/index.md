@@ -1,6 +1,5 @@
 ---
 layout: home
-
 hero:
   name: 不理之山
   text: 笔记

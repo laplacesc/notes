@@ -1,7 +1,6 @@
 ---
 title: <% tp.file.title %>
 date: <% tp.date.now("YYYY-MM-DD HH:mm:ss") %>
-permalink:
 titleTag:
 categories:
 tags:
@@ -9,5 +8,4 @@ top: false
 sticky:
 description:
 coverImg:
-frontmatter: https://vp.teek.top/reference/frontmatter.html
 ---

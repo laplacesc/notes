@@ -97,7 +97,11 @@ export default defineConfig({
     nav: [
       { text: "首页", link: "/" },
       {
-        text: "指南",
+        text: "AI",
+        items: [{ text: "Claude Code", link: "/AI/34c7d9" }],
+      },
+      {
+        text: "碎片化",
         items: [{ text: "Git 备忘清单", link: "/git-cheatsheet" }],
       },
       {
