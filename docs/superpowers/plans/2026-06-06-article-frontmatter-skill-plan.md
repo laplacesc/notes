@@ -205,7 +205,6 @@ coverImg:
 
 - [Teek Frontmatter 配置](https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/main/docs/10.%E9%85%8D%E7%BD%AE/10.Frontmatter%20%E9%85%8D%E7%BD%AE.md)
 - [Teek Frontmatter 扩展](https://github.com/Kele-Bingtang/vitepress-theme-teek/blob/main/docs/01.%E6%8C%87%E5%8D%97/10.%E4%BD%BF%E7%94%A8/07.Frontmatter%20%E6%8B%93%E5%B1%95.md)
-```
 
 - [ ] **步骤 5：Commit**
 
