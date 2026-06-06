@@ -279,7 +279,9 @@
   "displayLintOnFileChangeNotice": false,
   "settingsConvertedToConfigKeyValues": true,
   "additionalFileExtensions": [],
-  "foldersToIgnore": [],
+  "foldersToIgnore": [
+    "docs/superpowers"
+  ],
   "filesToIgnore": [
     {
       "label": "CLAUDE文档",
