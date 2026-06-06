@@ -1,5 +1,6 @@
 <script setup lang="ts" name="TeekLayoutProvider">
 import Teek from "vitepress-theme-teek";
+import CalendarCard from "./CalendarCard.vue";
 import ContributeChart from "./ContributeChart.vue";
 import NotFound from "./404.vue";
 
@@ -9,6 +10,10 @@ import NotFound from "./404.vue";
   <Teek.Layout>
     <template #teek-archives-top-before>
       <ContributeChart />
+    </template>
+
+    <template #teek-home-card-my-after>
+      <CalendarCard />
     </template>
 
     <template #not-found>
