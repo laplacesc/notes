@@ -64,7 +64,7 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 | `sidebarSort` | `number` | `9999` | 侧边栏排序，越小越靠前 |
 | `sidebarPrefix` | `string` | `""` | 侧边栏标题前缀（支持 HTML） |
 | `sidebarSuffix` | `string` | `""` | 侧边栏标题后缀（支持 HTML） |
-| `articleBanner` | `boolean` | `true` | 是否显示文章页 Banner |
+| `articleBanner` | `boolean` | `true` | 是否显示文章页 Banner（仅无侧边栏时生效） |
 | `coverBgColor` | `string` | `""` | Banner 背景色 |
 
 ### 对象字段（Teek 专用配置）
@@ -81,8 +81,9 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 - **Banner 风格**：已在 Teek 配置中统一设置，`banner` 相关字段一般不需要在 frontmatter 中覆盖
 - **`permalink`**：Teek 已配置自动生成（rules 模式：`/$path/$uuid6`），**通常不必手动指定**
 - **日期格式**：统一 `YYYY-MM-DD HH:mm:ss` 或 `YYYY-MM-DD`
-- **分类命名**：首字母大写，如 `WSL`、`VitePress`、`开发环境`
+- **分类命名**：首字母大写（缩写保留全大写），如 `WSL`、`VitePress`、`开发环境`
 - **标签命名**：全小写，多词用连字符，如 `claude-code`、`vitepress`
+- **应用范围**：此技能仅适用于 `/docs/` 下文章的 `.md` 文件，不适用于配置文件（如 `.vitepress/config.ts`）
 
 ## 行为规则
 
@@ -91,7 +92,7 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 1. 询问用户文章标题、分类、标签、摘要
 2. 若用户未提供标题，从文件名推断
 3. 选取合适的 `titleTag`（原创/转载/优质/推荐/已修复）
-4. 判断是否需要 `top` / `sticky` 排程
+4. 判断是否需要 `top` / `sticky` 排程（`sticky` 值越小越靠前，默认 9999）
 5. 若需要封面图，询问是否有指定 URL；若无且 Teek 已配置封面列表，说明会自动随机选取
 6. 按标准模板组装 frontmatter，输出完整 frontmatter 块
 
@@ -100,7 +101,7 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 1. 读取已有 frontmatter
 2. 检查缺失的必需字段，补充
 3. 检查格式是否正确（日期格式、标签大小写等）
-4. 提示用户可选的扩展字段是否要添加
+4. 对比已有 frontmatter，列举尚未出现的扩展字段，询问用户是否要添加
 
 ### 场景 C：查询字段说明
 
@@ -133,7 +134,7 @@ tags:
   - tag-a
   - tag-b
 top: false
-sticky:
+sticky: 9999
 description: 这是一篇关于……的文章摘要。
 coverImg:
 ---
