@@ -1,7 +1,15 @@
 ---
 title: article-frontmatter Skill 设计方案
-date: 2026-06-06
-author: laplacesc
+date: 2026-06-07 00:33:10
+titleTag: 原创
+categories:
+  - superpowers
+  - specs
+tags:
+  - skill
+  - design
+  - article-frontmatter
+description: article-frontmatter skill 的设计方案，涵盖需求分析、字段分类、行为规则和文件结构规划。
 ---
 
 # article-frontmatter Skill 设计方案
