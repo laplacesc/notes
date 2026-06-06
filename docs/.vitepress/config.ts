@@ -105,16 +105,16 @@ export default defineConfig({
         items: [{ text: "VitePress", link: "/866a4f/10ba56" }],
       },
       {
-        text: "碎片化",
+        text: "碎片",
         items: [{ text: "Git 备忘清单", link: "/git-cheatsheet" }],
       },
       {
-        text: "功能页",
+        text: "功能",
         items: [
-          { text: "归档页", link: "/archives" },
-          { text: "清单页", link: "/articleOverview" },
-          { text: "分类页", link: "/categories" },
-          { text: "标签页", link: "/tags" },
+          { text: "归档", link: "/archives" },
+          { text: "清单", link: "/articleOverview" },
+          { text: "分类", link: "/categories" },
+          { text: "标签", link: "/tags" },
         ],
       },
       { text: "关于", link: "/personal" },
