@@ -25,7 +25,7 @@ export const teekConfig = defineTeekConfig({
   // 博主信息，显示在首页左边第一个卡片。
   blogger: {
     name: "不理之山", // 博主昵称
-    slogan: "“我的人生没有彩排，每天都是现场直播。”", // 博主签名
+    slogan: "山在那里，码在这里", // 博主签名
     avatar: "/site/lain.jpg", // 博主头像
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转，circle-rotate-last 将会持续旋转 59s
     circleBgImg: "/wallpaper/www.hacg.me_15.jpg", // 背景图片
