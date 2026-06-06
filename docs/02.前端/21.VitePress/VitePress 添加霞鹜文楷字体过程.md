@@ -1,16 +1,15 @@
 ---
 title: VitePress 添加霞鹜文楷字体过程
 date: 2026-06-06 10:55:00
-titleTag: 原创
 categories:
-  - VitePress
   - 前端
+  - VitePress
 tags:
   - vitepress
   - lxgw-wenkai
-  - webfont
+  - fonts
   - css
-  - font-face
+  - woff2
 coverImg: https://laplacesc.github.io/picx-images-hosting/20260605/image.et5roplvb.webp
 permalink: /866a4f/10ba56
 description: 记录为 VitePress 站点替换霞鹜文楷字体的完整过程，包括字体托管、@font-face 配置、CSS 变量覆盖和按需加载优化。

@@ -1,14 +1,15 @@
 ---
 title: VitePress 搜索跳转子标题失败的排查与修复
-titleTag: 已修复
 date: 2026-06-06
 categories:
+  - 前端
   - VitePress
 tags:
   - vitepress
-  - teek
+  - vitepress-theme-teek
+  - 调试
+  - bug
   - 搜索
-  - 诊断
 permalink: /866a4f/5c0723
 description: VitePress 本地搜索点击结果子标题无法滚动定位的排查与修复过程，记录从问题复现、源码分析到定位根因的完整诊断链条。
 ---

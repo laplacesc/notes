@@ -1,16 +1,16 @@
 ---
 title: WSL 使用 Claude Code 指南
 date: 2026-06-05 15:52:41
-titleTag: 推荐
 categories:
-  - WSL
-  - 开发环境
+  - AI
+  - Claude Code
 tags:
   - wsl
   - claude-code
   - codex
-  - nodejs
   - ubuntu
+  - node-js
+titleTag: 推荐
 top: true
 sticky: 1
 description: 在 Windows 11 上安装配置 WSL 及 Ubuntu，并搭建 Claude Code、Codex 等 AI 编程工具的完整指南。
