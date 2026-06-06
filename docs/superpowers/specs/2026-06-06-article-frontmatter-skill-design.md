@@ -1,7 +1,7 @@
 ---
 title: article-frontmatter Skill 设计方案
 date: 2026-06-07 00:33:10
-titleTag: 原创
+titleTag: AI 设计
 categories:
   - superpowers
   - specs
@@ -53,11 +53,19 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 
 | 字段 | 类型 | 格式约定 | 说明 |
 |------|------|----------|------|
-| `titleTag` | `string` | 枚举值：`原创` / `转载` / `优质` / `推荐` / `已修复` | 标记文章属性 |
 | `categories` | `string[]` | 首字母大写，层级顺序从大到小 | Teek 自动根据目录层级生成 |
 | `tags` | `string[]` | 全小写，用英文连字符连接多词（如 `claude-code`） | 每篇文章 2-5 个标签为宜 |
 | `description` | `string` | 50-200 字摘要 | 显示在文章列表页 |
 | `coverImg` | `string` | 图片 URL（托管在 picx-images-hosting 等图床） | 若未指定且 Teek 配置了 `coverImgList` 则随机选取 |
+
+### 目录特定字段（按文件路径自动匹配）
+
+`titleTag` 默认不添加，仅在文件位于特定目录时根据路径自动匹配设置值：
+
+| 字段 | 匹配路径 | 自动设置值 |
+|------|----------|-----------|
+| `titleTag` | `docs/superpowers/plans/` | `AI 实现` |
+| `titleTag` | `docs/superpowers/specs/` | `AI 设计` |
 
 ### 排程字段（控制列表表现）
 
@@ -107,7 +115,7 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 
 1. 询问文章标题、所属分类、标签、摘要
 2. 从文件名推断 `title`（若用户未提供）
-3. 选取合适的 `titleTag`（原创/转载/优质/推荐/已修复）
+3. 检测文件路径：若在 `docs/superpowers/plans/` 下则自动设置 `titleTag: AI 实现`；若在 `docs/superpowers/specs/` 下则自动设置 `titleTag: AI 设计`；其他路径默认不添加 `titleTag`
 4. 判断是否需要 `top` / `sticky`
 5. 若需要封面图，询问是否有指定 URL
 6. 按标准模板组装 frontmatter
@@ -131,7 +139,6 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 ---
 title: 文章标题
 date: 2026-06-06 00:00:00
-titleTag: 原创
 categories:
   - 分类A
   - 分类B

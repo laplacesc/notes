@@ -8,7 +8,7 @@
 |------|------|--------|-------------|
 | `title` | `string` | — | 文章标题 |
 | `date` | `string` | — | `YYYY-MM-DD HH:mm:ss` |
-| `titleTag` | `string` | — | 枚举：`原创` / `转载` / `优质` / `推荐` / `已修复` |
+| `titleTag` | `string` | `null` | 默认不添加。新建时按路径匹配：`plans/` → `AI 实现`，`specs/` → `AI 设计`；修改时路径匹配则更新，未匹配且已有则保留不动 |
 | `categories` | `string[]` | `[]` | 首字母大写，如 `WSL`、`VitePress` |
 | `tags` | `string[]` | `[]` | 全小写连字符，如 `claude-code` |
 | `description` | `string` | `null` | 50-200 字文章摘要 |

@@ -36,11 +36,25 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 
 | 字段 | 类型 | 格式约定 | 说明 |
 |------|------|----------|------|
-| `titleTag` | `string` | 枚举值：`原创` / `转载` / `优质` / `推荐` / `已修复` | 标记文章属性 |
 | `categories` | `string[]` | 首字母大写，层级从大到小 | Teek 自动根据目录生成 |
 | `tags` | `string[]` | 全小写，多词用英文连字符 | 每篇 2-5 个 |
 | `description` | `string` | 50-200 字摘要 | 显示在文章列表页 |
 | `coverImg` | `string` | 图片 URL（图床托管） | 未指定且 Teek 配置封面列表则随机选取 |
+
+### 目录特定字段（按文件路径自动匹配）
+
+`titleTag` 默认不添加。
+
+- **创建新文章时**：仅在文件位于特定目录时根据路径自动匹配设置值：
+  | 字段 | 匹配路径 | 自动设置值 |
+  |------|----------|-----------|
+  | `titleTag` | `docs/superpowers/plans/` | `AI 实现` |
+  | `titleTag` | `docs/superpowers/specs/` | `AI 设计` |
+- **修改现有文章时**：按路径匹配规则处理 `titleTag`：
+  - 路径匹配特定目录（如 `plans/`、`specs/`）时，按规则更新 `titleTag` 值
+  - 路径未匹配任何规则时：若文档已有 `titleTag`，保留不动；若没有，不添加
+
+> 文件路径以 `/` 开头匹配，支持子目录。路径检查使用文件相对于项目根目录的路径。
 
 ### 排程字段（控制列表表现）
 
@@ -91,7 +105,7 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 
 1. 询问用户文章标题、分类、标签、摘要
 2. 若用户未提供标题，从文件名推断
-3. 选取合适的 `titleTag`（原创/转载/优质/推荐/已修复）
+3. 检测文件路径：若在 `docs/superpowers/plans/` 下则自动设置 `titleTag: AI 实现`；若在 `docs/superpowers/specs/` 下则自动设置 `titleTag: AI 设计`；其他路径默认不添加 `titleTag`
 4. 判断是否需要 `top` / `sticky` 排程（`sticky` 值越小越靠前，默认 9999）
 5. 若需要封面图，询问是否有指定 URL；若无且 Teek 已配置封面列表，说明会自动随机选取
 6. 按标准模板组装 frontmatter，输出完整 frontmatter 块
@@ -100,8 +114,14 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 
 1. 读取已有 frontmatter
 2. 检查缺失的必需字段，补充
-3. 检查格式是否正确（日期格式、标签大小写等）
-4. 对比已有 frontmatter，列举尚未出现的扩展字段，询问用户是否要添加
+3. **处理 `titleTag`**：
+   - 检测文件路径，若匹配 `docs/superpowers/plans/` 则更新/添加 `titleTag: AI 实现`
+   - 若匹配 `docs/superpowers/specs/` 则更新/添加 `titleTag: AI 设计`
+   - 若路径未匹配任何规则：
+     - 文档已有 `titleTag` → **保留原值不做修改**
+     - 文档没有 `titleTag` → 不添加
+4. 检查格式是否正确（日期格式、标签大小写等）
+5. 对比已有 frontmatter，列举尚未出现的扩展字段，询问用户是否要添加
 
 ### 场景 C：查询字段说明
 
@@ -127,7 +147,6 @@ description: 用于添加标准化 frontmatter 的技能——创建文章时，
 ---
 title: 文章标题
 date: 2026-06-06 00:00:00
-titleTag: 原创
 categories:
   - 分类A
 tags:
@@ -145,8 +164,9 @@ coverImg:
 | 类别 | 字段 | 必填 | 说明 |
 |------|------|------|------|
 | 核心 | `title`, `date` | 是 | 每次创建必须包含 |
-| 常用 | `titleTag`, `categories`, `tags` | 推荐 | 根据内容添加 |
+| 常用 | `categories`, `tags` | 推荐 | 根据内容添加 |
 | 常用 | `description`, `coverImg` | 推荐 | 优化文章展示 |
+| 目录特定 | `titleTag` | 自动 | 按路径匹配，见「目录特定字段」 |
 | 排程 | `top`, `sticky` | 可选 | 控制列表优先级 |
 | 扩展 | 见 `fields-reference.md` | 可选 | 特殊场景调整 |
 
