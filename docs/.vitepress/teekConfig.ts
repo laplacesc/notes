@@ -4,7 +4,7 @@ import { version } from "vitepress-theme-teek/es/version";
 export const teekConfig = defineTeekConfig({
   teekHome: true, // 是否开启博客首页
   vpHome: true, // 是否隐藏 VP 首页
-  loading: true, // 页面加载 Loading 动画配置，如果为 boolean，则控制是否启用，如果为字符串，则指定加载 Loading 动画的文案
+  loading: false, // 页面加载 Loading 动画配置，如果为 boolean，则控制是否启用，如果为字符串，则指定加载 Loading 动画的文案
   sidebarTrigger: true, // 是否开启侧边栏折叠功能
   // 文章默认的作者信息
   author: {
