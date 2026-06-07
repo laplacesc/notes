@@ -1,7 +1,6 @@
 ---
 title: Git 备忘清单
-date: 2026-06-04 18:31:34
-permalink: /git-cheatsheet
+date: 2026-06-05 02:31:34
 titleTag: 转载
 categories:
   - Git
@@ -11,6 +10,7 @@ tags:
   - 版本控制
 description: 本备忘单总结了常用的 Git 命令行指令，以供快速参考。
 coverImg: https://laplacesc.github.io/picx-images-hosting/20260604/image.mpzd3biw.png
+permalink: /pages/64bae9
 ---
 
 > 原文：https://wangchujiang.com/reference/docs/git.html

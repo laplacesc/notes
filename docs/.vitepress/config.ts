@@ -98,15 +98,15 @@ export default defineConfig({
       { text: "首页", link: "/" },
       {
         text: "AI",
-        items: [{ text: "Claude Code", link: "/AI/34c7d9" }],
+        items: [{ text: "Claude Code 指南", link: "/pages/58be6f" }],
       },
       {
         text: "前端",
-        items: [{ text: "VitePress", link: "/866a4f/10ba56" }],
+        items: [{ text: "VitePress", link: "/pages/022430" }],
       },
       {
         text: "碎片",
-        items: [{ text: "Git 备忘清单", link: "/git-cheatsheet" }],
+        items: [{ text: "Git 备忘清单", link: "/pages/64bae9" }],
       },
       {
         text: "功能",

@@ -1,5 +1,5 @@
 ---
-date: 2026-06-07 00:33:10
+date: 2026-06-07 08:33:10
 title: article-frontmatter Skill 实现计划
 titleTag: AI 实现
 categories:
@@ -10,6 +10,7 @@ tags:
   - plan
   - article-frontmatter
 description: article-frontmatter skill 的实现计划，包含任务分解、文件创建和代码生成的详细步骤。
+permalink: /pages/8bb60a
 ---
 
 # article-frontmatter Skill 实现计划

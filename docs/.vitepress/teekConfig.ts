@@ -50,16 +50,6 @@ export const teekConfig = defineTeekConfig({
   },
   articleShare: { enabled: true },
   vitePlugins: {
-    sidebarOption: {
-      initItems: false,
-    },
     autoFrontmatter: true,
-    autoFrontmatterOption: {
-      permalinkType: "rules",
-      permalinkRules: [
-        { folderName: "01.AI", rule: "/$path/$uuid6" }, // 使用一级目录的哈希混合随机数，$path 最终等于 guide
-        { folderName: "02.前端", rule: "/$path/$uuid6" },
-      ],
-    },
   },
 });
