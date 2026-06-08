@@ -108,7 +108,7 @@ export default defineConfig({
         text: "碎片",
         items: [
           { text: "Git 备忘清单", link: "/pages/64bae9" },
-          { text: "Claude Code 指南", link: "/pages/58be6f" },
+          { text: "Claude Code 插件 & 技能", link: "/pages/19d7f4" },
         ],
       },
       {
