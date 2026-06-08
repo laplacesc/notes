@@ -56,6 +56,22 @@
   },
   "savedSessions": [
     {
+      "sessionId": "8b5d483c-3438-486f-aa7d-3ac844c6c900",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/hillstone-notes",
+      "title": "/init",
+      "createdAt": "2026-06-08T02:54:39.906Z",
+      "updatedAt": "2026-06-08T02:54:39.906Z"
+    },
+    {
+      "sessionId": "224305ee-a0d8-4649-a523-1b51924de493",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/hillstone-notes",
+      "title": "/init",
+      "createdAt": "2026-06-08T02:53:23.467Z",
+      "updatedAt": "2026-06-08T02:53:23.467Z"
+    },
+    {
       "sessionId": "38de68af-1b8b-4095-9bfc-376f849cad94",
       "agentId": "claude-code-acp",
       "cwd": "/Users/jxwu/IdeaProjects/notes",
@@ -81,7 +97,9 @@
     }
   ],
   "lastUsedModels": {},
-  "lastUsedModes": {},
+  "lastUsedModes": {
+    "claude-code-acp": "auto"
+  },
   "enableFloatingChat": false,
   "floatingButtonImage": "",
   "floatingWindowSize": {
