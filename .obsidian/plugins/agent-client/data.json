@@ -3,7 +3,7 @@
     "id": "claude-code-acp",
     "displayName": "Claude Code",
     "apiKey": "",
-    "command": "/Users/jxwu/.nvm/versions/node/v26.3.0/bin/claude-agent-acp",
+    "command": "/Users/jxwu/.nvm/versions/node/v24.16.0/bin/claude-agent-acp",
     "args": [],
     "env": []
   },
@@ -31,7 +31,7 @@
   "autoMentionActiveNote": true,
   "enableSystemNotifications": true,
   "debugMode": false,
-  "nodePath": "/Users/jxwu/.nvm/versions/node/v26.3.0/bin/node",
+  "nodePath": "/Users/jxwu/.nvm/versions/node/v24.16.0/bin/node",
   "exportSettings": {
     "defaultFolder": "Agent Client",
     "filenameTemplate": "agent_client_{date}_{time}",
@@ -55,6 +55,22 @@
     "fontSize": 16
   },
   "savedSessions": [
+    {
+      "sessionId": "6654b4df-3e11-428b-b8ef-af26b3498916",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/chinese-commit-conventions 提交",
+      "createdAt": "2026-06-08T04:20:46.535Z",
+      "updatedAt": "2026-06-08T04:20:46.535Z"
+    },
+    {
+      "sessionId": "ff085125-d8bb-492b-8c47-24f0d6e2408f",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/chinese-commit-conventions 提交全部代码",
+      "createdAt": "2026-06-08T03:27:57.641Z",
+      "updatedAt": "2026-06-08T03:27:57.641Z"
+    },
     {
       "sessionId": "8b5d483c-3438-486f-aa7d-3ac844c6c900",
       "agentId": "claude-code-acp",
