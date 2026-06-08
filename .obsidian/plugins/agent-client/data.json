@@ -56,6 +56,22 @@
   },
   "savedSessions": [
     {
+      "sessionId": "abbd43f2-ea1d-40f1-a271-33b782bca863",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/chinese-commit-conventions 提交代码",
+      "createdAt": "2026-06-08T07:33:47.948Z",
+      "updatedAt": "2026-06-08T07:33:47.949Z"
+    },
+    {
+      "sessionId": "cbc38247-7d3b-40fe-a7b8-85661d221a25",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/chinese-commit-conventions 提交全部代码",
+      "createdAt": "2026-06-08T07:13:46.046Z",
+      "updatedAt": "2026-06-08T07:13:46.046Z"
+    },
+    {
       "sessionId": "657925f8-180c-4b5a-aa11-e9926f167b2b",
       "agentId": "claude-code-acp",
       "cwd": "/Users/jxwu/IdeaProjects/notes",

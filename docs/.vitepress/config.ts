@@ -106,7 +106,10 @@ export default defineConfig({
       },
       {
         text: "碎片",
-        items: [{ text: "Git 备忘清单", link: "/pages/64bae9" }],
+        items: [
+          { text: "Git 备忘清单", link: "/pages/64bae9" },
+          { text: "Claude Code 指南", link: "/pages/58be6f" },
+        ],
       },
       {
         text: "功能",
