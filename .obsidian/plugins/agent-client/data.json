@@ -56,6 +56,38 @@
   },
   "savedSessions": [
     {
+      "sessionId": "657925f8-180c-4b5a-aa11-e9926f167b2b",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "润色文档",
+      "createdAt": "2026-06-08T07:06:47.083Z",
+      "updatedAt": "2026-06-08T07:06:47.083Z"
+    },
+    {
+      "sessionId": "3bda3d9e-cdd0-4c28-9a34-db6b44880637",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "润色文档",
+      "createdAt": "2026-06-08T07:03:35.110Z",
+      "updatedAt": "2026-06-08T07:03:35.110Z"
+    },
+    {
+      "sessionId": "456f3d1b-3f40-467a-9a91-02c54ce33cfa",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "润色文档",
+      "createdAt": "2026-06-08T07:00:04.041Z",
+      "updatedAt": "2026-06-08T07:00:04.041Z"
+    },
+    {
+      "sessionId": "f3801a35-2864-49c1-b0c7-e710e1172746",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "转为中文文档，重新排版润色",
+      "createdAt": "2026-06-08T05:41:47.623Z",
+      "updatedAt": "2026-06-08T05:41:47.623Z"
+    },
+    {
       "sessionId": "6654b4df-3e11-428b-b8ef-af26b3498916",
       "agentId": "claude-code-acp",
       "cwd": "/Users/jxwu/IdeaProjects/notes",
