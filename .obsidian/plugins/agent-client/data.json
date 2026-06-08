@@ -3,7 +3,7 @@
     "id": "claude-code-acp",
     "displayName": "Claude Code",
     "apiKey": "",
-    "command": "/home/jxwu/.nvm/versions/node/v26.3.0/bin/claude-agent-acp",
+    "command": "/Users/jxwu/.nvm/versions/node/v26.3.0/bin/claude-agent-acp",
     "args": [],
     "env": []
   },
@@ -31,7 +31,7 @@
   "autoMentionActiveNote": true,
   "enableSystemNotifications": true,
   "debugMode": false,
-  "nodePath": "/usr/bin/node",
+  "nodePath": "/Users/jxwu/.nvm/versions/node/v26.3.0/bin/node",
   "exportSettings": {
     "defaultFolder": "Agent Client",
     "filenameTemplate": "agent_client_{date}_{time}",
@@ -55,6 +55,22 @@
     "fontSize": 16
   },
   "savedSessions": [
+    {
+      "sessionId": "38de68af-1b8b-4095-9bfc-376f849cad94",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/chinese-commit-conventions 提交",
+      "createdAt": "2026-06-08T01:37:21.426Z",
+      "updatedAt": "2026-06-08T01:37:21.426Z"
+    },
+    {
+      "sessionId": "5cf37f5a-639d-448e-b3e6-2d66bb80826a",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "hi",
+      "createdAt": "2026-06-08T01:26:52.968Z",
+      "updatedAt": "2026-06-08T01:26:52.968Z"
+    },
     {
       "sessionId": "b42a577b-0de7-40f1-bd7f-4dfbedb1084e",
       "agentId": "claude-code-acp",
