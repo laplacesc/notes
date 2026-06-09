@@ -56,6 +56,30 @@
   },
   "savedSessions": [
     {
+      "sessionId": "4177ae86-54c1-45ed-b972-4c2cbafae90e",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/brainstorming 将该帖子转化为文档",
+      "createdAt": "2026-06-09T03:11:03.098Z",
+      "updatedAt": "2026-06-09T03:11:03.098Z"
+    },
+    {
+      "sessionId": "c3f2447b-7f45-4b2f-b549-86da4ed4efa6",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/brainstorming https://linux.do/t/topic/1999640 参照...",
+      "createdAt": "2026-06-09T03:09:02.877Z",
+      "updatedAt": "2026-06-09T03:09:02.877Z"
+    },
+    {
+      "sessionId": "63425b50-318a-4721-9d1e-f74753f7ce86",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/chinese-commit-conventions 提交全部",
+      "createdAt": "2026-06-09T01:11:09.741Z",
+      "updatedAt": "2026-06-09T01:11:09.741Z"
+    },
+    {
       "sessionId": "abbd43f2-ea1d-40f1-a271-33b782bca863",
       "agentId": "claude-code-acp",
       "cwd": "/Users/jxwu/IdeaProjects/notes",
