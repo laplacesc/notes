@@ -16,6 +16,7 @@ export default defineConfig({
   lastUpdated: true,
   lang: "zh-CN",
   base: "/notes/",
+  srcExclude: ["superpowers/**/*"],
   head: [
     [
       "link",

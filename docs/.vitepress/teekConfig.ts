@@ -51,5 +51,17 @@ export const teekConfig = defineTeekConfig({
   articleShare: { enabled: true },
   vitePlugins: {
     autoFrontmatter: true,
+    autoFrontmatterOption: {
+      globOptions: {
+        ignore: ["**/superpowers/**/*"],
+      },
+    },
+    sidebarOption: {
+      ignoreList: ["superpowers"],
+    },
+    docAnalysisOption: {
+      ignoreList: ["superpowers"],
+    },
+    fileContentLoaderIgnore: ["**/superpowers/**/*"],
   },
 });
