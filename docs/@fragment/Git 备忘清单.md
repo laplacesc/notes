@@ -156,7 +156,7 @@ $ git show [SHA]
 
 当前 `.gitignore` 文件定义规则的优先级高于上级路径 `.gitignore` 定义规则的优先级；后定义的规则优先级高于前面定义规则的优先级
 
-```gitignore showLineNumbers
+```text showLineNumbers
 # 忽略当前目录logs文件夹下的全部内容
 /logs/
 /logs/*

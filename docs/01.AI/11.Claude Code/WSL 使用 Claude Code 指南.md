@@ -112,7 +112,7 @@ sudo vim /etc/apt/sources.list.d/ubuntu.sources
 
 #### Ubuntu 26.04（Resolute）配置如下
 
-```dts
+```ini
 Types: deb
 URIs: https://mirrors.aliyun.com/ubuntu
 Suites: resolute resolute-updates resolute-backports
