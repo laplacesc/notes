@@ -1,18 +1,3 @@
----
-title: article-frontmatter Skill 设计方案
-date: 2026-06-07 08:33:10
-titleTag: AI 设计
-categories:
-  - superpowers
-  - specs
-tags:
-  - skill
-  - design
-  - article-frontmatter
-description: article-frontmatter skill 的设计方案，涵盖需求分析、字段分类、行为规则和文件结构规划。
-permalink: /pages/34f02a
----
-
 # article-frontmatter Skill 设计方案
 
 ## 概述

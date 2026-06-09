@@ -1,18 +1,3 @@
----
-title: Clash DNS 配置文章设计方案
-date: 2026-06-09 11:15:00
-titleTag: AI 设计
-categories:
-  - superpowers
-  - specs
-tags:
-  - design
-  - clash
-  - dns
-description: 将 Linux.do 论坛帖子"我终于参悟了 clash dns 配置"转化为知识库文章的设计方案。
-permalink: /pages/clash-dns-config-design
----
-
 # Clash DNS 配置文章设计方案
 
 ## 概述

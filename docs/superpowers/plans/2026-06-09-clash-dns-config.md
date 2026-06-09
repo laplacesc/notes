@@ -1,19 +1,3 @@
----
-date: 2026-06-09 11:15:54
-title: Clash DNS 配置文章实现计划
-titleTag: AI 实现
-permalink: /pages/d4fba7
-categories:
-  - superpowers
-  - plans
-tags:
-  - clash
-  - dns
-  - plan
-  - network
-  - clash-dns
-description: 将 Linux.do 论坛 Clash DNS 配置帖子转化为知识库文章，涵盖 fake-ip 与 redir-host 两种模式的配置方案及分流规则集。
----
 # Clash DNS 配置文章 实现计划
 
 > **面向 AI 代理的工作者：** 必需子技能：使用 superpowers:subagent-driven-development（推荐）或 superpowers:executing-plans 逐任务实现此计划。步骤使用复选框（`- [ ]`）语法来跟踪进度。
