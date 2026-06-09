@@ -25,7 +25,7 @@ permalink: /pages/58be6f
 
 ### 打开设置页面
 
-点击 `开始` 直接搜索 `启用或关闭 Windows功能` 即可
+点击 `开始` 直接搜索 `启用或关闭 Windows 功能` 即可
 
 ![](https://laplacesc.github.io/picx-images-hosting/20260604/image.4clj78l6n6.webp)
 
@@ -102,7 +102,7 @@ https://developer.aliyun.com/mirror/ubuntu/
 
 ### DEB822 配置方法
 
-从 ubuntu 24 开始，已经支持 DEB822 配置方法
+从 Ubuntu 24.04 开始，已支持 DEB822 配置方法
 
 #### 配置文件
 
@@ -110,7 +110,7 @@ https://developer.aliyun.com/mirror/ubuntu/
 sudo vim /etc/apt/sources.list.d/ubuntu.sources
 ```
 
-#### ubuntu 26.04 (resolute) 配置如下
+#### Ubuntu 26.04（Resolute）配置如下
 
 ```dts
 Types: deb
@@ -179,7 +179,7 @@ npm install -g @anthropic-ai/claude-code
 npm install -g @openai/codex
 ```
 
-安装完成后即可创建对应的配置文件开始使用，以下为使用 CC Switch 的懒人做法。
+安装完成后即可创建对应的配置文件开始使用。如果觉得逐个配置比较繁琐，可通过 CC Switch 实现一键同步，具体如下。
 
 ---
 
@@ -190,9 +190,15 @@ npm install -g @openai/codex
 在 WSL 上使用软链接进行关联
 
 ```bash
- ln -s /mnt/c/Users/{windows_username}/.claude ~/.claude
- 
- ln -s /mnt/c/Users/{windows_username}/.codex ~/.codex
+ln -s /mnt/c/Users/{windows_username}/.claude ~/.claude
+
+# MCP 服务器等配置存在该文件中
+ln -s /mnt/c/Users/{windows_username}/.claude.json ~/.claude.json
+
+ln -s /mnt/c/Users/{windows_username}/.codex ~/.codex
 ```
 
 此时修改即可直接同步
+
+> [!tip]
+> Windows 上的 CC Switch 会将 type 改为 CMD，command 会加上 `\c`，在 WSL 中使用时需注意手动调整。
