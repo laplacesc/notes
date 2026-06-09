@@ -56,6 +56,14 @@
   },
   "savedSessions": [
     {
+      "sessionId": "3ddbfdb7-e58c-4f67-9995-f32107480998",
+      "agentId": "claude-code-acp",
+      "cwd": "/Users/jxwu/IdeaProjects/notes",
+      "title": "/article-frontmatter",
+      "createdAt": "2026-06-09T09:03:08.138Z",
+      "updatedAt": "2026-06-09T09:03:08.138Z"
+    },
+    {
       "sessionId": "4177ae86-54c1-45ed-b972-4c2cbafae90e",
       "agentId": "claude-code-acp",
       "cwd": "/Users/jxwu/IdeaProjects/notes",
