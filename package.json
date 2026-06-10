@@ -7,13 +7,16 @@
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "deploy": "pnpm run docs:build && wrangler deploy",
+    "preview": "pnpm run docs:build && wrangler dev"
   },
   "devDependencies": {
     "echarts": "^5.6.0",
     "sass": "^1.89.1",
     "vitepress": "^1.6.4",
-    "vitepress-plugin-llms": "^1.7.3"
+    "vitepress-plugin-llms": "^1.7.3",
+    "wrangler": "^4.99.0"
   },
   "dependencies": {
     "lxgw-wenkai-webfont": "^1.7.0",
