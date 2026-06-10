@@ -200,7 +200,7 @@ ln -s /mnt/c/Users/{windows_username}/.codex ~/.codex
 此后在 Windows 上修改配置即可直接同步到 WSL。
 
 > [!tip]
-> Windows 上的 CC Switch 会将 MCP 配置 type 改为 CMD，command 会加上 `\c`，在 WSL 中使用时需注意手动调整。
+> Windows 上的 CC Switch 会将 MCP 配置 type 改为 `cmd`，command 会加上 `/c`，在 WSL 中使用时需注意手动调整。
 
 ## 删除 Windows 子系统和卸载 WSL
 

@@ -116,15 +116,30 @@ ao compose "帮我写一篇关于 AI Agent 的深度分析文章" --run
 
 配置 Claude Code（`settings.json`）：
 
-> [!tip]
-> CC-Switch（插件管理界面）使用右上角的「MCP 服务器管理」进行配置。
-
 ```json
 {
   "mcpServers": {
     "agency-orchestrator": {
       "command": "npx",
       "args": ["agency-orchestrator", "serve"]
+    }
+  }
+}
+```
+
+若上述配置在 Windows 上报错，可使用如下配置
+
+```json
+{
+  "mcpServers": {
+    "agency-orchestrator": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "agency-orchestrator",
+        "serve"
+      ]
     }
   }
 }
