@@ -7,6 +7,12 @@ const description = [
   "这是个人的日常随笔文档。",
 ].toString();
 
+const base = process.env.VITEPRESS_BASE || "/notes/";
+const siteUrl =
+  base === "/notes/"
+    ? "https://laplacesc.github.io/notes/"
+    : "https://notes.laplacesc.com";
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   extends: teekConfig,
@@ -15,7 +21,7 @@ export default defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   lang: "zh-CN",
-  base: "/notes/",
+  base,
   srcExclude: ["superpowers/**/*"],
   head: [
     [
@@ -23,12 +29,12 @@ export default defineConfig({
       {
         rel: "icon",
         type: "image/svg+xml",
-        href: "/notes/site/blogging-mini.svg",
+        href: `${base}site/blogging-mini.svg`,
       },
     ],
     [
       "link",
-      { rel: "icon", type: "image/png", href: "/notes/site/blogging-mini.png" },
+      { rel: "icon", type: "image/png", href: `${base}site/blogging-mini.png` },
     ],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
@@ -66,7 +72,7 @@ export default defineConfig({
     },
   },
   sitemap: {
-    hostname: "https://laplacesc.github.io/notes/", // ** 换成你的域名
+    hostname: siteUrl,
     transformItems: (items) => {
       const permalinkItemBak: typeof items = [];
       // 使用永久链接生成 sitemap
