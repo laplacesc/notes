@@ -125,5 +125,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-.obsidian/plugins/agent-client/sessions/
 .reasonix/
+.claudian/sessions/
+.obsidian/plugins/realclaudian/data.json

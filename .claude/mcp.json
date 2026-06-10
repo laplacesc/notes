@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "agency-orchestrator": {
+      "command": "npx",
+      "args": [
+        "agency-orchestrator",
+        "serve"
+      ]
+    }
+  }
+}
