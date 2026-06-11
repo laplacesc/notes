@@ -12,7 +12,7 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: Claude Code 常用插件与技能的安装配置指南，涵盖 CometixLine（状态栏美化）、Agency Orchestrator（多智能体协作框架）、obsidian-skills、superpowers-zh 中文增强版、UI UX Pro Max、ACP 适配器及 anthropics 官方技能仓库。
+description: Claude Code 常用插件与技能的安装配置指南，涵盖 CometixLine（状态栏美化）、Agency Orchestrator（多智能体协作框架）、obsidian-skills、superpowers-zh 中文增强版、UI UX Pro Max、ACP 适配器、anthropics 官方技能仓库、Context7（AI 实时库文档上下文）及 Brave Search MCP Server（集成 Brave 搜索引擎）。
 permalink: /pages/19d7f4
 ---
 
@@ -28,6 +28,7 @@ npm install -g @agentclientprotocol/claude-agent-acp@latest              # ACP A
 npm install -g uipro-cli && uipro init --ai claude                       # UI UX Pro Max
 npm install -g reasonix                                                   # Reasonix（DeepSeek 原生 AI 编码代理）
 npm install -g @colbymchenry/codegraph                                   # CodeGraph 代码智能图谱
+npm install -g ctx7                                                       # Context7 AI 库文档上下文
 ```
 
 ## 🚀 npx 一键安装合集
@@ -354,3 +355,92 @@ codegraph install
 ### 初始化索引
 
 在项目根目录运行 `codegraph init` 建立代码索引。以后每次代码变更后运行 `codegraph update` 增量更新，保持图谱最新。
+
+---
+
+## Context7 — AI 实时库文档上下文
+
+> **项目地址：** <https://github.com/upstash/context7>
+>
+> **💡 一句话概括：** 为 AI 编码助手提供最新、版本精准的库文档与代码示例，消除「幻觉」—— 让助手看到真实 API，而非训练数据的过时记忆。
+
+Context7 是 Upstash 团队开源的 CLI 工具，能从 2000+ 库的官方文档中抓取最新 API 参考与代码示例，注入到 AI 编码助手的上下文中。支持 React、Next.js、Tailwind CSS、Prisma、tRPC 等主流库，确保 AI 给出的代码片段使用正确的 API 签名和参数。
+
+### 快速安装
+
+```shell
+npm install -g ctx7
+```
+
+或使用 `npx` 零配置体验（不全局安装）：
+
+```shell
+ctx7 setup
+```
+
+### 集成 Claude Code
+
+运行自动配置命令即可一键集成：
+
+```shell
+ctx7 setup --claude
+```
+
+该命令会自动将 Context7 注册为 Claude Code 的 MCP 服务器并安装对应的 Agent Skill，**无需手动编辑 `settings.json`**（采用 OAuth 认证流程）。
+
+### 常用命令
+
+```shell
+ctx7 library react                        # 搜索 React 相关文档库
+ctx7 docs /facebook/react "useEffect cleanup"  # 查询指定文档
+ctx7 login                                # 登录认证
+ctx7 whoami                               # 查看当前认证用户
+```
+
+> 免费供个人使用。安装后可直接在 Claude Code 中通过 @ctx7 引用库文档上下文。
+
+---
+
+## Brave Search MCP Server — 集成 Brave 搜索引擎
+
+> **项目地址：** <https://github.com/brave/brave-search-mcp-server>
+>
+> **💡 一句话概括：** Brave 官方 MCP 服务器，将 Brave Search API 集成到 AI 编码助手，支持网页/本地/图像/视频/新闻搜索 + AI 摘要 + LLM 优化上下文检索。
+
+Brave 官方维护（TypeScript，1.1k+ stars）的 MCP 服务器，提供 **8 个 MCP 工具**，支持默认 stdio 传输和 HTTP 模式。需注册 Brave Search API 账号获取 API Key。
+
+### 获取 API Key
+
+1. 访问 <https://brave.com/search/api/> 注册账号
+2. 登录 [Developer Dashboard](https://api-dashboard.search.brave.com/app/keys) 获取 API Key
+
+### 集成 Claude Code（npx 一键配置）
+
+将以下配置添加到 Claude Code 的 `settings.json`：
+
+```json
+{
+  "mcpServers": {
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@brave/brave-search-mcp-server"],
+      "env": {
+        "BRAVE_API_KEY": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}
+```
+
+### 8 个 MCP 工具
+
+| 工具 | 用途 |
+|------|------|
+| `brave_web_search` | 通用网页搜索 |
+| `brave_local_search` | 本地商家/地点搜索 |
+| `brave_place_search` | POI 兴趣点搜索（经纬度） |
+| `brave_image_search` | 图片搜索 |
+| `brave_video_search` | 视频搜索 |
+| `brave_news_search` | 新闻搜索（含突发新闻） |
+| `brave_summarizer` | AI 摘要生成 |
+| `brave_llm_context` | LLM 优化文本上下文检索 |
