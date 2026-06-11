@@ -7,7 +7,7 @@ const description = [
   "这是个人的日常随笔文档。",
 ].toString();
 
-const base = process.env.VITEPRESS_BASE || "/notes/";
+const base = process.env.GITHUB_ACTIONS ? "/notes/" : "/";
 const siteUrl =
   base === "/notes/"
     ? "https://laplacesc.github.io/notes/"
@@ -109,7 +109,7 @@ export default defineConfig({
       },
       {
         text: "前端",
-        items: [{ text: "VitePress", link: "/pages/022430" }],
+        items: [{ text: "VitePress", link: "/pages/01c10b" }],
       },
       {
         text: "碎片",
