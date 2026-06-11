@@ -27,6 +27,7 @@ npm install -g agency-orchestrator                                       # Agenc
 npm install -g @agentclientprotocol/claude-agent-acp@latest              # ACP Adapter
 npm install -g uipro-cli && uipro init --ai claude                       # UI UX Pro Max
 npm install -g reasonix                                                   # Reasonix（DeepSeek 原生 AI 编码代理）
+npm install -g @colbymchenry/codegraph                                   # CodeGraph 代码智能图谱
 ```
 
 ## 🚀 npx 一键安装合集
@@ -277,3 +278,79 @@ reasonix run "把 main.go 里的 TODO 实现掉"
 reasonix run --model mimo-pro "给这个函数补单元测试"
 echo "解释这段代码" | reasonix run
 ```
+
+---
+
+## CodeGraph — 符号级代码智能图谱
+
+> **项目地址：** <https://github.com/colbymchenry/codegraph>
+
+> **💡 一句话概括：** 预索引的代码知识图谱，100% 本地化。让 AI 编程助手用更少 token、更少工具调用理解任意代码库——符号关系、调用链路、影响分析，一次查询即可获得。
+
+CodeGraph 构建代码的预索引知识图谱，覆盖 **20+ 语言**（TS/JS、Python、Go、Rust、Java、C#、PHP、Ruby、C/C++、Swift、Kotlin、Scala、Dart、Svelte、Vue、Lua 等），提供 **8 个 MCP 工具**供 AI 助手使用。内部使用 Tree-sitter 进行 AST 解析，确保精确的符号定位。
+
+### 安装
+
+**方案一：Shell 一键安装（推荐）**
+
+```shell
+curl -fsSL https://codegraph.ai/install.sh | sh
+```
+
+**方案二：npm 全局安装**
+
+```shell
+npm install -g @colbymchenry/codegraph
+```
+
+**方案三：PowerShell（Windows）**
+
+```powershell
+powershell -c "irm https://codegraph.ai/install.ps1 | iex"
+```
+
+### 自动配置 MCP
+
+安装后运行自动配置命令，CodeGraph 会自动检测并写入 Claude Code、Cursor、Copilot、Windsurf 等主流 AI 编码助手的 MCP 配置：
+
+```shell
+codegraph install
+```
+
+### 手动配置 MCP Server
+
+若需手动添加，编辑 Claude Code 的 `settings.json`：
+
+```json
+{
+  "mcpServers": {
+    "codegraph": {
+      "command": "npx",
+      "args": ["@colbymchenry/codegraph", "serve", "--mcp"]
+    }
+  }
+}
+```
+
+配置完成后运行 `codegraph init` 在项目目录创建索引。
+
+### 8 个 MCP 工具
+
+| 工具 | 用途 |
+|------|------|
+| `codegraph_search` | 快速符号搜索（函数、类型、变量等） |
+| `codegraph_callers` | 查看哪些地方调用了某个符号 |
+| `codegraph_callees` | 查看某个符号调用了哪些其他符号 |
+| `codegraph_impact` | 修改某个符号的影响分析 |
+| `codegraph_trace` | 追踪两个符号之间的完整调用路径 |
+| `codegraph_node` | 获取单个符号的详细信息（含源码） |
+| `codegraph_files` | 查看项目文件树及符号统计 |
+| `codegraph_context` | 综合性查询：入口点 + 相关符号 + 关键代码一次返回 |
+
+### 基准测试
+
+> ⚡ 实际使用中相比传统方法节省约 **16% 成本**、**47% token 消耗**、**58% 工具调用次数**（基于随机黄金测试集）。
+
+### 初始化索引
+
+在项目根目录运行 `codegraph init` 建立代码索引。以后每次代码变更后运行 `codegraph update` 增量更新，保持图谱最新。
