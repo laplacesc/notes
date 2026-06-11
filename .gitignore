@@ -128,3 +128,9 @@ Temporary Items
 .reasonix/
 .claudian/sessions/
 .obsidian/plugins/realclaudian/data.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
