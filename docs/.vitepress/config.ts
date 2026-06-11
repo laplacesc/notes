@@ -40,10 +40,10 @@ export default defineConfig({
     ["meta", { property: "og:locale", content: "zh-CN" }],
     ["meta", { property: "og:title", content: "不理之山の笔记" }],
     ["meta", { property: "og:site_name", content: "不理之山の笔记" }],
-    ["meta", { property: "og:image", content: "" }],
-    ["meta", { property: "og:url", content: "" }],
-    ["meta", { property: "og:description", description }],
-    ["meta", { name: "description", description }],
+    ["meta", { property: "og:image", content: `${siteUrl}site/blogging.png` }],
+    ["meta", { property: "og:url", content: `${siteUrl}` }],
+    ["meta", { property: "og:description", description: description }],
+    ["meta", { name: "description", description: description }],
     ["meta", { name: "author", content: "laplacesc" }],
     // 禁止浏览器缩放
     // [

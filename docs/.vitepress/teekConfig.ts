@@ -28,7 +28,7 @@ export const teekConfig = defineTeekConfig({
     slogan: "山在那里，码在这里", // 博主签名
     avatar: "/site/lain.jpg", // 博主头像
     shape: "circle-rotate", // 头像风格：square 为方形头像，circle 为圆形头像，circle-rotate 可支持鼠标悬停旋转，circle-rotate-last 将会持续旋转 59s
-    circleBgImg: "/wallpaper/www.hacg.me_15.jpg", // 背景图片
+    circleBgImg: "/wallpaper/asuka.jpg", // 背景图片
     circleBgMask: true, // 遮罩层是否显示，仅当 shape 为 circle 且 circleBgImg 配置时有效
     circleSize: 100, // 头像大小
     color: "#ffffff", // 字体颜色
@@ -63,5 +63,14 @@ export const teekConfig = defineTeekConfig({
       ignoreList: ["superpowers"],
     },
     fileContentLoaderIgnore: ["**/superpowers/**/*"],
+  },
+  riskLink: {
+    enabled: true,
+    whitelist: [
+      "https://laplacesc.github.io/",
+      "https://notes.laplacesc.com/",
+      "https://github.com/",
+    ],
+    blacklist: [],
   },
 });
