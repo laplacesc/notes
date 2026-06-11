@@ -389,6 +389,26 @@ ctx7 setup --claude
 
 该命令会自动将 Context7 注册为 Claude Code 的 MCP 服务器并安装对应的 Agent Skill，**无需手动编辑 `settings.json`**（采用 OAuth 认证流程）。
 
+### 手动 MCP 配置（API Key 方式）
+
+若不使用 OAuth 自动配置，也可直接在 `settings.json` 中添加以下 MCP Server 配置：
+
+```json
+{
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "YOUR_API_KEY"
+      }
+    }
+  }
+}
+```
+
+> 将 `YOUR_API_KEY` 替换为从 [context7.com](https://context7.com) 获取的 API Key。
+
 ### 常用命令
 
 ```shell
