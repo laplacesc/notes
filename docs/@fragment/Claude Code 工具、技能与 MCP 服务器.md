@@ -1,5 +1,5 @@
 ---
-title: Claude Code 插件 & 技能 & 工具
+title: Claude Code 工具、技能与 MCP 服务器
 date: 2026-06-08 08:00:00
 categories:
   - AI
@@ -12,7 +12,7 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: Claude Code 常用插件 & 技能的安装配置指南。分为三大类：Agent & ACP（CometixLine 状态栏、Reasonix 编码代理、ACP 客户端适配器）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
+description: Claude Code 常用工具与技能的安装配置指南。分为三大类：Agent & ACP（CometixLine 状态栏、Reasonix 编码代理、ACP 客户端适配器）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
 permalink: /pages/19d7f4
 ---
 
