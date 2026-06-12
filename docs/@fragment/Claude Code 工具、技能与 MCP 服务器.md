@@ -432,3 +432,35 @@ npx ctx7 whoami                               # 查看当前认证用户
 | `fetchGithubReadme` | 抓取 GitHub 仓库 README |
 | `fetchJuejinArticle` | 抓取掘金文章全文 |
 | `fetchLinuxDoArticle` | 抓取 Linux.do 论坛文章 |
+
+### 本地部署（Docker SSE 模式）
+
+通过 Docker 部署 open-web-search 容器，以 SSE（Server-Sent Events）端点暴露 MCP 工具：
+
+```shell
+docker run -d --name web-search -p 3000:3000 \
+  -e ENABLE_CORS=true \
+  -e CORS_ORIGIN=* \
+  ghcr.io/aas-ee/open-web-search:latest
+```
+
+**环境变量：**
+
+| 变量 | 默认值 | 可选值 | 说明 |
+|------|--------|--------|------|
+| `ENABLE_CORS` | `false` | `true`, `false` | 启用 CORS |
+| `CORS_ORIGIN` | `*` | 任意有效 origin | CORS 跨域来源 |
+| `DEFAULT_SEARCH_ENGINE` | `bing` | `bing`, `duckduckgo`, `exa`, `brave`, `baidu`, `csdn`, `juejin`, `startpage`, `sogou` | 默认搜索引擎 |
+| `USE_PROXY` | `false` | `true`, `false` | 启用 HTTP 代理 |
+| `PROXY_URL` | `http://127.0.0.1:7890` | 任意有效 URL | 代理服务器地址 |
+| `FAKE_IP_CIDRS` | 空 | 逗号分隔的 CIDR 列表 | 将指定 CIDR 内的 DNS 应答视为伪造 IP 结果，不拦截为私有网络 DNS |
+| `PORT` | `3000` | `1-65535` | 服务端口 |
+
+**Reasonix 插件配置**（`reasonix.toml`）：
+
+```toml
+[[plugins]]
+name    = "web-search"
+type    = "http"
+url     = "http://localhost:3000/mcp"
+```
