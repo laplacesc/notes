@@ -21,9 +21,9 @@ permalink: /pages/19d7f4
 ### 🤖 Agent & ACP
 
 ```shell
-npm install -g @cometix/ccline                                          # CometixLine 状态栏美化
-npm install -g reasonix                                                   # Reasonix（DeepSeek 原生 AI 编码代理）
-npm install -g @agentclientprotocol/claude-agent-acp@latest              # ACP Adapter
+npm install -g @cometix/ccline                                            # CometixLine 状态栏美化
+npm install -g reasonix@next                                              # Reasonix（DeepSeek 原生 AI 编码代理）
+npm install -g @agentclientprotocol/claude-agent-acp@latest               # ACP Adapter
 ```
 
 ### 🧩 Skills
