@@ -12,112 +12,262 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: Claude Code 常用插件与技能的安装配置指南，涵盖 CometixLine（状态栏美化）、Agency Orchestrator（多智能体协作框架）、obsidian-skills、superpowers-zh 中文增强版、UI UX Pro Max、ACP 适配器、anthropics 官方技能仓库、Context7（AI 实时库文档上下文）及 Open-WebSearch（免费多引擎网页搜索，无需 API Key）。
+description: Claude Code 常用插件 & 技能的安装配置指南。分为三大类：Agent & ACP（CometixLine 状态栏、Reasonix 编码代理、ACP 客户端适配器）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
 permalink: /pages/19d7f4
 ---
 
-## 📦 npm 全局安装合集
+## 📦 安装合集
 
-在项目目录中依次执行，快速安装所有 npm 全局工具：
+### 🤖 Agent & ACP
 
 ```shell
-# 全局安装
 npm install -g @cometix/ccline                                          # CometixLine 状态栏美化
-npm install -g agency-orchestrator                                       # Agency Orchestrator 多智能体协作
-npm install -g @agentclientprotocol/claude-agent-acp@latest              # ACP Adapter
-npm install -g uipro-cli && uipro init --ai claude                       # UI UX Pro Max
 npm install -g reasonix                                                   # Reasonix（DeepSeek 原生 AI 编码代理）
-npm install -g @colbymchenry/codegraph                                   # CodeGraph 代码智能图谱
-npm install -g ctx7                                                       # Context7 AI 库文档上下文
-npm install -g open-websearch                                             # Open-WebSearch 免费多引擎网页搜索
+npm install -g @agentclientprotocol/claude-agent-acp@latest              # ACP Adapter
 ```
 
-## 🚀 npx 一键安装合集
-
-在项目目录中依次执行，快速添加所有 npx 技能：
+### 🧩 Skills
 
 ```shell
-# 注意：以下命令需在项目根目录执行
 npx superpowers-zh                                                        # superpowers-zh（中文增强版 20 技能）
 npx skills add kepano/obsidian-skills                                     # obsidian-skills
 npx skills add anthropics/skills                                          # anthropics 官方技能仓库
+npx uipro-cli init --ai claude                                            # UI UX Pro Max（161 推理规则 + 67 UI 样式）
 ```
 
-> [!tip] 部分工具先全局安装后再 npx/使用，参见下方各节详解。
+### 🔌 MCP Servers
+
+```shell
+# 以下为 settings.json 中 mcpServers 的 command / args 值
+npx agency-orchestrator serve                                             # Agency Orchestrator（6 工具）
+npx @colbymchenry/codegraph serve --mcp                                   # CodeGraph（8 工具）
+npx -y @upstash/context7-mcp                                              # Context7（2 工具）
+npx -y open-websearch@latest                                              # Open-WebSearch（6 工具）
+```
 
 ---
 
-## CometixLine — Claude Code 状态栏美化
+## 🤖 Agent & ACP
+
+### CometixLine — Claude Code 状态栏美化
 
 > **项目地址：** <https://github.com/Haleclipse/CCometixLine>
 
-在 Claude Code 底部状态栏右侧显示美观的提示信息，支持主题自定义和多种显示模式，让终端工作区更具个性。
+Rust 编写的高性能 Claude Code 状态栏工具，在终端底部右侧显示美观的状态信息，支持 Git 集成、用量追踪、交互式 TUI 配置。
 
-### 快速安装（推荐）
+**主要特性：**
 
-通过 npm 全局安装（跨平台兼容）：
+- **Git 集成**：显示当前分支及状态（新增/修改/冲突文件数）
+- **工具调用跟踪**：实时显示工具调用次数、token 消耗、耗时
+- **上下文窗口**：显示当前上下文占用百分比
+- **主题系统**：内置多种主题，`ccline -c` 打开交互式 TUI 配置面板
+- **Context Warning Disabler**：免除烦人的上下文警告
+- 支持 Nerd Font 终端以获得最佳图标显示
+
+**安装（全局）：**
 
 ```shell
-# 全局安装
 npm install -g @cometix/ccline
 
-# 或使用 yarn
+# 或使用 yarn / pnpm
 yarn global add @cometix/ccline
-
-# 或使用 pnpm
 pnpm add -g @cometix/ccline
-```
 
-使用国内镜像源加速下载：
-
-```shell
+# 国内镜像源
 npm install -g @cometix/ccline --registry https://registry.npmmirror.com
 ```
 
-安装后：
-
-- ✅ 全局命令 `ccline` 可在任意目录使用
-- ⚙️ 按下方指引配置以集成到 Claude Code
-- 🎨 运行 `ccline -c` 打开配置面板，选择主题
-
-### 集成 Claude Code
-
-将以下配置添加到 Claude Code 的 `settings.json`：
-
-**方案（npm 全局安装）**
+**集成 Claude Code（`settings.json`）：**
 
 ```json
 {
   "statusLine": {
     "type": "command",
-    "command": "ccline",
+    "command": "~/.claude/ccline/ccline",
     "padding": 0
   }
 }
 ```
 
-> [!tip] 当 npm 全局安装已加入 PATH 环境变量时，可使用此配置。
+> 若 npm 全局安装已加入 PATH，也可使用 `"command": "ccline"`。
+
+**使用：**
+
+```bash
+ccline -c                # 打开交互式 TUI 配置面板
+ccline --theme <name>    # 直接切换主题
+```
+
+> **前提条件：** Git 1.5+，推荐使用 Nerd Font 终端。
 
 ---
 
-## Agency Orchestrator — 让 AI 角色库真正跑起来
+### Reasonix — DeepSeek 原生 AI 编码代理
 
-> **项目地址：** <https://github.com/jnMetaCode/agency-agents-zh>
+> **项目地址：** <https://github.com/esengine/DeepSeek-Reasonix>
 
-> **💡 一句话概括：** 编排多角色智能体工作流，让 AI 专家像真实团队一样自动协作，几分钟交付完整方案。
->
-> [角色库](https://github.com/jnMetaCode/agency-agents-zh) 提供各领域专家角色，[Agency Orchestrator](https://github.com/jnMetaCode/agency-orchestrator) 负责将这些角色编排成 DAG（有向无环图）工作流并按序执行。
+Go 重写的终端 AI 编码代理，专为 DeepSeek 模型打造，围绕 **prefix-cache 稳定性**设计以支持长时间运行。单 Go 二进制，配置驱动（reasonix.toml），插件式 MCP 子进程管理。
 
-全局安装后即可快速体验：
+**主要特性：**
 
-```shell
-npm install -g agency-orchestrator
-ao compose "帮我写一篇关于 AI Agent 的深度分析文章" --run
+- **多模型支持**：DeepSeek flash / pro、MiMo 等
+- **配置驱动**：`reasonix.toml` 集中管理所有配置
+- **插件式 MCP**：通过子进程管理 MCP 服务器
+- **单二进制分发**：Go 编译，部署简单
+- **交互式 TUI**：`reasonix chat` 进入对话模式
+
+**安装：**
+
+```bash
+npm install -g reasonix
+# 或 Homebrew
+brew install esengine/reasonix/reasonix
 ```
 
-### MCP Server 模式
+**快速开始：**
 
-配置 Claude Code（`settings.json`）：
+```bash
+reasonix setup                      # 交互式配置向导 → ./reasonix.toml
+export DEEPSEEK_API_KEY=sk-...
+reasonix chat                       # 进入对话，/init 生成 AGENTS.md
+reasonix run "把 main.go 里的 TODO 实现掉"
+reasonix run --model mimo-pro "给这个函数补单元测试"
+echo "解释这段代码" | reasonix run
+```
+
+---
+
+### ACP Adapter — 跨平台 ACP 客户端适配器
+
+> **项目地址：** <https://github.com/agentclientprotocol/claude-agent-acp>
+
+通过 ACP（Agent Client Protocol）协议，让任何兼容 ACP 的客户端都能使用 Claude Agent SDK 的全部能力。
+
+**主要特性：**
+
+- 上下文 @- 提及、图片支持
+- 工具调用（含权限请求）
+- Follow 模式、编辑审查
+- TODO 列表、交互式 / 后台终端
+- 自定义 Slash 命令
+- 客户端 MCP 服务器管理
+
+**安装：**
+
+```bash
+npm install -g @agentclientprotocol/claude-agent-acp@latest
+```
+
+---
+
+## 🧩 Skills
+
+### superpowers-zh（AI 编程超能力 · 中文增强版）
+
+> **项目地址：** <https://github.com/jnMetaCode/superpowers-zh>
+
+superpowers 完整汉化 + 6 个中国特色原创技能，支持 **18 款 AI 编程工具**（Claude Code、Cursor、Windsurf、Gemini CLI、Codex CLI、Copilot CLI、Hermes Agent、Kiro、Trae 等）。
+
+**安装：**
+
+```shell
+cd /your/project
+npx superpowers-zh
+```
+
+> [!warning] **不要在主目录（`~`）下运行！** 早期版本会误将 skills 和 `CLAUDE.md` 写入 home 目录。v1.2.1+ 已增加检测机制。
+
+**包含的 20 个技能：**
+
+| 来源 | 技能 | 作用 |
+|------|------|------|
+| 翻译自 upstream | `brainstorming` | 创造性工作前探索用户意图与设计 |
+| 翻译自 upstream | `writing-plans` | 多步骤任务先写实现计划 |
+| 翻译自 upstream | `executing-plans` | 在独立会话中按计划执行 |
+| 翻译自 upstream | `test-driven-development` | 实现前先写测试 |
+| 翻译自 upstream | `systematic-debugging` | 遇到 Bug 时系统化调试 |
+| 翻译自 upstream | `requesting-code-review` | 完成任务后请求代码审查 |
+| 翻译自 upstream | `receiving-code-review` | 审查反馈后严谨分析再实施 |
+| 翻译自 upstream | `verification-before-completion` | 运行验证确认后再声称完成 |
+| 翻译自 upstream | `dispatching-parallel-agents` | 同时执行 2+ 独立任务 |
+| 翻译自 upstream | `subagent-driven-development` | 将独立任务分配给子智能体 |
+| 翻译自 upstream | `using-git-worktrees` | 隔离工作区开发 |
+| 翻译自 upstream | `finishing-a-development-branch` | 开发完成后的合并 / PR / 清理决策 |
+| 翻译自 upstream | `writing-skills` | 创建 / 编辑 / 验证新技能 |
+| 翻译自 upstream | `using-superpowers` | 对话起始时确立技能使用规则 |
+| 中国特色 | `chinese-documentation` | 中文文档排版规范 |
+| 中国特色 | `chinese-commit-conventions` | 中文 Commit 约定与 changelog 配置 |
+| 中国特色 | `chinese-code-review` | 中文 Review 话术模板 |
+| 中国特色 | `chinese-git-workflow` | 国内 Git 平台配置参考 |
+| 中国特色 | `mcp-builder` | 系统化构建生产级 MCP 工具 |
+| 中国特色 | `workflow-runner` | 在会话中运行 YAML 工作流 |
+
+---
+
+### obsidian-skills
+
+> **项目地址：** <https://github.com/kepano/obsidian-skills>
+
+Obsidian Agent Skills — 让 AI 助手直接操作 Obsidian vault，通过 Obsidian CLI 无缝集成插件、主题开发与调试。
+
+**安装：**
+
+```bash
+npx skills add kepano/obsidian-skills
+```
+
+**5 个技能：**
+
+| 技能 | 用途 |
+|------|------|
+| `obsidian-markdown` | 创建/编辑 Obsidian Flavored Markdown（wikilinks、embeds、callouts、properties） |
+| `obsidian-bases` | 创建/编辑 Obsidian Bases（.base 文件，views、filters、formulas） |
+| `json-canvas` | 创建/编辑 JSON Canvas（.canvas 文件，nodes、edges、groups） |
+| `obsidian-cli` | 通过 Obsidian CLI 交互（含插件/主题开发与调试） |
+| `defuddle` | 从网页提取纯净 Markdown，去除杂讯节省 token |
+
+---
+
+### anthropics/skills — Anthropic 官方技能仓库
+
+> **项目地址：** <https://github.com/anthropics/skills>
+
+Anthropic 官方维护的 Agent Skills 公开仓库，汇集各类经过验证的 AI 智能体技能。涵盖 MCP 构建、代码审查、调试、测试等多种开发场景。
+
+**安装：**
+
+```bash
+npx skills add anthropics/skills
+```
+
+---
+
+### UI UX Pro Max — 专业 UI/UX 设计技能
+
+> **项目地址：** <https://github.com/nextlevelbuilder/ui-ux-pro-max-skill>
+
+为 AI 编程助手注入设计智能的技能包，涵盖 **161 条推理规则** 与 **67 种 UI 样式**，帮助在多个平台和框架下构建专业用户界面。v2.0 新增 **智能设计系统生成器（Design System Generator）**，可分析项目需求并自动生成完整设计系统。
+
+支持 Claude Code、Cursor、Copilot、Codex 等主流 AI 编码助手。
+
+**安装：**
+
+```shell
+cd /path/to/your/project
+npx uipro-cli init --ai claude      # Claude Code
+```
+
+---
+
+## 🔌 MCP Servers
+
+### Agency Orchestrator — 多智能体协作框架
+
+> **项目地址：** <https://github.com/jnMetaCode/agency-orchestrator>
+
+编排多角色智能体工作流，让 AI 专家像真实团队一样自动协作。**211+ 专业角色**，零代码 YAML 工作流，支持 **10 种 LLM**（其中 7 种免 API key）。
+
+**MCP 配置（`settings.json`）：**
 
 ```json
 {
@@ -130,198 +280,36 @@ ao compose "帮我写一篇关于 AI Agent 的深度分析文章" --run
 }
 ```
 
-若上述配置在 Windows 上报错，可使用如下配置
+**6 个 MCP 工具：**
 
-```json
-{
-  "mcpServers": {
-    "agency-orchestrator": {
-      "command": "cmd",
-      "args": [
-        "/c",
-        "npx",
-        "agency-orchestrator",
-        "serve"
-      ]
-    }
-  }
-}
-```
-
-提供 6 个工具：`run_workflow`、`validate_workflow`、`list_workflows`、`plan_workflow`、`compose_workflow`、`list_roles`。
-
----
-
-## obsidian-skills
-
-> **项目地址：** <https://github.com/kepano/obsidian-skills>
-
-在 Claude Code 中管理 Obsidian 笔记的技能框架——通过自然语言指令直接操作 vault，搜索、创建、修改笔记，并利用 Obsidian CLI 无缝集成插件、主题开发与调试。
-
-该技能包提供以下能力：
-
-- **笔记管理**：搜索、创建、打开、修改、重命名、删除笔记
-- **内容操作**：读取/写入笔记内容，追加文本，替换文本块
-- **Vault 元数据**：获取 vault 统计信息、文件树、标签列表、链接图
-- **格式处理**：自动处理 Markdown 链接、frontmatter、wiki 链接
-- **属性查询**：按 frontmatter 字段筛选笔记（如：找出标签为 `#todo` 的笔记）
-
-### 通过 npx 安装（备选）
-
-适用于未启用插件市场或需手动管理技能的场景：
-
-```bash
-npx skills add kepano/obsidian-skills
-```
-
----
-
-## superpowers-zh（AI 编程超能力 · 中文增强版）
-
-> **项目地址：** <https://github.com/jnMetaCode/superpowers-zh>
-
-将 superpowers 框架本地化为中文，提供 20 个实用技能。安装后 AI 助手将遵循设计先于编码、测试先于实现的开发规范。
-
-**包含的 20 个技能：**
-
-| 技能 | 作用 |
+| 工具 | 用途 |
 |------|------|
-| `brainstorming` | 创造工作前探索用户意图、需求和设计 |
-| `test-driven-development` | 在编写实现代码之前先写测试 |
-| `writing-plans` | 有多步骤任务时先写实现计划 |
-| `executing-plans` | 在独立会话中按计划执行 |
-| `subagent-driven-development` | 将独立任务分配给子智能体 |
-| `dispatching-parallel-agents` | 同时执行 2 个以上的独立任务 |
-| `using-git-worktrees` | 使用隔离工作区进行开发 |
-| `receiving-code-review` | 收到审查反馈后，严谨分析再实施 |
-| `requesting-code-review` | 完成任务后请求代码审查 |
-| `finishing-a-development-branch` | 开发完成后的合并/PR/清理决策 |
-| `verification-before-completion` | 运行验证命令确认后再声称完成 |
-| `systematic-debugging` | 遇到 Bug 时系统化调试 |
-| `mcp-builder` | 系统化构建生产级 MCP 工具 |
-| `writing-skills` | 创建/编辑/验证新技能 |
-| `workflow-runner` | 在会话中直接运行 YAML 工作流 |
-| `using-superpowers` | 对话起始时确立技能使用规则 |
-| `chinese-documentation` | 中文文档排版规范 |
-| `chinese-commit-conventions` | 中文 Commit 约定 |
-| `chinese-code-review` | 中文 Review 话术模板 |
-| `chinese-git-workflow` | 国内 Git 平台配置参考 |
-
-### npm 安装
-
-```shell
-cd /your/project
-npx superpowers-zh
-```
-
-> [!warning] **重要：不要在主目录（`~`）下运行！** 早期版本会误将 skills 和 `CLAUDE.md` 等引导文件写入 home 目录，污染所有项目。v1.2.1 及以上版本已增加检测机制，会拒绝在老版本中执行。如已误装，可手动删除 `~/.claude/skills/` 下的相关文件清理。
+| `run_workflow` | 执行 YAML 工作流 |
+| `validate_workflow` | 校验工作流 YAML |
+| `list_workflows` | 列出所有可用工作流 |
+| `plan_workflow` | 查看 DAG 执行计划 |
+| `compose_workflow` | AI 智能编排工作流 |
+| `list_roles` | 列出所有可用角色 |
 
 ---
 
-## UI UX Pro Max — 专业 UI/UX 设计技能
-
-> **项目地址：** <https://github.com/nextlevelbuilder/ui-ux-pro-max-skill>
-
-一款为 AI 编程助手注入设计智能的技能包，涵盖 **161 条推理规则** 与 **67 种 UI 样式**，帮助在多个平台和框架下构建专业的用户界面。v2.0 新增 **智能设计系统生成器（Design System Generator）**，能够分析项目需求并自动生成完整的设计系统。支持 Claude Code、Cursor、Copilot、Codex 等主流 AI 编码助手。
-
-### 通过 CLI 安装（推荐）
-
-```shell
-# 全局安装 CLI 工具
-npm install -g uipro-cli
-
-# 进入项目目录
-cd /path/to/your/project
-
-# 按需选择 AI 助手安装
-uipro init --ai claude      # Claude Code
-```
-
-## ACP Adapter — 跨平台 ACP 客户端适配器
-
-> **项目地址：** <https://github.com/agentclientprotocol/claude-agent-acp>
-
-通过 ACP（Agent Client Protocol）协议，让任何兼容 ACP 的客户端都能使用 Claude Agent SDK 的全部能力。核心功能包括：上下文 @- 提及、图片支持、工具调用（含权限请求）、Follow 模式、编辑审查、TODO 列表、交互式/后台终端、自定义 Slash 命令，以及客户端 MCP 服务器管理。
-
-```bash
-npm install -g @agentclientprotocol/claude-agent-acp@latest
-```
-
-## anthropics/skills — Anthropic 官方技能仓库
-
-> **项目地址：** <https://github.com/anthropics/skills>
-
-Anthropic 官方维护的 Agent Skills 公开仓库，汇集了各类经过验证的 AI 智能体技能。通过 `npx skills add` 命令即可将官方技能集成到 Claude Code 中，涵盖 MCP 构建、代码审查、调试、测试等多种开发场景。这是获取最新官方支持技能的推荐入口。
-
-```bash
-npx skills add anthropics/skills
-```
-
-## Reasonix — DeepSeek 原生 AI 编码代理
-
-> **项目地址：** <https://github.com/esengine/DeepSeek-Reasonix>
-
-一款专为 DeepSeek 模型打造的终端 AI 编码代理，围绕 **prefix-cache 稳定性**设计以支持长时间运行。v1.0 已用 Go 完全重写，提供更优的性能与稳定性。支持工具调用、TUI 终端交互、DeepSeek R1 模型原生集成。
-
-```bash
-npm install -g reasonix
-reasonix init      # 在项目目录中初始化（首次配置后，可用 reasonix setup 交互式调整）
-```
-
-`reasonix init` 生成项目引导文件后，运行以下命令完成配置并开始使用：
-
-### 快速开始
-
-```bash
-reasonix setup                      # 交互式配置向导 → ./reasonix.toml
-export DEEPSEEK_API_KEY=sk-...  # 或写入 .env（见 .env.example）
-reasonix chat                       # 然后在会话里运行 /init 生成 AGENTS.md（项目记忆）
-reasonix run "把 main.go 里的 TODO 实现掉"
-reasonix run --model mimo-pro "给这个函数补单元测试"
-echo "解释这段代码" | reasonix run
-```
-
----
-
-## CodeGraph — 符号级代码智能图谱
+### CodeGraph — 符号级代码智能图谱
 
 > **项目地址：** <https://github.com/colbymchenry/codegraph>
 
-> **💡 一句话概括：** 预索引的代码知识图谱，100% 本地化。让 AI 编程助手用更少 token、更少工具调用理解任意代码库——符号关系、调用链路、影响分析，一次查询即可获得。
+预索引的代码知识图谱，100% 本地化。让 AI 编程助手用更少 token、更少工具调用理解任意代码库——相比传统方法节省约 **16% 成本**、**58% 工具调用次数**。支持 **20+ 语言**（TS/JS、Python、Go、Rust、Java、C#、PHP、Ruby、C/C++、Swift、Kotlin、Scala、Vue、Svelte 等）。
 
-CodeGraph 构建代码的预索引知识图谱，覆盖 **20+ 语言**（TS/JS、Python、Go、Rust、Java、C#、PHP、Ruby、C/C++、Swift、Kotlin、Scala、Dart、Svelte、Vue、Lua 等），提供 **8 个 MCP 工具**供 AI 助手使用。内部使用 Tree-sitter 进行 AST 解析，确保精确的符号定位。
-
-### 安装
-
-**方案一：Shell 一键安装（推荐）**
+**安装：**
 
 ```shell
+# macOS / Linux 一键安装
 curl -fsSL https://codegraph.ai/install.sh | sh
-```
 
-**方案二：npm 全局安装**
-
-```shell
-npm install -g @colbymchenry/codegraph
-```
-
-**方案三：PowerShell（Windows）**
-
-```powershell
+# Windows PowerShell
 powershell -c "irm https://codegraph.ai/install.ps1 | iex"
 ```
 
-### 自动配置 MCP
-
-安装后运行自动配置命令，CodeGraph 会自动检测并写入 Claude Code、Cursor、Copilot、Windsurf 等主流 AI 编码助手的 MCP 配置：
-
-```shell
-codegraph install
-```
-
-### 手动配置 MCP Server
-
-若需手动添加，编辑 Claude Code 的 `settings.json`：
+**MCP 手动配置（`settings.json`）：**
 
 ```json
 {
@@ -334,64 +322,45 @@ codegraph install
 }
 ```
 
-配置完成后运行 `codegraph init` 在项目目录创建索引。
+**初始化索引：**
 
-### 8 个 MCP 工具
+```shell
+codegraph install       # 自动配置 AI 编辑器 MCP
+codegraph init -i       # 项目初始化并建立索引
+codegraph update        # 代码变更后增量更新
+```
+
+**8 个 MCP 工具：**
 
 | 工具 | 用途 |
 |------|------|
-| `codegraph_search` | 快速符号搜索（函数、类型、变量等） |
+| `codegraph_context` | 综合性查询：入口点 + 相关符号 + 关键代码一次返回 |
+| `codegraph_search` | 按名称搜索符号（函数、类型、接口等） |
 | `codegraph_callers` | 查看哪些地方调用了某个符号 |
 | `codegraph_callees` | 查看某个符号调用了哪些其他符号 |
 | `codegraph_impact` | 修改某个符号的影响分析 |
-| `codegraph_trace` | 追踪两个符号之间的完整调用路径 |
 | `codegraph_node` | 获取单个符号的详细信息（含源码） |
 | `codegraph_files` | 查看项目文件树及符号统计 |
-| `codegraph_context` | 综合性查询：入口点 + 相关符号 + 关键代码一次返回 |
-
-### 基准测试
-
-> ⚡ 实际使用中相比传统方法节省约 **16% 成本**、**47% token 消耗**、**58% 工具调用次数**（基于随机黄金测试集）。
-
-### 初始化索引
-
-在项目根目录运行 `codegraph init` 建立代码索引。以后每次代码变更后运行 `codegraph update` 增量更新，保持图谱最新。
+| `codegraph_explore` | 批量查询多个相关符号的源码 |
 
 ---
 
-## Context7 — AI 实时库文档上下文
+### Context7 — AI 实时库文档上下文
 
 > **项目地址：** <https://github.com/upstash/context7>
->
-> **💡 一句话概括：** 为 AI 编码助手提供最新、版本精准的库文档与代码示例，消除「幻觉」—— 让助手看到真实 API，而非训练数据的过时记忆。
 
-Context7 是 Upstash 团队开源的 CLI 工具，能从 2000+ 库的官方文档中抓取最新 API 参考与代码示例，注入到 AI 编码助手的上下文中。支持 React、Next.js、Tailwind CSS、Prisma、tRPC 等主流库，确保 AI 给出的代码片段使用正确的 API 签名和参数。
+为 AI 编码助手提供最新、版本精准的库文档与代码示例，消除「幻觉」——让助手看到真实 API，而非训练数据的过时记忆。覆盖 **2000+ 库**（React、Next.js、Tailwind CSS、Prisma、tRPC 等）。
 
-### 快速安装
+**快速安装（OAuth 自动配置）：**
 
 ```shell
-npm install -g ctx7
+npx ctx7 setup                          # 自动注册 MCP + 安装 Agent Skill
+npx ctx7 setup --claude                 # 指定 Claude Code
+npx ctx7 setup --cursor                 # 指定 Cursor
+npx ctx7 setup --opencode               # 指定 OpenCode
 ```
 
-或使用 `npx` 零配置体验（不全局安装）：
-
-```shell
-ctx7 setup
-```
-
-### 集成 Claude Code
-
-运行自动配置命令即可一键集成：
-
-```shell
-ctx7 setup --claude
-```
-
-该命令会自动将 Context7 注册为 Claude Code 的 MCP 服务器并安装对应的 Agent Skill，**无需手动编辑 `settings.json`**（采用 OAuth 认证流程）。
-
-### 手动 MCP 配置（API Key 方式）
-
-若不使用 OAuth 自动配置，也可直接在 `settings.json` 中添加以下 MCP Server 配置：
+**MCP 手动配置（`settings.json`，API Key 方式）：**
 
 ```json
 {
@@ -407,32 +376,33 @@ ctx7 setup --claude
 }
 ```
 
-> 将 `YOUR_API_KEY` 替换为从 [context7.com](https://context7.com) 获取的 API Key。
+> API Key 从 [context7.com/dashboard](https://context7.com/dashboard) 获取，免费供个人使用。
 
-### 常用命令
+**2 个 MCP 工具：**
+
+| 工具 | 用途 |
+|------|------|
+| `resolve-library-id` | 将库名称解析为 Context7 库 ID |
+| `query-docs` | 查询指定库的最新文档与代码示例 |
+
+**常用命令：**
 
 ```shell
-ctx7 library react                        # 搜索 React 相关文档库
-ctx7 docs /facebook/react "useEffect cleanup"  # 查询指定文档
-ctx7 login                                # 登录认证
-ctx7 whoami                               # 查看当前认证用户
+npx ctx7 library react                        # 搜索 React 相关文档库
+npx ctx7 docs /facebook/react "useEffect"     # 查询指定文档
+npx ctx7 login                                # 登录认证
+npx ctx7 whoami                               # 查看当前认证用户
 ```
-
-> 免费供个人使用。安装后可直接在 Claude Code 中通过 @ctx7 引用库文档上下文。
 
 ---
 
-## Open-WebSearch — 免费多引擎网页搜索
+### Open-WebSearch — 免费多引擎网页搜索
 
 > **项目地址：** <https://github.com/aas-ee/open-websearch>
->
-> **💡 一句话概括：** 开源免费的多引擎网页搜索 MCP 服务器，无需 API Key，支持 Bing / 百度 / DuckDuckGo / Brave / Exa / CSDN / 掘金 / Startpage / 搜狗等 10+ 搜索引擎，含文章抓取和 HTTP 代理支持。
 
-纯 JavaScript 实现（Node.js，500+ stars），通过抓取搜索引擎页面返回结构化结果。提供 **6 个 MCP 工具**，支持 stdio / HTTP / SSE 三种传输模式，可部署为本地守护进程或 Docker 容器。**无需注册任何 API 账号**。
+开源免费的多引擎网页搜索 MCP 服务器，**无需 API Key**。纯 JavaScript 实现（Node.js，500+ stars）。
 
-### 集成 Claude Code（npx 一键配置）
-
-将以下配置添加到 Claude Code 的 `settings.json`：
+**MCP 配置（`settings.json`）：**
 
 ```json
 {
@@ -450,14 +420,14 @@ ctx7 whoami                               # 查看当前认证用户
 }
 ```
 
-> 如需使用代理访问受限搜索引擎，添加 `USE_PROXY: "true"` 和 `PROXY_URL: "http://127.0.0.1:7890"`。
+> 如需代理访问受限搜索引擎，添加 `"USE_PROXY": "true"` 和 `"PROXY_URL": "http://127.0.0.1:7890"`。
 
-### 6 个 MCP 工具
+**6 个 MCP 工具：**
 
 | 工具 | 用途 |
 |------|------|
-| `search` | 多引擎联合网页搜索（支持指定引擎列表和返回条数） |
-| `fetchWebContent` | 抓取任意公开 HTTP(S) 页面/Markdown 内容 |
+| `search` | 多引擎联合网页搜索（指定引擎和返回条数） |
+| `fetchWebContent` | 抓取任意公开 HTTP(S) 页面 / Markdown 内容 |
 | `fetchCsdnArticle` | 抓取 CSDN 博客全文 |
 | `fetchGithubReadme` | 抓取 GitHub 仓库 README |
 | `fetchJuejinArticle` | 抓取掘金文章全文 |
