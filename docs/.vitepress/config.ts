@@ -11,7 +11,7 @@ const base = process.env.GITHUB_ACTIONS ? "/notes/" : "/";
 const siteUrl =
   base === "/notes/"
     ? "https://laplacesc.github.io/notes/"
-    : "https://notes.laplacesc.com";
+    : "https://notes.laplacesc.com/";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({

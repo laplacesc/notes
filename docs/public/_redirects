@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback: serve index.html for all non-file routes
+# This ensures all permalink URLs (/pages/xxx) and hash-anchor navigation
+# work correctly with the VitePress client-side router.
+/* /index.html 200
