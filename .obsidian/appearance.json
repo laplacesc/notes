@@ -3,8 +3,8 @@
   "accentColor": "",
   "theme": "moonstone",
   "baseFontSize": 18,
-  "textFontFamily": "LXGW WenKai",
-  "monospaceFontFamily": "Sarasa Mono SC",
+  "textFontFamily": "LXGW Bright Code NF GB",
+  "monospaceFontFamily": "LXGW Bright Code NF GB",
   "enabledCssSnippets": [
     "pdf-table",
     "mermaid"
