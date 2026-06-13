@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **基础路径**: CI 中 `/notes/`，本地开发 `/`（config.ts 根据 `GITHUB_ACTIONS` 环境变量自动切换）
 - **语言**: zh-CN
 - **包管理器**: pnpm（workspace 禁用 parcel 和 esbuild 构建）
-- **Node**: ^24（CI 中指定）
+- **Node**: 24（CI 中指定），pnpm 9
 - **代码智能**: codegraph（`.codegraph/` 目录，33 个文件已索引）
 
 ## 命令
