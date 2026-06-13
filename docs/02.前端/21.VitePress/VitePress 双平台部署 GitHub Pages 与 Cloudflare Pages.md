@@ -20,7 +20,7 @@ permalink: /pages/01c10b
 
 本站最初仅部署于 **GitHub Pages**，访问地址为：
 
-```
+```bash
 https://laplacesc.github.io/notes/
 ```
 
@@ -28,7 +28,7 @@ https://laplacesc.github.io/notes/
 
 现在希望在保留 GitHub Pages 部署不变的前提下，新增 **Cloudflare Pages** 部署，并使用自定义域名：
 
-```
+```bash
 https://notes.laplacesc.com
 ```
 
@@ -78,7 +78,9 @@ sitemap: {
 ```
 
 ::: tip 自动感知
+
 GitHub Actions 默认内置 `GITHUB_ACTIONS=true` 环境变量，无需在 workflow 中显式设置；本地和 Cloudflare Pages 没有此变量，自动使用 `/`。
+
 :::
 
 ## 本地验证
@@ -134,11 +136,15 @@ pnpm docs:build
 | 构建输出目录 | `docs/.vitepress/dist` |
 
 ::: tip 无需额外环境变量
+
 改用 `GITHUB_ACTIONS` 方案后，Cloudflare Pages **不需要设置任何环境变量**。非 GitHub Actions 环境默认使用 `base = "/"`，恰好满足 Cloudflare Pages 的根路径服务要求。
+
 :::
 
 ::: warning 注意
+
 Cloudflare Pages 默认的 Node.js 版本可能较低，如果构建失败，在项目的环境变量中添加 `NODE_VERSION` = `24`（与项目 `package.json` 中指定的版本一致）。
+
 :::
 
 ### 首次构建
@@ -172,13 +178,23 @@ Cloudflare Pages 默认的 Node.js 版本可能较低，如果构建失败，在
 
 整个过程无需修改 CI/CD 配置文件，利用 Cloudflare Pages 原生 Git 集成，与现有的 GitHub Actions 构建完全并行：
 
-```
+```bash
 git push → main
 ├─ GitHub Actions → 自动识别 GITHUB_ACTIONS → base=/notes/ → GitHub Pages
 └─ Cloudflare Pages → 无 GITHUB_ACTIONS → base=/         → notes.laplacesc.com
 ```
 
 任意一次推送都会同时触发两个平台的构建，站点内容保持同步。
+
+## 已知问题与修复
+
+### Cloudflare Pages 子标题 hash 锚点无法定位
+
+**现象：** 在 Cloudflare Pages 上直接访问带 `#hash` 的 URL（如 `https://notes.laplacesc.com/...文章#fake-ip-配置`），或刷新含锚点的页面时，页面停留在顶部，不滚动到对应子标题。GitHub Pages 和本地开发不受影响。
+
+**根因：** Cloudflare Pages 的 SPA fallback（`_redirects: /* /index.html 200`）始终返回 `index.html`，此时目标页面内容尚未被 Vue 渲染到 DOM 中，浏览器的原生 hash 滚动静默失败。VitePress 的 hash 滚动逻辑仅在首次客户端导航路径中触发，SPA fallback 刷新场景不经过该路径。
+
+**修复：** 在 `TeekLayoutProvider.vue` 中添加后挂载 hash 滚动处理器，通过 `onMounted` + `nextTick` 处理初始加载，通过 `watch(router.route.path)` 处理应用内路由切换。详情见 [Cloudflare Pages 子标题 hash 锚点修复 postmortem](../../superpowers/postmortems/2026-06-12-cloudflare-pages-hash-anchor-fix.md)。
 
 ## 参考链接
 
