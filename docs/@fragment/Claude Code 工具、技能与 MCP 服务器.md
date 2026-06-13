@@ -12,18 +12,17 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: Claude Code 常用工具与技能的安装配置指南。分为三大类：Agent & ACP（CometixLine 状态栏、Reasonix 编码代理、ACP 客户端适配器）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
+description: Claude Code 常用工具与技能的安装配置指南。分为三大类：Agent（CometixLine 状态栏、Reasonix 编码代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
 permalink: /pages/19d7f4
 ---
 
 ## 📦 安装合集
 
-### 🤖 Agent & ACP
+### 🤖 Agent
 
 ```shell
 npm install -g @cometix/ccline                                            # CometixLine 状态栏美化
 npm install -g reasonix@next                                              # Reasonix（DeepSeek 原生 AI 编码代理）
-npm install -g @agentclientprotocol/claude-agent-acp@latest               # ACP Adapter
 ```
 
 ### 🧩 Skills
@@ -47,7 +46,7 @@ npx -y open-websearch@latest                                              # Open
 
 ---
 
-## 🤖 Agent & ACP
+## 🤖 Agent
 
 ### CometixLine — Claude Code 状态栏美化
 
@@ -133,29 +132,6 @@ reasonix chat                       # 进入对话，/init 生成 AGENTS.md
 reasonix run "把 main.go 里的 TODO 实现掉"
 reasonix run --model mimo-pro "给这个函数补单元测试"
 echo "解释这段代码" | reasonix run
-```
-
----
-
-### ACP Adapter — 跨平台 ACP 客户端适配器
-
-> **项目地址：** <https://github.com/agentclientprotocol/claude-agent-acp>
-
-通过 ACP（Agent Client Protocol）协议，让任何兼容 ACP 的客户端都能使用 Claude Agent SDK 的全部能力。
-
-**主要特性：**
-
-- 上下文 @- 提及、图片支持
-- 工具调用（含权限请求）
-- Follow 模式、编辑审查
-- TODO 列表、交互式 / 后台终端
-- 自定义 Slash 命令
-- 客户端 MCP 服务器管理
-
-**安装：**
-
-```bash
-npm install -g @agentclientprotocol/claude-agent-acp@latest
 ```
 
 ---
