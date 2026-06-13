@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - **站点名称**: 不理之山の笔记
 - **域名基址**: https://laplacesc.github.io/notes/
-- **基础路径**: `/notes/`
+- **基础路径**: CI 中 `/notes/`，本地开发 `/`（config.ts 根据 `GITHUB_ACTIONS` 环境变量自动切换）
 - **语言**: zh-CN
 - **包管理器**: pnpm（workspace 禁用 parcel 和 esbuild 构建）
 - **Node**: ^24（CI 中指定）

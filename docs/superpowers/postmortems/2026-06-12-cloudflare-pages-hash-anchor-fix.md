@@ -132,11 +132,6 @@ watch(
 | `docs/.vitepress/theme/components/TeekLayoutProvider.vue` | 修复 | 新增 `scrollToHash()` 函数 + `onMounted` + `watch` 路由监听 |
 | `docs/public/_redirects` | 已有 | SPA fallback 配置（非本次修改） |
 
-### Git 记录
-
-| 提交 | 内容 |
-|------|------|
-| `630a52d` | 添加 hash 锚点滚动处理，修复 Clash DNS 文章 frontmatter（同次迭代包含两个修复；Clash DNS 前文修复详见 [Clash DNS 文章 frontmatter 修复 postmortem](../postmortems/2026-06-12-clash-dns-frontmatter-fix.md)） |
 
 ## 经验教训
 

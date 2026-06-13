@@ -254,13 +254,3 @@ Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>"
 
 ---
 
-## 构建修复记录
-
-> 在计划落地、文章已提交后，`pnpm docs:build` 因 frontmatter 格式问题构建失败。详见完整的 postmortem 报告：[2026-06-12-clash-dns-frontmatter-fix.md](../postmortems/2026-06-12-clash-dns-frontmatter-fix.md)
-
-### 问题简述
-
-- **现象**：autoFrontmatter 插件在写入 Clash DNS 文章时异常退出，构建阻断
-- **根因**：① `date: 2026-06-09` 缺少时分秒；② `permalink: /pages/clash-dns-config` 使用 slug 而非 hex 格式
-- **修复**：补全 date 时间戳为 `2026-06-09 08:00:00`；删除显式 permalink，由 autoFrontmatter 自动生成 `/pages/083417`
-- **验证**：`pnpm docs:build` 通过，文章正常生成
