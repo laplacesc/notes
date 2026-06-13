@@ -194,7 +194,7 @@ git push → main
 
 **根因：** Cloudflare Pages 的 SPA fallback（`_redirects: /* /index.html 200`）始终返回 `index.html`，此时目标页面内容尚未被 Vue 渲染到 DOM 中，浏览器的原生 hash 滚动静默失败。VitePress 的 hash 滚动逻辑仅在首次客户端导航路径中触发，SPA fallback 刷新场景不经过该路径。
 
-**修复：** 在 `TeekLayoutProvider.vue` 中添加后挂载 hash 滚动处理器，通过 `onMounted` + `nextTick` 处理初始加载，通过 `watch(router.route.path)` 处理应用内路由切换。详情见 [Cloudflare Pages 子标题 hash 锚点修复 postmortem](../../superpowers/postmortems/2026-06-12-cloudflare-pages-hash-anchor-fix.md)。
+**修复：** 在 `TeekLayoutProvider.vue` 中添加后挂载 hash 滚动处理器，通过 `onMounted` + `nextTick` 处理初始加载，通过 `watch(router.route.path)` 处理应用内路由切换。详情见 [VitePress 双平台部署 Hash 锚点滚动修复](VitePress%20双平台部署%20Hash%20锚点滚动修复.md)。
 
 ## 参考链接
 

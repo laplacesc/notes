@@ -252,5 +252,5 @@ watch(
 
 - [VitePress Router 源码](https://github.com/vuejs/vitepress/blob/main/src/client/app/router.ts) — `scrollTo` 与 `loadPage` 实现
 - [VitePress getScrollOffset 源码](https://github.com/vuejs/vitepress/blob/main/src/client/app/utils.ts) — 偏移量计算逻辑
-- [VitePress 双平台部署 GitHub Pages 与 Cloudflare Pages](./VitePress%20双平台部署%20GitHub%20Pages%20与%20Cloudflare%20Pages) — 同一站点的双平台部署方案
+- [VitePress 双平台部署 GitHub Pages 与 Cloudflare Pages](https://notes.laplacesc.com/pages/01c10b) — 同一站点的双平台部署方案
 - [TeekLayoutProvider.vue](https://github.com/laplacesc/notes/blob/main/docs/.vitepress/theme/components/TeekLayoutProvider.vue) — 修复所在的组件文件
