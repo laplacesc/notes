@@ -1,9 +1,49 @@
 <script setup lang="ts" name="TeekLayoutProvider">
+import { onMounted, nextTick, watch } from "vue";
+import { useRouter } from "vitepress";
 import Teek from "vitepress-theme-teek";
 import CalendarCard from "./CalendarCard.vue";
 import ContributeChart from "./ContributeChart.vue";
 import NotFound from "./404.vue";
 
+const router = useRouter();
+
+/**
+ * Scroll to the element matching the current URL hash, after DOM settles.
+ * This fixes hash-anchor scroll on page refresh for Cloudflare Pages,
+ * where the initial static HTML (index.html) doesn't contain the target page content.
+ */
+function scrollToHash() {
+  if (!location.hash) return;
+  const id = decodeURIComponent(location.hash).slice(1);
+  const target = document.getElementById(id);
+  if (target) {
+    const vpPaddingTop = parseInt(
+      window.getComputedStyle(target).paddingTop,
+      10
+    );
+    const offset =
+      window.scrollY + target.getBoundingClientRect().top - vpPaddingTop;
+    window.scrollTo(0, offset);
+  }
+}
+
+// Handle initial page load: scroll after Vue has rendered the page content
+onMounted(() => {
+  nextTick(() => {
+    scrollToHash();
+  });
+});
+
+// Handle in-app route changes (e.g. clicking a nav link with hash)
+watch(
+  () => router.route.path,
+  () => {
+    nextTick(() => {
+      scrollToHash();
+    });
+  }
+);
 </script>
 
 <template>

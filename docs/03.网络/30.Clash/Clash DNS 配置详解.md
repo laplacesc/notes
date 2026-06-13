@@ -1,6 +1,6 @@
 ---
 title: Clash DNS 配置详解
-date: 2026-06-09
+date: 2026-06-09 16:00:00
 categories:
   - 网络
   - Clash
@@ -12,7 +12,7 @@ tags:
   - 代理
 titleTag: 推荐
 description: 详细解析 Clash DNS 的 fake-ip 与 redir-host 两种模式配置，包含无 DNS 泄露的分流 DNS 架构及配套规则集。
-permalink: /pages/clash-dns-config
+permalink: /pages/083417
 ---
 
 Clash 的 DNS 配置是代理体验的关键一环——配好了能无感分流、无 DNS 泄露；配错了轻则国内网站打不开，重则 DNS 泄露到国外。本文基于实战总结，整理出一套兼顾清晰与精简的配置方案，覆盖 **fake-ip** 和 **redir-host** 两种模式。
