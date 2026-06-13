@@ -1,6 +1,6 @@
 <script setup lang="ts" name="TeekLayoutProvider">
 import { onMounted, nextTick, watch } from "vue";
-import { useRouter } from "vitepress";
+import { useRouter, getScrollOffset } from "vitepress";
 import Teek from "vitepress-theme-teek";
 import CalendarCard from "./CalendarCard.vue";
 import ContributeChart from "./ContributeChart.vue";
@@ -18,13 +18,18 @@ function scrollToHash() {
   const id = decodeURIComponent(location.hash).slice(1);
   const target = document.getElementById(id);
   if (target) {
-    const vpPaddingTop = parseInt(
+    // 与 VitePress 内部 scrollTo 保持一致的计算公式:
+    // targetTop = absPos - getScrollOffset() + targetPadding
+    const targetPadding = parseInt(
       window.getComputedStyle(target).paddingTop,
       10
     );
-    const offset =
-      window.scrollY + target.getBoundingClientRect().top - vpPaddingTop;
-    window.scrollTo(0, offset);
+    const targetTop =
+      window.scrollY +
+      target.getBoundingClientRect().top -
+      getScrollOffset() +
+      targetPadding;
+    window.scrollTo(0, targetTop);
   }
 }
 
