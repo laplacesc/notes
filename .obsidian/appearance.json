@@ -3,11 +3,12 @@
   "accentColor": "",
   "theme": "moonstone",
   "baseFontSize": 18,
-  "textFontFamily": "霞鹜文楷等宽",
-  "monospaceFontFamily": "Maple Mono NF CN,Maple Mono Normal NF CN",
+  "textFontFamily": "LXGW WenKai",
+  "monospaceFontFamily": "Sarasa Mono SC",
   "enabledCssSnippets": [
     "pdf-table",
     "mermaid"
   ],
-  "translucency": true
+  "translucency": true,
+  "interfaceFontFamily": "Sarasa UI SC"
 }
