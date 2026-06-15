@@ -108,12 +108,16 @@ export default defineConfig({
         items: [{ text: "Claude Code", link: "/pages/58be6f" }],
       },
       {
+        text: "后端",
+        items: [{ text: "容器", link: "/pages/d252c1" }],
+      },
+      {
         text: "前端",
         items: [{ text: "VitePress", link: "/pages/01c10b" }],
       },
       {
-        text: "后端",
-        items: [{ text: "容器", link: "/pages/d252c1" }],
+        text: "网络",
+        items: [{ text: "Clash", link: "/pages/083417" }],
       },
       {
         text: "碎片",
