@@ -1,5 +1,5 @@
 ---
-title: Claude Code 工具、技能与 MCP 服务器
+title: AI 编码代理、技能与 MCP 服务器
 date: 2026-06-08 08:00:00
 categories:
   - AI
@@ -12,7 +12,7 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: Claude Code 常用工具与技能的安装配置指南。分为四大类：Tools（CometixLine 状态栏）、Agent（Reasonix 编码代理、Hermes Agent 自我进化代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
+description: AI 编码代理、技能与 MCP 服务器的安装配置指南。分为四大类：Tools（CometixLine 状态栏）、Agent（Claude Code 官方代理、OpenAI Codex、Reasonix 编码代理、Hermes Agent 自我进化代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
 permalink: /pages/19d7f4
 ---
 
@@ -27,6 +27,8 @@ npm install -g @cometix/ccline                                            # Come
 ### 🤖 Agent
 
 ```shell
+curl -fsSL https://claude.ai/install.sh | bash                            # Claude Code（Anthropic 官方 AI 编码代理）
+curl -fsSL https://chatgpt.com/codex/install.sh | sh                      # Codex CLI（OpenAI 轻量级 AI 编码代理）
 npm install -g reasonix@next                                              # Reasonix（DeepSeek 原生 AI 编码代理）
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash        # Hermes Agent（自我进化 AI 编码代理）
 ```
@@ -108,6 +110,98 @@ ccline --theme <name>    # 直接切换主题
 ---
 
 ## 🤖 Agent
+
+### Claude Code — Anthropic 官方 AI 编码代理
+
+> **官网：** <https://claude.com/product/claude-code>
+>
+> **文档：** <https://code.claude.com/docs/zh-CN/quickstart#native-install-recommended>
+
+Anthropic 官方出品的 AI 编码代理，直接在终端、IDE、Slack 或网页中与代码库深度协作。使用智能代理搜索理解整个项目结构，支持跨文件协调编辑、自动化测试与 PR 提交，且修改前始终请求明确批准。
+
+**主要特性：**
+
+- **智能代码理解**：Agentic search 自动理解整个代码库，无需手动选择上下文文件
+- **跨文件编辑**：协调多文件变更，理解依赖关系
+- **Git 深度集成**：自动创建分支、提交、提交 PR，支持 GitHub / GitLab
+- **多平台支持**：终端 CLI、VS Code / JetBrains IDE 扩展、桌面 App、网页版、Slack
+- **MCP 集成**：通过 MCP 服务器扩展工具能力（如 GitHub、数据库等）
+- **权限模式**：修改文件前始终请求批准，支持 Auto 模式作为安全的长时间运行方案
+- **Claude 模型**：支持 Fable 5、Opus 4.8、Sonnet 4.6、Haiku 4.5
+
+**安装（推荐 Native Install）：**
+
+```bash
+# macOS / Linux / WSL
+curl -fsSL https://claude.ai/install.sh | bash
+
+# Homebrew
+brew install --cask claude-code
+
+# WinGet
+winget install Anthropic.ClaudeCode
+
+# npm
+npm install -g @anthropic-ai/claude-code
+```
+
+> Native 安装会自动后台更新，始终保持最新版本。
+
+**快速开始：**
+
+```bash
+claude                           # 启动交互会话，首次使用会引导登录
+claude "fix the build error"     # 一次性任务
+claude -p "explain this function" # 一次性查询后退出
+claude -c                        # 继续最近对话
+```
+
+---
+
+### Codex CLI — OpenAI 轻量级 AI 编码代理
+
+> **官网：** <https://openai.com/zh-Hans-CN/codex/>
+>
+> **文档：** <https://developers.openai.com/codex/cli>
+>
+> **GitHub：** <https://github.com/openai/codex>
+
+OpenAI 出品的轻量级 AI 编码代理，Rust 编写，直接在终端运行。开源（Apache 2.0，91k+ stars），支持 ChatGPT Plus/Pro/Business/Enterprise 计划或 API Key 登录，也可集成到 VS Code、Cursor、Windsurf 等 IDE 中使用。
+
+**主要特性：**
+
+- **终端原生**：纯 Rust 实现，轻量高效，直接在终端中运行
+- **开源**：Apache 2.0 协议，社区活跃（91k+ stars，13k+ forks）
+- **ChatGPT 集成**：使用 ChatGPT Plus/Pro/Business/Enterprise 计划直接登录
+- **API Key 支持**：也可使用 OpenAI API Key 进行高级配置
+- **IDE 集成**：支持 VS Code、Cursor、Windsurf 等编辑器的扩展
+- **桌面 App**：`codex app` 启动桌面应用体验
+- **多平台**：macOS、Linux、Windows 全平台支持
+
+**安装：**
+
+```bash
+# macOS / Linux
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+# Homebrew
+brew install --cask codex
+
+# npm
+npm install -g @openai/codex
+
+# Windows PowerShell
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
+```
+
+**快速开始：**
+
+```bash
+codex                    # 启动交互会话，首次使用会引导登录
+codex app                # 启动桌面应用
+```
+
+---
 
 ### Reasonix — DeepSeek 原生 AI 编码代理
 

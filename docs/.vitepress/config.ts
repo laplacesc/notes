@@ -123,7 +123,7 @@ export default defineConfig({
         text: "碎片",
         items: [
           { text: "Git 备忘清单", link: "/pages/64bae9" },
-          { text: "Claude Code 工具与技能", link: "/pages/19d7f4" },
+          { text: "AI 编码代理、技能与 MCP 服务器", link: "/pages/19d7f4" },
         ],
       },
       {
