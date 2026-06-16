@@ -36,7 +36,6 @@ npm install -g reasonix@next                                              # Reas
 
 ```shell
 npx superpowers-zh                                                        # superpowers-zh（中文增强版 20 技能）
-git clone https://github.com/jnMetaCode/agency-agents-zh.git              # Agency Agents（211+ 角色库）MCP 服务读此目录
 npx skills add kepano/obsidian-skills                                     # obsidian-skills
 npx skills add anthropics/skills                                          # anthropics 官方技能仓库
 npx uipro-cli init --ai claude                                            # UI UX Pro Max（161 推理规则 + 67 UI 样式）
