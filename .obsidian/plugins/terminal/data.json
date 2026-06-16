@@ -317,7 +317,8 @@
   },
   "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
-    "fontFamily": "Maple Mono NF CN,Maple Mono Normal NF CN",
-    "documentOverride": null
+    "documentOverride": null,
+    "fontFamily": "Sarasa Term SC Nerd",
+    "fontSize": 16
   }
 }
