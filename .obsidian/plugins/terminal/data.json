@@ -317,8 +317,8 @@
   },
   "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
-    "documentOverride": null,
     "fontFamily": "Sarasa Term SC Nerd",
-    "fontSize": 16
+    "fontSize": 16,
+    "documentOverride": null
   }
 }
