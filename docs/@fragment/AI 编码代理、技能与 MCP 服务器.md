@@ -12,7 +12,7 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: AI 编码代理、技能与 MCP 服务器的安装配置指南。分为四大类：Tools（CometixLine 状态栏）、Agent（Claude Code 官方代理、OpenAI Codex、Reasonix 编码代理、Hermes Agent 自我进化代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
+description: AI 编码代理、技能与 MCP 服务器的安装配置指南。分为四大类：Tools（CometixLine 状态栏）、Agent（Claude Code 官方代理、OpenAI Codex、Reasonix 编码代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
 permalink: /pages/19d7f4
 ---
 
@@ -30,7 +30,6 @@ npm install -g @cometix/ccline                                            # Come
 curl -fsSL https://claude.ai/install.sh | bash                            # Claude Code（Anthropic 官方 AI 编码代理）
 curl -fsSL https://chatgpt.com/codex/install.sh | sh                      # Codex CLI（OpenAI 轻量级 AI 编码代理）
 npm install -g reasonix@next                                              # Reasonix（DeepSeek 原生 AI 编码代理）
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash        # Hermes Agent（自我进化 AI 编码代理）
 ```
 
 ### 🧩 Skills
@@ -234,42 +233,6 @@ reasonix chat                       # 进入对话，/init 生成 AGENTS.md
 reasonix run "把 main.go 里的 TODO 实现掉"
 reasonix run --model mimo-pro "给这个函数补单元测试"
 echo "解释这段代码" | reasonix run
-```
-
----
-
-### Hermes Agent — 自我进化的 AI 编码代理
-
-> **项目地址：** <https://github.com/NousResearch/hermes-agent>
->
-> **官网：** <https://hermes-agent.nousresearch.com>
-
-NousResearch 出品，自我改进型 AI 编码代理。内置学习循环、技能自动创建、持久记忆、跨会话用户建模、MCP 集成、定时自动化、并行子代理等能力。支持 Claude Code、Codex CLI、OpenClaw 等多种 AI 编程工具集成。
-
-**主要特性：**
-
-- **自我进化**：内置学习循环，从每次交互中持续改进
-- **技能自动创建**：自动从对话中提取并创建可复用技能
-- **持久记忆**：跨会话记忆，用户建模与偏好学习
-- **MCP 集成**：原生支持 MCP 服务器，扩展工具能力
-- **定时自动化**：内置 cron 调度，支持定时任务与自动化工作流
-- **并行子代理**：可同时调度多个子代理并行执行任务
-- **多通道接入**：终端 TUI、Telegram/Discord/Slack/WhatsApp/Signal 网关
-- **跨平台部署**：本地 / Docker / SSH / 无服务器（Daytona / Modal）
-
-**安装：**
-
-```bash
-curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
-```
-
-**快速开始：**
-
-```bash
-hermes              # 进入交互对话
-hermes model        # 选择 LLM 模型
-hermes setup        # 完整配置向导
-hermes gateway      # 启动消息网关
 ```
 
 ---
