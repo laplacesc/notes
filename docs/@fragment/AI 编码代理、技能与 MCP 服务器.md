@@ -46,6 +46,7 @@ npx uipro-cli init --ai claude                                            # UI U
 ```shell
 # 以下为 settings.json 中 mcpServers 的 command / args 值
 npx agency-orchestrator serve                                             # Agency Orchestrator（6 工具）
+git clone https://github.com/jnMetaCode/agency-agents-zh.git /tmp/agency-agents-zh && /tmp/agency-agents-zh/scripts/install.sh && rm -rf /tmp/agency-agents-zh  # Agency Agents（211+ 角色库）
 npx @colbymchenry/codegraph serve --mcp                                   # CodeGraph（8 工具）
 npx -y @upstash/context7-mcp                                              # Context7（2 工具）
 npx -y open-websearch@latest                                              # Open-WebSearch（6 工具）
@@ -367,6 +368,16 @@ npx uipro-cli init --ai claude      # Claude Code
 | `plan_workflow` | 查看 DAG 执行计划 |
 | `compose_workflow` | AI 智能编排工作流 |
 | `list_roles` | 列出所有可用角色 |
+
+**agency-agents 角色库安装：**
+
+Agency Orchestrator 的角色定义来自独立仓库，需单独安装：
+
+```shell
+git clone https://github.com/jnMetaCode/agency-agents-zh.git /tmp/agency-agents-zh && /tmp/agency-agents-zh/scripts/install.sh && rm -rf /tmp/agency-agents-zh
+```
+
+> 克隆到临时目录，运行安装脚本后将角色安装到 Agency Orchestrator 配置目录，完成后自动清理临时仓库。
 
 ---
 
