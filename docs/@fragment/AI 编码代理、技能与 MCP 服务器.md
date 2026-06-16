@@ -36,6 +36,7 @@ npm install -g reasonix@next                                              # Reas
 
 ```shell
 npx superpowers-zh                                                        # superpowers-zh（中文增强版 20 技能）
+git clone https://github.com/jnMetaCode/agency-agents-zh.git              # Agency Agents（211+ 角色库）MCP 服务读此目录
 npx skills add kepano/obsidian-skills                                     # obsidian-skills
 npx skills add anthropics/skills                                          # anthropics 官方技能仓库
 npx uipro-cli init --ai claude                                            # UI UX Pro Max（161 推理规则 + 67 UI 样式）
@@ -46,7 +47,6 @@ npx uipro-cli init --ai claude                                            # UI U
 ```shell
 # 以下为 settings.json 中 mcpServers 的 command / args 值
 npx agency-orchestrator serve                                             # Agency Orchestrator（6 工具）
-git clone https://github.com/jnMetaCode/agency-agents-zh.git /tmp/agency-agents-zh && /tmp/agency-agents-zh/scripts/install.sh && rm -rf /tmp/agency-agents-zh  # Agency Agents（211+ 角色库）
 npx @colbymchenry/codegraph serve --mcp                                   # CodeGraph（8 工具）
 npx -y @upstash/context7-mcp                                              # Context7（2 工具）
 npx -y open-websearch@latest                                              # Open-WebSearch（6 工具）
