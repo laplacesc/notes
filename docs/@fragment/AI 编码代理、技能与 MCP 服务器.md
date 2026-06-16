@@ -12,7 +12,7 @@ tags:
 titleTag: 推荐
 top: true
 sticky: 1
-description: AI 编码代理、技能与 MCP 服务器的安装配置指南。分为四大类：Tools（CometixLine 状态栏）、Agent（Claude Code 官方代理、OpenAI Codex、Reasonix 编码代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（Agency Orchestrator、CodeGraph、Context7、Open-WebSearch）。
+description: AI 编码代理、技能与 MCP 服务器的安装配置指南。分为四大类：Tools（CometixLine 状态栏）、Agent（Claude Code 官方代理、OpenAI Codex、Reasonix 编码代理）、Skills（superpowers-zh、obsidian-skills、anthropics/skills、UI UX Pro Max）、MCP Servers（CodeGraph、Context7）。
 permalink: /pages/19d7f4
 ---
 
@@ -45,10 +45,8 @@ npx uipro-cli init --ai claude                                            # UI U
 
 ```shell
 # 以下为 settings.json 中 mcpServers 的 command / args 值
-npx agency-orchestrator serve                                             # Agency Orchestrator（6 工具）
 npx @colbymchenry/codegraph serve --mcp                                   # CodeGraph（8 工具）
 npx -y @upstash/context7-mcp                                              # Context7（2 工具）
-npx -y open-websearch@latest                                              # Open-WebSearch（6 工具）
 ```
 
 ---
@@ -338,48 +336,6 @@ npx uipro-cli init --ai claude      # Claude Code
 
 ## 🔌 MCP Servers
 
-### Agency Orchestrator — 多智能体协作框架
-
-> **项目地址：** <https://github.com/jnMetaCode/agency-orchestrator>
-
-编排多角色智能体工作流，让 AI 专家像真实团队一样自动协作。**211+ 专业角色**，零代码 YAML 工作流，支持 **10 种 LLM**（其中 7 种免 API key）。
-
-**MCP 配置（`settings.json`）：**
-
-```json
-{
-  "mcpServers": {
-    "agency-orchestrator": {
-      "command": "npx",
-      "args": ["agency-orchestrator", "serve"]
-    }
-  }
-}
-```
-
-**6 个 MCP 工具：**
-
-| 工具 | 用途 |
-|------|------|
-| `run_workflow` | 执行 YAML 工作流 |
-| `validate_workflow` | 校验工作流 YAML |
-| `list_workflows` | 列出所有可用工作流 |
-| `plan_workflow` | 查看 DAG 执行计划 |
-| `compose_workflow` | AI 智能编排工作流 |
-| `list_roles` | 列出所有可用角色 |
-
-**agency-agents 角色库安装：**
-
-Agency Orchestrator 的角色定义来自独立仓库，需单独安装：
-
-```shell
-git clone https://github.com/jnMetaCode/agency-agents-zh.git /tmp/agency-agents-zh && /tmp/agency-agents-zh/scripts/install.sh && rm -rf /tmp/agency-agents-zh
-```
-
-> 克隆到临时目录，运行安装脚本后将角色安装到 Agency Orchestrator 配置目录，完成后自动清理临时仓库。
-
----
-
 ### CodeGraph — 符号级代码智能图谱
 
 > **项目地址：** <https://github.com/colbymchenry/codegraph>
@@ -481,73 +437,3 @@ npx ctx7 login                                # 登录认证
 npx ctx7 whoami                               # 查看当前认证用户
 ```
 
----
-
-### Open-WebSearch — 免费多引擎网页搜索
-
-> **项目地址：** <https://github.com/aas-ee/open-websearch>
-
-开源免费的多引擎网页搜索 MCP 服务器，**无需 API Key**。纯 JavaScript 实现（Node.js，500+ stars）。
-
-**MCP 配置（`settings.json`）：**
-
-```json
-{
-  "mcpServers": {
-    "web-search": {
-      "command": "npx",
-      "args": ["-y", "open-websearch@latest"],
-      "env": {
-        "MODE": "stdio",
-        "DEFAULT_SEARCH_ENGINE": "bing",
-        "ALLOWED_SEARCH_ENGINES": "bing,duckduckgo,baidu,sogou,brave,exa,csdn,juejin,startpage"
-      }
-    }
-  }
-}
-```
-
-> 如需代理访问受限搜索引擎，添加 `"USE_PROXY": "true"` 和 `"PROXY_URL": "http://127.0.0.1:7890"`。
-
-**6 个 MCP 工具：**
-
-| 工具 | 用途 |
-|------|------|
-| `search` | 多引擎联合网页搜索（指定引擎和返回条数） |
-| `fetchWebContent` | 抓取任意公开 HTTP(S) 页面 / Markdown 内容 |
-| `fetchCsdnArticle` | 抓取 CSDN 博客全文 |
-| `fetchGithubReadme` | 抓取 GitHub 仓库 README |
-| `fetchJuejinArticle` | 抓取掘金文章全文 |
-| `fetchLinuxDoArticle` | 抓取 Linux.do 论坛文章 |
-
-### 本地部署（Docker SSE 模式）
-
-通过 Docker 部署 open-web-search 容器，以 SSE（Server-Sent Events）端点暴露 MCP 工具：
-
-```shell
-docker run -d --name web-search -p 3000:3000 \
-  -e ENABLE_CORS=true \
-  -e CORS_ORIGIN=* \
-  ghcr.io/aas-ee/open-web-search:latest
-```
-
-**环境变量：**
-
-| 变量 | 默认值 | 可选值 | 说明 |
-|------|--------|--------|------|
-| `ENABLE_CORS` | `false` | `true`, `false` | 启用 CORS |
-| `CORS_ORIGIN` | `*` | 任意有效 origin | CORS 跨域来源 |
-| `DEFAULT_SEARCH_ENGINE` | `bing` | `bing`, `duckduckgo`, `exa`, `brave`, `baidu`, `csdn`, `juejin`, `startpage`, `sogou` | 默认搜索引擎 |
-| `USE_PROXY` | `false` | `true`, `false` | 启用 HTTP 代理 |
-| `PROXY_URL` | `http://127.0.0.1:7890` | 任意有效 URL | 代理服务器地址 |
-| `FAKE_IP_CIDRS` | 空 | 逗号分隔的 CIDR 列表 | 将指定 CIDR 内的 DNS 应答视为伪造 IP 结果，不拦截为私有网络 DNS |
-| `PORT` | `3000` | `1-65535` | 服务端口 |
-
-**Reasonix 插件配置**（`reasonix.toml`）：
-
-```toml
-[[plugins]]
-name    = "web-search"
-type    = "http"
-url     = "http://localhost:3000/mcp"
-```
