@@ -21,32 +21,44 @@ permalink: /pages/19d7f4
 ### 🛠️ Tools
 
 ```shell
-npm install -g @cometix/ccline                                            # CometixLine 状态栏美化
+# CometixLine 状态栏美化
+npm install -g @cometix/ccline
 ```
 
 ### 🤖 Agent
 
 ```shell
-curl -fsSL https://claude.ai/install.sh | bash                            # Claude Code（Anthropic 官方 AI 编码代理）
-curl -fsSL https://chatgpt.com/codex/install.sh | sh                      # Codex CLI（OpenAI 轻量级 AI 编码代理）
-npm install -g reasonix@next                                              # Reasonix（DeepSeek 原生 AI 编码代理）
+# Claude Code（Anthropic 官方 AI 编码代理）
+curl -fsSL https://claude.ai/install.sh | bash
+# Codex CLI（OpenAI 轻量级 AI 编码代理）
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
+# Reasonix（DeepSeek 原生 AI 编码代理）
+npm install -g reasonix@next
 ```
 
 ### 🧩 Skills
 
 ```shell
-npx superpowers-zh                                                        # superpowers-zh（中文增强版 20 技能）
-npx skills add kepano/obsidian-skills                                     # obsidian-skills
-npx skills add anthropics/skills                                          # anthropics 官方技能仓库
-npx uipro-cli init --ai claude                                            # UI UX Pro Max（161 推理规则 + 67 UI 样式）
+# superpowers-zh（中文增强版 20 技能）
+npx superpowers-zh
+# obsidian-skills
+npx skills add kepano/obsidian-skills
+# anthropics 官方技能仓库
+npx skills add anthropics/skills
+# UI UX Pro Max（161 推理规则 + 67 UI 样式）
+npx uipro-cli init --ai claude
 ```
 
 ### 🔌 MCP Servers
 
 ```shell
-# 以下为 settings.json 中 mcpServers 的 command / args 值
-npx @colbymchenry/codegraph serve --mcp                                   # CodeGraph（8 工具）
-npx -y @upstash/context7-mcp                                              # Context7（2 工具）
+# CodeGraph（符号级代码智能图谱，8 工具）
+npm install -g @colbymchenry/codegraph
+codegraph install
+codegraph init -i
+# Context7（AI 实时库文档上下文，2 工具）
+npm install -g @upstash/context7-mcp
+npx ctx7 setup
 ```
 
 ---
@@ -436,4 +448,3 @@ npx ctx7 docs /facebook/react "useEffect"     # 查询指定文档
 npx ctx7 login                                # 登录认证
 npx ctx7 whoami                               # 查看当前认证用户
 ```
-
