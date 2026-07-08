@@ -29,13 +29,13 @@ Reality 的核心思路是让代理握手表现得更像正常 TLS 访问。常�
 
 ## 准备清单
 
-| 项目 | 说明 |
-| --- | --- |
-| VPS | 境外 VPS，系统建议 Ubuntu 24.04 |
+| 项目      | 说明                                         |
+| ------- | ------------------------------------------ |
+| VPS     | 境外 VPS，系统建议 Ubuntu 24.04                   |
 | SSH 客户端 | macOS / Linux 终端、Windows Terminal、PuTTY 均可 |
-| 面板 | 使用 3x-ui 管理 Xray 入站和客户端 |
-| 客户端 | Windows 可先用 v2rayN 测试，再转 Clash Verge |
-| 可选域名 | 用于自建真实站点并配置回落，增强伪装可信度 |
+| 面板      | 使用 3x-ui 管理 Xray 入站和客户端                    |
+| 客户端     | Windows 可先用 v2rayN 测试，再转 Clash Verge       |
+| 可选域名    | 用于自建真实站点并配置回落，增强伪装可信度                      |
 
 需要提前记录：
 
@@ -105,16 +105,16 @@ x-ui status
 
 进入 3x-ui 面板后，依次打开「入站列表」→「添加入站」。核心配置如下：
 
-| 配置项 | 建议值 | 说明 |
-| --- | --- | --- |
-| 协议 | `vless` | VLESS 协议 |
-| 监听端口 | `443` | 伪装为常规 HTTPS 流量 |
-| 传输 | `TCP` / `RAW` | 按面板选项选择 |
-| 安全 | `Reality` | 启用 Reality |
-| uTLS | `chrome` | 模拟 Chrome TLS 指纹 |
-| Target | `www.apple.com:443` | 伪装目标，需与 SNI 匹配 |
-| SNI | `www.apple.com` | 与 Target 域名一致 |
-| Flow | `xtls-rprx-vision` | 客户端侧也要保持一致 |
+| 配置项    | 建议值                 | 说明               |
+| ------ | ------------------- | ---------------- |
+| 协议     | `vless`             | VLESS 协议         |
+| 监听端口   | `443`               | 伪装为常规 HTTPS 流量   |
+| 传输     | `TCP` / `RAW`       | 按面板选项选择          |
+| 安全     | `Reality`           | 启用 Reality       |
+| uTLS   | `chrome`            | 模拟 Chrome TLS 指纹 |
+| Target | `www.apple.com:443` | 伪装目标，需与 SNI 匹配   |
+| SNI    | `www.apple.com`     | 与 Target 域名一致    |
+| Flow   | `xtls-rprx-vision`  | 客户端侧也要保持一致       |
 
 点击「生成证书」生成 Reality 公钥、私钥等参数，然后保存入站。
 
@@ -183,15 +183,15 @@ rules:
 
 关键字段说明：
 
-| 字段 | 说明 |
-| --- | --- |
-| `server` | VPS IP 或域名 |
-| `uuid` | 3x-ui 客户端 UUID |
-| `flow` | Reality 常用 `xtls-rprx-vision`，服务端和客户端需一致 |
-| `reality-opts.public-key` | Reality 公钥，不是私钥 |
-| `reality-opts.short-id` | 3x-ui 生成的 Short ID |
-| `servername` | SNI，必须和服务端配置一致 |
-| `client-fingerprint` | TLS 指纹，建议和服务端 uTLS 配置一致 |
+| 字段                        | 说明                                       |
+| ------------------------- | ---------------------------------------- |
+| `server`                  | VPS IP 或域名                               |
+| `uuid`                    | 3x-ui 客户端 UUID                           |
+| `flow`                    | Reality 常用 `xtls-rprx-vision`，服务端和客户端需一致 |
+| `reality-opts.public-key` | Reality 公钥，不是私钥                          |
+| `reality-opts.short-id`   | 3x-ui 生成的 Short ID                       |
+| `servername`              | SNI，必须和服务端配置一致                           |
+| `client-fingerprint`      | TLS 指纹，建议和服务端 uTLS 配置一致                  |
 
 如果已经有更完整的 Clash DNS 和分流配置，可以把 `proxies` 和 `proxy-groups` 合并到现有配置中，再保留原有规则体系。
 
