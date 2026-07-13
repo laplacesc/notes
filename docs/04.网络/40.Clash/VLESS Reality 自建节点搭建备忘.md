@@ -1,6 +1,6 @@
 ---
 title: VLESS Reality 自建节点搭建备忘
-date: 2026-07-06 00:00:00
+date: 2026-07-06 08:00:00
 categories:
   - 网络
   - Clash
@@ -10,7 +10,9 @@ tags:
   - reality
   - xray
   - proxy
+top: true
 description: 整理自 VLESS + Reality 自建节点教程，记录 VPS 准备、3x-ui 配置、Clash Verge 客户端配置、域名回落方案和常见排障要点。
+permalink: /pages/1c34c3
 ---
 
 > 来源：[自建代理节点教程——零基础从头搭建你的专属 VLESS+Reality 节点](https://linux.do/t/topic/1750919/1)

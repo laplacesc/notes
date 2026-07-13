@@ -1,6 +1,6 @@
 ---
 title: Windows 上使用 Steam 手柄伴侣的优化设置
-date: 2026-07-13 00:00:00
+date: 2026-07-13 08:00:00
 categories:
   - 游戏
   - 手柄伴侣
@@ -9,7 +9,10 @@ tags:
   - controller-companion
   - gamepad
   - windows
-description: 记录 Windows 上使用 Steam 手柄伴侣（Controller Companion）时的优化设置，包括关闭 Game Bar 手柄唤出和 Steam 控制器导航组合键，减少误触和冲突。
+description: >-
+  记录 Windows 上使用 Steam 手柄伴侣（Controller Companion）时的优化设置，包括关闭 Game Bar 手柄唤出和
+  Steam 控制器导航组合键，减少误触和冲突。
+permalink: /pages/60d210
 ---
 
 Windows 上使用 Controller Companion 时，建议先关掉两个容易和手柄输入冲突的系统功能，这样桌面操作会更稳定，也更少误触。

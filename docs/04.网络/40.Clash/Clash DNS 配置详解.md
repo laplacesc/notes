@@ -10,7 +10,7 @@ tags:
   - fake-ip
   - redir-host
   - 代理
-titleTag: 推荐
+top: true
 description: 详细解析 Clash DNS 的 fake-ip 与 redir-host 两种模式配置，包含无 DNS 泄露的分流 DNS 架构及配套规则集。
 permalink: /pages/083417
 ---
