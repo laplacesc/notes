@@ -134,7 +134,7 @@
   "language": "",
   "macOSOptionKeyPassthrough": true,
   "rightClickAction": "copyPaste",
-  "newInstanceBehavior": "newHorizontalSplit",
+  "newInstanceBehavior": "newRightTab",
   "noticeTimeout": 5,
   "openChangelogOnUpdate": true,
   "pinNewInstance": true,
@@ -319,8 +319,8 @@
   },
   "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
-    "fontFamily": "Sarasa Term SC Nerd",
-    "fontSize": 16,
+    "fontFamily": "Maple Mono NF CN",
+    "fontSize": 13,
     "documentOverride": null
   }
 }
