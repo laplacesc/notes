@@ -19,5 +19,6 @@
   "templater-obsidian",
   "terminal",
   "realclaudian",
-  "notebook-navigator"
+  "notebook-navigator",
+  "obsidian-local-rest-api"
 ]
