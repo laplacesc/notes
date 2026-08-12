@@ -121,7 +121,7 @@
   "library2": {
     "type": "excalidrawlib",
     "version": 2,
-    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag2.23.12",
+    "source": "https://github.com/zsviczian/obsidian-excalidraw-plugin/releases/tag/2.25.3",
     "libraryItems": []
   },
   "imageElementNotice": true,
@@ -512,11 +512,6 @@
   "aiEnabled": true,
   "aiVerboseLogging": false,
   "aiProviderProfiles": {
-    "OpenAI": {
-      "provider": "openai",
-      "apiKey": "",
-      "baseURL": "https://api.openai.com/v1"
-    },
     "Anthropic": {
       "provider": "anthropic",
       "apiKey": "",
@@ -527,15 +522,20 @@
       "apiKey": "",
       "baseURL": "https://generativelanguage.googleapis.com/v1beta"
     },
-    "xAI": {
-      "provider": "xai",
+    "OpenAI": {
+      "provider": "openai",
       "apiKey": "",
-      "baseURL": "https://api.x.ai/v1"
+      "baseURL": "https://api.openai.com/v1"
     },
     "OpenAI-compatible": {
       "provider": "openai-compatible",
       "apiKey": "",
       "baseURL": "https://api.openai.com/v1"
+    },
+    "xAI": {
+      "provider": "xai",
+      "apiKey": "",
+      "baseURL": "https://api.x.ai/v1"
     }
   },
   "aiTextModelConfigs": {
