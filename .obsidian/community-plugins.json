@@ -14,10 +14,7 @@
   "obsidian-image-toolkit",
   "data-files-editor",
   "obsidian-linter",
-  "obsidian-tasks-plugin",
   "obsidian42-brat",
-  "templater-obsidian",
-  "terminal",
-  "realclaudian",
-  "notebook-navigator"
+  "text-file-editor",
+  "advanced-rename-and-delete-handler"
 ]

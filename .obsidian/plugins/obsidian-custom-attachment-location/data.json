@@ -1,6 +1,7 @@
 {
   "attachmentFolderPath": "./assets/${noteFileName}",
   "attachmentRenameMode": "Only pasted images",
+  "attachmentUnitFolderPaths": [],
   "collectAttachmentUsedByMultipleNotesMode": "Skip",
   "collectedAttachmentFileName": "",
   "convertImagesToJpegMode": "None",
@@ -9,26 +10,23 @@
   "defaultImageSizeDimension": "width",
   "downloadNetworkImages": false,
   "duplicateNameSeparator": " ",
-  "emptyFolderBehavior": "DeleteWithEmptyParents",
-  "excludePaths": [],
   "excludePathsFromAttachmentCollecting": [],
+  "excludePathsFromMultipleNotesCheck": [],
   "generatedAttachmentFileName": "file-${date:{momentJsFormat:'YYYYMMDDHHmmssSSS'}}",
-  "includePaths": [],
+  "isAdvancedRenameAndDeleteHandlerSuggestionDeclined": false,
   "jpegQuality": 0.8,
   "markdownUrlFormat": "",
   "moveAttachmentToProperFolderUsedByMultipleNotesMode": "CopyAll",
   "networkImageDownloadTimeoutInSeconds": 30,
+  "proposedRenameDeleteSettings": null,
   "renamedAttachmentFileName": "",
-  "shouldDeleteOrphanAttachments": false,
-  "shouldHandleRenames": true,
-  "shouldRenameAttachmentFiles": false,
-  "shouldRenameAttachmentFolder": true,
+  "shouldPreserveImageMetadata": false,
+  "shouldRenameAttachmentsCreatedByOtherPlugins": false,
   "shouldRenameCollectedAttachments": false,
+  "shouldSetLinkDisplayTextToAttachmentFileName": false,
+  "shouldSkipCollectingAttachmentsReferencedByRawPath": false,
   "specialCharacters": "#^[]|*\\<>:?/",
   "specialCharactersReplacement": "-",
   "timeoutInSeconds": 5,
-  "treatAsAttachmentExtensions": [
-    ".excalidraw.md"
-  ],
-  "version": "11.2.0"
+  "version": "12.0.0"
 }

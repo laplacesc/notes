@@ -1,6 +1,13 @@
 {
-  "pluginList": [],
-  "pluginSubListFrozenVersion": [],
+  "pluginList": [
+    "Jinmoli/textFileEditor"
+  ],
+  "pluginSubListFrozenVersion": [
+    {
+      "repo": "Jinmoli/textFileEditor",
+      "version": ""
+    }
+  ],
   "themesList": [],
   "updateAtStartup": true,
   "updateThemesAtStartup": true,
