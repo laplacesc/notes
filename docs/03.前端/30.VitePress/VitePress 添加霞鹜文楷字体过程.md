@@ -15,6 +15,8 @@ description: 记录为 VitePress 站点替换霞鹜文楷字体的完整过程�
 permalink: /pages/fb8ba3
 ---
 
+# VitePress 添加霞鹜文楷字体过程
+
 ## 背景
 
 本笔记使用 [VitePress](https://vitepress.dev/) + [Teek](https://vp.teek.top/) 主题搭建。为了提升阅读体验，决定将默认的 Inter 字体替换为 [霞鹜文楷](https://github.com/chawyehsu/lxgw-wenkai-webfont)（LXGW WenKai）系列字体。

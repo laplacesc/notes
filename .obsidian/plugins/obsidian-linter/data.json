@@ -91,11 +91,11 @@
       "ending-word-ignore-characters": ".?!,:;'\")”’0123456789-"
     },
     "file-name-heading": {
-      "enabled": false
+      "enabled": true
     },
     "header-increment": {
       "enabled": true,
-      "start-at-h2": true
+      "start-at-h2": false
     },
     "headings-start-line": {
       "enabled": true
@@ -284,12 +284,12 @@
   "settingsConvertedToConfigKeyValues": true,
   "additionalFileExtensions": [],
   "foldersToIgnore": [
-    "docs/superpowers"
+    "docs/@pages"
   ],
   "filesToIgnore": [
     {
-      "label": "CLAUDE文档",
-      "match": "CLAUDE.md",
+      "label": "首页",
+      "match": "index.md",
       "flags": "i"
     }
   ],

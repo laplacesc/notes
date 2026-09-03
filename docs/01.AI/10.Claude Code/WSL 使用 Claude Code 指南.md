@@ -16,6 +16,8 @@ coverImg: https://github.com/laplacesc/picx-images-hosting/raw/master/20260604/d
 permalink: /pages/58be6f
 ---
 
+# WSL 使用 Claude Code 指南
+
 > 从零开始：在 Windows 11 上配置 WSL、Ubuntu，并完成 Claude Code 与 Codex 等 AI 编程工具的一站式安装。
 
 ## 启用 Windows 功能

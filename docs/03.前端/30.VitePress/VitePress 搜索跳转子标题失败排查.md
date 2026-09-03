@@ -14,6 +14,8 @@ description: VitePress 本地搜索点击结果子标题无法滚动定位的排
 permalink: /pages/022430
 ---
 
+# VitePress 搜索跳转子标题失败的排查与修复
+
 ## 问题描述
 
 VitePress 站点的本地搜索（`provider: "local"`）在点击搜索结果的子标题（如 h2/h3）时，页面会跳转到目标页面，但不会滚动到对应的子标题位置。搜索索引正确包含了子标题的锚点 ID，但滚动行为未能执行。

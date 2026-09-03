@@ -17,6 +17,8 @@ description: >-
 permalink: /pages/136fd9
 ---
 
+# VitePress 双平台部署 Hash 锚点滚动修复
+
 ## 背景
 
 本笔记使用 [VitePress](https://vitepress.dev/) + [Teek](https://vp.teek.top/) 主题搭建，同时部署到 **GitHub Pages** 和 **Cloudflare Pages** 两个平台。

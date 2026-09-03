@@ -13,6 +13,8 @@ coverImg: https://laplacesc.github.io/picx-images-hosting/20260604/image.mpzd3bi
 permalink: /pages/64bae9
 ---
 
+# Git 备忘清单
+
 > 原文：https://wangchujiang.com/reference/docs/git.html
 
 本备忘单总结了常用的 [Git](https://git-scm.com/) 命令行指令，以供快速参考。

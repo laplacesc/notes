@@ -18,6 +18,8 @@ description: >-
 permalink: /pages/d252c1
 ---
 
+# Mac 安装 Colima 指南
+
 > 轻量级容器运行时 Colima，免费开源，是替代 Docker Desktop 的绝佳选择。
 
 ## 背景

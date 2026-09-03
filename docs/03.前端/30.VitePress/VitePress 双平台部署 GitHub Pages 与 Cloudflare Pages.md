@@ -16,6 +16,8 @@ description: >-
 permalink: /pages/01c10b
 ---
 
+# VitePress 双平台部署 GitHub Pages 与 Cloudflare Pages
+
 ## 背景与目标
 
 本站最初仅部署于 **GitHub Pages**，访问地址为：
