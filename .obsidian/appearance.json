@@ -10,5 +10,6 @@
     "mermaid"
   ],
   "translucency": true,
-  "interfaceFontFamily": "Sarasa UI SC"
+  "interfaceFontFamily": "Sarasa UI SC",
+  "showRibbon": true
 }

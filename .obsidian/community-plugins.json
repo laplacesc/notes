@@ -4,7 +4,6 @@
   "better-export-pdf",
   "omnisearch",
   "pdf-plus",
-  "obsidian-excalidraw-plugin",
   "mousewheel-image-zoom",
   "automatic-table-of-contents",
   "editing-toolbar",
@@ -13,5 +12,6 @@
   "obsidian-image-toolkit",
   "obsidian-linter",
   "obsidian42-brat",
-  "text-file-editor"
+  "text-file-editor",
+  "obsidian-excalidraw-plugin"
 ]
