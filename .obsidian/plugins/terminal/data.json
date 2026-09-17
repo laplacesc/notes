@@ -295,7 +295,7 @@
   "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
     "documentOverride": null,
-    "fontSize": 13,
-    "fontFamily": "Maple Mono NF CN"
+    "fontFamily": "Maple Mono NF CN",
+    "fontSize": 13
   }
 }

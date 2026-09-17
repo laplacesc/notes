@@ -1,5 +1,5 @@
 {
-  "cssTheme": "Cupertino",
+  "cssTheme": "Esther Inspired",
   "accentColor": "",
   "theme": "moonstone",
   "baseFontSize": 18,
@@ -9,7 +9,8 @@
     "pdf-table",
     "mermaid"
   ],
-  "translucency": true,
+  "translucency": false,
   "interfaceFontFamily": "Sarasa UI SC",
-  "showRibbon": true
+  "showRibbon": true,
+  "nativeMenus": true
 }
