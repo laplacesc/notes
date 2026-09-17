@@ -9,6 +9,7 @@ tags:
   - cheatsheet
   - 版本控制
 description: 整理 git worktree 的常用命令与典型工作流：紧急修复、代码评审、裸仓库布局、多个 AI 编码代理并行开发，以及清理与排错。
+permalink: /pages/a3b206
 ---
 
 # Git Worktree 工作流

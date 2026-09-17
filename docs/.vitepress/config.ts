@@ -122,7 +122,7 @@ export default defineConfig({
       {
         text: "碎片",
         items: [
-          { text: "Git 备忘清单", link: "/pages/64bae9" },
+          { text: "Git Worktree 工作流", link: "/pages/a3b206" },
         ],
       },
       {
