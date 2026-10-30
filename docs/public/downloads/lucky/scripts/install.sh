@@ -21,7 +21,7 @@ fi
 uci -q get firewall.Lucky >/dev/null 2>&1 && fail 'Old firewall.Lucky entry found; inspect/remove old installer first'
 # Probe writability before creating persistent files. Never remount encrypted config automatically.
 probe=/etc/config/.lucky-ram-write-test.$$
-(umask 077; : > "$probe") || fail '/etc/config is read-only: resolve stock-firmware persistence first; see README'
+(umask 077; : > "$probe") || fail '/etc/config is read-only: resolve stock-firmware persistence first; see the installation guide'
 rm -f "$probe"
 [ ! -e "$BASE" ] || fail '/data/lucky-ram already exists; do not overwrite an existing installation'
 umask 077
@@ -30,7 +30,7 @@ cp "$HERE/lucky-ram.sh" "$BASE/lucky-ram.sh"
 chmod 700 "$BASE/lucky-ram.sh"
 cat > "$BASE/source.conf" <<'SOURCE'
 # Fixed official version. SHA256 is the tar.gz archive digest published by GitHub.
-SOURCE_URL='https://github.com/gdy666/lucky/releases/download/v3.5.0/lucky_3.5.0_Linux_armv7.tar.gz'
+SOURCE_URL='http://192.168.31.2:6086/lucky/lucky_3.5.0_Linux_armv7.tar.gz'
 SOURCE_SHA256='34761465b4b88f6a3f19c2190d68ca3bf963d9d347ed0bcd2f8a46a73c31ea09'
 SOURCE_FORMAT='tar.gz'
 SOURCE

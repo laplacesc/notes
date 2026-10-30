@@ -10,7 +10,7 @@ tags:
   - xiaomi-router
   - tmpfs
 description: >-
-  记录小米 RN02 官方固件上 Lucky 的全新安装方法，使用受限内存盘隔离程序与运行数据，以小型配置快照减少 data 分区占用，包含本地预下载、SSH
+  记录小米 RN02 官方固件上 Lucky 的全新安装方法，使用受限内存盘隔离程序与运行数据，以小型配置快照减少 data 分区占用，包含局域网下载、SSH
   兼容、服务管理和排错命令。
 permalink: /pages/e67c57
 ---
@@ -24,7 +24,7 @@ permalink: /pages/e67c57
 
 ## 文档与配套脚本
 
-本文及脚本保存在笔记项目中。下文 Mac 命令按项目位置 `/Users/jxwu/Dev/Repos/notes` 编写；其他电脑请替换为实际克隆路径。第三方 Lucky 程序包下载到 `~/Downloads/lucky-packages`，不纳入版本管理。
+本文及脚本保存在笔记项目中。下文 Mac 命令按项目位置 `~/Dev/Repos/notes` 编写；其他电脑请替换为实际克隆路径。Lucky 程序包由路由器从局域网文件服务直接下载，不纳入版本管理。
 
 - [下载安装脚本 install.sh](/downloads/lucky/scripts/install.sh)
 - [下载运行管理脚本 lucky-ram.sh](/downloads/lucky/scripts/lucky-ram.sh)
@@ -47,7 +47,7 @@ permalink: /pages/e67c57
 
 **使用前必须接受以下条件：**
 
-- 冷启动时需要能访问下载源。默认从 GitHub 下载；有常开 NAS 时，推荐由 NAS 提供相同文件。断网且没有可达下载源时，Lucky 不能冷启动。
+- 冷启动时需要能访问下载源。默认从局域网设备 `192.168.31.2` 的文件服务下载。该设备及文件服务须在冷启动时可达；无需依赖公网 GitHub，下载源不可达时 Lucky 不能冷启动。
 - 修改规则、设置、证书或自动续签完成后，必须执行本文的 `save` 命令。重启恢复最后一次保存的配置，未保存修改会丢失。保存会短暂停止并重新启动 Lucky。
 - tmpfs 只限制文件系统容量，不限制 Lucky 进程自身的 RAM。内存不足或状态盘写满时，Lucky 仍可能异常，但不会因此把默认运行数据持续写满 `/data`。
 - `-cd` 不是文件系统沙箱。不要将自定义日志、脚本输出、下载、网盘缓存、上传路径指向 `/data` 或 `/userdisk`。
@@ -137,7 +137,7 @@ ssh root@192.168.31.1 'mkdir -p /tmp/lucky-install'
 ```
 
 ```bash
-scp -O /Users/jxwu/Dev/Repos/notes/docs/public/downloads/lucky/scripts/install.sh /Users/jxwu/Dev/Repos/notes/docs/public/downloads/lucky/scripts/lucky-ram.sh root@192.168.31.1:/tmp/lucky-install/
+scp -O ~/Dev/Repos/notes/docs/public/downloads/lucky/scripts/install.sh ~/Dev/Repos/notes/docs/public/downloads/lucky/scripts/lucky-ram.sh root@192.168.31.1:/tmp/lucky-install/
 ```
 
 ```bash
@@ -155,92 +155,6 @@ ssh root@192.168.31.1 'sh /data/lucky-ram/lucky-ram.sh status'
 ```
 
 预期看到两个 tmpfs 和 Lucky 进程。下载失败时服务会重试，排错见第八节。
-
-### 备选：电脑提前下载，首次安装不依赖路由器访问 GitHub
-
-如果担心重置后路由器无法访问 GitHub，可在 **Mac 提前下载并校验**，重置后将程序包直接传入路由器的独立内存盘。此流程替代本节上面的常规安装命令；两种方式选一种。第二、三节的准备和预检仍需完成。
-
-#### 1. 重置前，在 Mac 下载固定版本
-
-本地程序包保存在电脑的 `~/Downloads/lucky-packages`，不放进笔记仓库，可留到安装时使用：
-
-```bash
-mkdir -p /Users/jxwu/Downloads/lucky-packages
-```
-
-```bash
-curl --fail --location --connect-timeout 15 --max-time 300 --output /Users/jxwu/Downloads/lucky-packages/lucky_3.5.0_Linux_armv7.tar.gz.part https://github.com/gdy666/lucky/releases/download/v3.5.0/lucky_3.5.0_Linux_armv7.tar.gz
-```
-
-以下整个命令块在 Mac 执行；校验失败会停止，不会将下载文件标记为可用：
-
-```bash
-( set -eu
-  cd /Users/jxwu/Downloads/lucky-packages
-  printf '%s  %s\n' '34761465b4b88f6a3f19c2190d68ca3bf963d9d347ed0bcd2f8a46a73c31ea09' lucky_3.5.0_Linux_armv7.tar.gz.part | shasum -a 256 -c -
-  mv lucky_3.5.0_Linux_armv7.tar.gz.part lucky_3.5.0_Linux_armv7.tar.gz
-)
-```
-
-看到 `OK` 后表示下载包与固定 SHA256 一致。请保留该文件，不需要解压到电脑或上传到 `/data`。
-
-#### 2. 重置后，在路由器准备程序内存盘
-
-完成第三节预检后，在 **路由器 SSH** 中执行整个命令块。它会拒绝在已有 Lucky 进程时继续，并检查内存盘确实存在：
-
-```bash
-( set -eu
-  if pidof lucky >/dev/null 2>&1; then
-    printf '%s\n' '已有 Lucky 进程，请停止旧服务后再操作' >&2
-    exit 1
-  fi
-  available=$(awk '/MemAvailable:/ {print $2}' /proc/meminfo)
-  test "${available:-0}" -ge 49152
-  mkdir -p /tmp/lucky-install /tmp/lucky-program
-  if ! awk '$2=="/tmp/lucky-program" {found=1} END {exit !found}' /proc/mounts; then
-    mount -t tmpfs -o size=32m,mode=0700,nosuid,nodev lucky-ram /tmp/lucky-program
-  fi
-  awk '$2=="/tmp/lucky-program" && $3=="tmpfs" {found=1} END {exit !found}' /proc/mounts
-  df -h /tmp/lucky-program
-)
-```
-
-若命令报错，先解决错误，不要继续上传。上传和安装过程中不要重启路由器，否则内存盘内容会消失。
-
-#### 3. 在 Mac 上传脚本和预下载程序包
-
-```bash
-scp -O /Users/jxwu/Dev/Repos/notes/docs/public/downloads/lucky/scripts/install.sh /Users/jxwu/Dev/Repos/notes/docs/public/downloads/lucky/scripts/lucky-ram.sh root@192.168.31.1:/tmp/lucky-install/
-```
-
-```bash
-scp -O /Users/jxwu/Downloads/lucky-packages/lucky_3.5.0_Linux_armv7.tar.gz root@192.168.31.1:/tmp/lucky-program/package
-```
-
-#### 4. 在路由器校验、解压，再执行安装器
-
-在 **路由器 SSH** 中执行整个命令块。顺序必须是先放好程序，再运行安装器，避免后台下载与手动上传争用文件：
-
-```bash
-( set -eu
-  awk '$2=="/tmp/lucky-program" && $3=="tmpfs" {found=1} END {exit !found}' /proc/mounts
-  if pidof lucky >/dev/null 2>&1; then
-    printf '%s\n' '已有 Lucky 进程，停止后再安装' >&2
-    exit 1
-  fi
-  cd /tmp/lucky-program
-  printf '%s  %s\n' '34761465b4b88f6a3f19c2190d68ca3bf963d9d347ed0bcd2f8a46a73c31ea09' package | sha256sum -c -
-  tar -xzOf package lucky > lucky.new
-  chmod 700 lucky.new
-  mv lucky.new lucky
-  rm -f package
-  sh /tmp/lucky-install/install.sh
-)
-```
-
-程序包与解压程序同时存在时约占 26.95 MiB，能放进 32 MiB 程序盘。脚本发现内存盘已有可执行程序后会直接使用，不再下载；随后继续执行第五节首次设置、第六节重启验收。
-
-**此方法只免除本次启动的在线下载。** 安装器仍将 GitHub 设置为后续下载源；重启会清空程序内存盘，再次冷启动仍需访问 GitHub，或按第七节提前改成常开 NAS。如果重启后没有任何可达下载源，可再次手动传包，但需先停止已安装的服务以避免后台重试与上传冲突，传包完成后用 `start` 启动，不能重跑全新安装器。
 
 ## 五、首次设置并保存配置
 
@@ -296,25 +210,29 @@ ssh root@192.168.31.1 'uci -q show firewall.lucky_ram; mount | grep lucky; grep 
 
 若手工能启动但重启后不能启动，应检查下载源和持久 include。没有通过此次验收，就不能认定自启动已正常。
 
-## 七、可选：从常开 NAS 下载，避免依赖 GitHub
+## 七、默认局域网下载源与已安装设备的修改方法
 
-如需使用 NAS，从官方地址下载固定版本程序包，并上传到 NAS 静态文件目录：
+默认下载地址：
 
-https://github.com/gdy666/lucky/releases/download/v3.5.0/lucky_3.5.0_Linux_armv7.tar.gz
+http://192.168.31.2:6086/lucky/lucky_3.5.0_Linux_armv7.tar.gz
 
-获得局域网直接下载地址后，将下面的示例 URL **换成你的真实 NAS URL**，在路由器 SSH 中执行：
+全新安装器会自动写入该地址。文件服务需允许路由器直接下载程序包，不能返回登录页或错误响应；文件必须与官方 3.5.0 armv7 普通包完全相同，SHA256 不一致时脚本会拒绝执行。
+
+2026-10-31 已从电脑直接下载验证：该地址返回的安装包 SHA256 为 `34761465b4b88f6a3f19c2190d68ca3bf963d9d347ed0bcd2f8a46a73c31ea09`，与官方固定包一致。随后已从路由器下载并核对同一 SHA256，且已将路由器 source.conf 更新为该地址，更新期间 Lucky 未重启，管理入口返回 HTTP 200。
+
+**已安装设备不会因修改电脑上的安装器而自动更新。** 如需将已有设备改为此下载源，在路由器 SSH 中执行：
 
 ```bash
 cat > /data/lucky-ram/source.conf <<'EOF'
-SOURCE_URL='http://192.168.31.10:8080/lucky_3.5.0_Linux_armv7.tar.gz'
+SOURCE_URL='http://192.168.31.2:6086/lucky/lucky_3.5.0_Linux_armv7.tar.gz'
 SOURCE_SHA256='34761465b4b88f6a3f19c2190d68ca3bf963d9d347ed0bcd2f8a46a73c31ea09'
 SOURCE_FORMAT='tar.gz'
 EOF
 ```
 
-文件必须与官方包完全相同；SHA256 校验不通过不会执行。只共享程序包，不共享配置或证书。改 URL 不会替换已在 RAM 中的程序，下次冷启动才使用新源。
+修改地址不会替换已经在 RAM 中的程序，下次冷启动才使用新源。若要使用其他 NAS 或恢复官方 GitHub 下载，只更换 `SOURCE_URL`，相同版本程序包继续保留原 SHA256。官方包地址：
 
-没有 NAS 时保留默认 GitHub 地址，无需执行本节。
+https://github.com/gdy666/lucky/releases/download/v3.5.0/lucky_3.5.0_Linux_armv7.tar.gz
 
 ## 八、日常操作与排错
 
@@ -350,7 +268,7 @@ sh /data/lucky-ram/lucky-ram.sh start
 grep lucky-ram /tmp/messages | tail -30
 ```
 
-**下载失败：** 检查路由器 DNS、时间、HTTPS 和 GitHub 连通性；首次安装可选第四节的本地预下载安装方式，也可以按第七节改为可达 NAS。不要绕过 TLS 或改用未校验程序。
+**下载失败：** 检查 `192.168.31.2` 的网络、文件服务和文件路径，确认返回的是程序包；可按第七节改为其他可达下载源。不要绕过 TLS 或改用未校验程序。
 
 **`/data` 空闲不足 2 MiB：** 脚本拒绝保存配置。查明系统或其他插件占用，不能通过增大内存盘解决；不要删除系统配置卷。
 
