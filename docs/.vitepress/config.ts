@@ -117,7 +117,10 @@ export default defineConfig({
       },
       {
         text: "网络",
-        items: [{ text: "Clash", link: "/pages/083417" }],
+        items: [
+          { text: "Clash", link: "/pages/083417" },
+          { text: "Lucky", link: "/pages/e67c57" },
+        ],
       },
       {
         text: "碎片",
