@@ -13,7 +13,7 @@ description: >-
 
 # Wi-Fi 上网与有线内网并用：Windows 和 macOS 静态路由
 
-办公机用 Wi-Fi 上网，同时通过以太网访问开发机。将 `10.10.6.0/24` 的流量交给有线网关 `10.220.0.1`，以 `10.10.6.105` 为例验证实际选路。
+办公机用 Wi-Fi 上网，同时通过以太网访问开发机。开发机地址已改为 `10.10.5.105`，将 `10.10.5.0/24` 的流量交给有线网关 `10.220.0.1`。
 
 ## Windows
 
@@ -34,37 +34,37 @@ Find-NetRoute -RemoteIPAddress 10.220.0.1
 确认 `InterfaceAlias` 是有线网卡，`NextHop` 为 `0.0.0.0`，表示网关在直连网段上，再添加开发网段的永久路由。
 
 ```powershell
-route.exe /p add 10.10.6.0 mask 255.255.255.0 10.220.0.1
+route.exe /p add 10.10.5.0 mask 255.255.255.0 10.220.0.1
 ```
 
-`/p` 将路由保存到重启之后。这里的 `10.220.0.1` 是 `10.10.6.0/24` 的下一跳，填在静态路由命令里。[Microsoft Learn：route 命令](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/route_ws2008)
+`/p` 将路由保存到重启之后。这里的 `10.220.0.1` 是 `10.10.5.0/24` 的下一跳，填在静态路由命令里。[Microsoft Learn：route 命令](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/route_ws2008)
 
-原 Windows 记录中，`10.10.0.0/16` 的静态路由曾和智铠 VPN 的同前缀路由冲突。连接 VPN 后，访问 `10.10.6.x` 的新连接曾失败，已有连接当时仍可用。改用 `10.10.6.0/24` 后，原环境在 VPN 开启时也能连接开发机。`/24` 优先于覆盖同一目标的 `/16`，如果 VPN 也下发了同样的 `/24` 或更具体的路由，应在 VPN 连接后复查实际选路。
+开发机还在 `10.10.6.0/24` 时，覆盖整个 `10.10.0.0/16` 的静态路由曾与智铠 VPN 的同前缀路由冲突。连接 VPN 后，新连接曾失败，已有连接当时仍可用。原环境改用开发机所在的 `/24` 后，开启 VPN 也能连接。`/24` 优先于覆盖同一目标的 `/16`。如果 VPN 也下发了同样的 `/24` 或更具体的路由，应在 VPN 连接后复查实际选路。
 
 ### 验证与回退
 
 ```powershell
-route.exe /p print 10.10.6.0
-Find-NetRoute -RemoteIPAddress 10.10.6.105
+route.exe /p print 10.10.5.0
+Find-NetRoute -RemoteIPAddress 10.10.5.105
 Get-NetRoute -AddressFamily IPv4 -DestinationPrefix 0.0.0.0/0
 ```
 
-在永久路由列表中确认 `10.10.6.0`、掩码 `255.255.255.0` 和下一跳 `10.220.0.1`。查询开发机时，预期选中 `10.10.6.0/24`、以太网接口和下一跳 `10.220.0.1`。正常双网卡接入时，检查 IPv4 默认路由 `0.0.0.0/0` 是否经 Wi-Fi。有 VPN 时，在连接 VPN 后再次查询开发机的实际选路。[Microsoft Learn：Find-NetRoute](https://learn.microsoft.com/en-us/powershell/module/nettcpip/find-netroute)
+在永久路由列表中确认 `10.10.5.0`、掩码 `255.255.255.0` 和下一跳 `10.220.0.1`。查询开发机时，预期选中 `10.10.5.0/24`、以太网接口和下一跳 `10.220.0.1`。正常双网卡接入时，检查 IPv4 默认路由 `0.0.0.0/0` 是否经 Wi-Fi。有 VPN 时，在连接 VPN 后再次查询开发机的实际选路。[Microsoft Learn：Find-NetRoute](https://learn.microsoft.com/en-us/powershell/module/nettcpip/find-netroute)
 
 撤销这条永久路由时，在管理员 PowerShell 执行以下命令，再复查永久路由列表。
 
 ```powershell
-route.exe delete 10.10.6.0 mask 255.255.255.0 10.220.0.1
-route.exe /p print 10.10.6.0
+route.exe delete 10.10.5.0 mask 255.255.255.0 10.220.0.1
+route.exe /p print 10.10.5.0
 ```
 
 ## macOS
 
-### 本机实测
+### 本机网络服务
 
-| 网络服务 | 接口 | 附加 IPv4 路由 |
+| 网络服务 | 接口 | 附加 IPv4 路由目标 |
 | --- | --- | --- |
-| `Ethernet` | `en0` | 已保存 `10.10.6.0/24`，下一跳为 `10.220.0.1` |
+| `Ethernet` | `en0` | `10.10.5.0/24`，下一跳为 `10.220.0.1` |
 | `Wi-Fi` | `en1` | 无。当前接入另一个网段，`10.220.0.1` 由 `en0` 直接到达 |
 
 ### 保存永久路由
@@ -79,10 +79,10 @@ networksetup -getadditionalroutes "Ethernet"
 
 `networksetup` 使用网络服务名，比如 `Ethernet`，接口名 `en0` 用来核对实际出接口。换用 Wi-Fi 或 USB 网卡时，先确认 `route -n get 10.220.0.1` 显示网关可经对应接口直接到达，再把命令中的 `"Ethernet"` 换成实际的服务名，如 `"Wi-Fi"`。
 
-首次配置且该服务没有其他附加路由时，执行以下命令。
+若该服务的附加路由列表为空，或只有本次要替换的旧开发网段 `10.10.6.0/24`，执行以下命令。
 
 ```bash
-sudo networksetup -setadditionalroutes "Ethernet" 10.10.6.0 255.255.255.0 10.220.0.1
+sudo networksetup -setadditionalroutes "Ethernet" 10.10.5.0 255.255.255.0 10.220.0.1
 ```
 
 `-setadditionalroutes` 会替换该服务的整份附加 IPv4 路由列表。如果已有其他路由，先记录原列表，把需要保留的条目和新条目在同一条命令中按 `目标网段 掩码 网关` 逐组写入。配置会保留到重启之后，路由随对应网络服务启用。
@@ -91,33 +91,33 @@ sudo networksetup -setadditionalroutes "Ethernet" 10.10.6.0 255.255.255.0 10.220
 
 ```bash
 networksetup -getadditionalroutes "Ethernet"
-route -n get 10.10.6.105
+route -n get 10.10.5.105
 ```
 
-前者应列出 `10.10.6.0 255.255.255.0 10.220.0.1`。后者在本机的关键输出如下。
+前者应列出 `10.10.5.0 255.255.255.0 10.220.0.1`。后者的预期关键输出如下。
 
 ```text
-   route to: 10.10.6.105
-destination: 10.10.6.0
+   route to: 10.10.5.105
+destination: 10.10.5.0
        mask: 255.255.255.0
     gateway: 10.220.0.1
   interface: en0
 ```
 
-选路符合预期。实测向 `10.10.6.105` 发出一次 `ping`，未收到应答，业务端口的连通性仍待确认。
+`route -n get` 用于核对系统选路。业务连通性可用开发机上实际开放的端口验证。
 
 ### 临时添加与回退
 
 只想临时试路由，且路由表中还没有这条记录时，可以直接修改运行中的路由表。这项修改重启后会丢失。
 
 ```bash
-sudo route add -net 10.10.6.0/24 10.220.0.1
+sudo route add -net 10.10.5.0/24 10.220.0.1
 ```
 
 撤销用 `route add` 加入的临时路由时，执行以下命令。
 
 ```bash
-sudo route delete -net 10.10.6.0/24 10.220.0.1
+sudo route delete -net 10.10.5.0/24 10.220.0.1
 ```
 
 撤销永久路由时，先用 `-getadditionalroutes` 查看列表。若 `Ethernet` 只有这一条附加路由，可以清空该服务的附加路由列表，再复查配置和选路。
@@ -125,7 +125,7 @@ sudo route delete -net 10.10.6.0/24 10.220.0.1
 ```bash
 sudo networksetup -setadditionalroutes "Ethernet"
 networksetup -getadditionalroutes "Ethernet"
-route -n get 10.10.6.105
+route -n get 10.10.5.105
 ```
 
 如果还有其他附加路由，用一条 `-setadditionalroutes` 命令重新写入所有要保留的条目，再做相同的复查。
