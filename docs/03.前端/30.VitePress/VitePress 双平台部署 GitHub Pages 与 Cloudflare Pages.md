@@ -65,9 +65,7 @@ const siteUrl =
 
 ```typescript
 // favicon
-href: `${base}site/blogging-mini.svg`,
-// favicon png
-href: `${base}site/blogging-mini.png`,
+href: `${base}site/favicon.svg`,
 ```
 
 sitemap 的 hostname 改为使用 `siteUrl` 变量：
@@ -117,7 +115,7 @@ pnpm docs:build
 
 | 检查项 | GitHub Pages 模式（`GITHUB_ACTIONS=true`） | Cloudflare Pages 模式（默认） |
 |--------|------------------------------------------|-----------------------------|
-| favicon 路径 | `/notes/site/blogging-mini.svg` | `/site/blogging-mini.svg` |
+| favicon 路径 | `/notes/site/favicon.svg` | `/site/favicon.svg` |
 | CSS/JS 路径 | `/notes/assets/...` | `/assets/...` |
 | sitemap 域名 | `laplacesc.github.io/notes/` | `notes.laplacesc.com` |
 

@@ -26,21 +26,21 @@ export default defineConfig({
   head: [
     [
       "link",
-      {
-        rel: "icon",
-        type: "image/svg+xml",
-        href: `${base}site/blogging-mini.svg`,
-      },
+      { rel: "icon", type: "image/svg+xml", href: `${base}site/favicon.svg` },
     ],
     [
       "link",
-      { rel: "icon", type: "image/png", href: `${base}site/blogging-mini.png` },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: `${base}site/favicon-32.png` },
+    ],
+    [
+      "link",
+      { rel: "icon", type: "image/png", sizes: "16x16", href: `${base}site/favicon-16.png` },
     ],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
     ["meta", { property: "og:title", content: "不理之山の笔记" }],
     ["meta", { property: "og:site_name", content: "不理之山の笔记" }],
-    ["meta", { property: "og:image", content: `${siteUrl}site/blogging.png` }],
+    ["meta", { property: "og:image", content: `${siteUrl}site/logo.png` }],
     ["meta", { property: "og:url", content: `${siteUrl}` }],
     ["meta", { property: "og:description", description: description }],
     ["meta", { name: "description", description: description }],
@@ -88,7 +88,7 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: "/site/blogging-mini.svg",
+    logo: "/site/favicon.svg",
     darkModeSwitchLabel: "主题",
     sidebarMenuLabel: "菜单",
     returnToTopLabel: "返回顶部",

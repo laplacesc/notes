@@ -5,7 +5,7 @@ hero:
   text: 笔记
   tagline: 这是个人的日常随笔文档
   image:
-    src: /site/blogging.png
+    src: /site/logo.png
 ---
 
 <script setup lang="ts">
