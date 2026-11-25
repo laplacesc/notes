@@ -120,6 +120,7 @@ export default defineConfig({
         items: [
           { text: "Clash", link: "/pages/083417" },
           { text: "Lucky", link: "/pages/e67c57" },
+          { text: "Cloudflare", link: "/pages/d6c3dc" },
         ],
       },
       {
